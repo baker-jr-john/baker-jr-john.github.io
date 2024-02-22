@@ -9,6 +9,7 @@ website:
     search: false
     right:
       - about.qmd
+      - work.qmd
       - contact.qmd 
   page-footer: 
     border: true
