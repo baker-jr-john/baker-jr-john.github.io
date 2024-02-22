@@ -19,7 +19,7 @@ website:
       - text: "Privacy Policy"
         href: privacy.qmd
       - text: "License"
-        href: license.qmd 
+        href: License.qmd 
 
 format:
   html:
