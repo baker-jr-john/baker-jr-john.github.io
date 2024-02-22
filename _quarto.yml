@@ -28,7 +28,6 @@ format:
       dark: darkly
     css: styles.css
     toc: true
-    pagetitle: "John Baker | {{< meta title >}}"
     smooth-scroll: true
     link-external-newwindow: true
 
