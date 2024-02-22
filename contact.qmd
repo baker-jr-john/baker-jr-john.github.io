@@ -1,0 +1,31 @@
+---
+title: "Contact"
+---
+
+Feel free to reach out!
+
+<!-- source: https://github.com/mccarthy-m-g/tidytales/blob/main/about/index.qmd#L24-L46 -->
+
+::: {}
+<form action="https://formspree.io/f/mrgnqnvn" method="POST" accept-charset="utf-8">
+
+::: {.form-group .col-12}
+<label for="full-name">Full Name</label>
+<input type="text" name="name" id="full-name" class="form-control" placeholder="First and Last" required>
+:::
+
+::: {.form-group}
+<label for="email-address">Email Address</label>
+<input type="email" name="_replyto" id="email-address" class="form-control" placeholder="your@email.here" required>
+:::
+
+::: {.form-group}
+<label for="message">Message</label>
+  <textarea rows="6" name="message" id="message" class="form-control" placeholder="Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla nullam quis risus." required></textarea>
+:::
+
+<button type="submit" class="btn btn-primary mt-4">Send Message</button>
+</form>
+:::
+
+<!-- end grid -->

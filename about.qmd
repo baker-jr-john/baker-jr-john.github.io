@@ -7,6 +7,14 @@ about:
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/baker-jr-john/
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/baker_jr_john
 ---
+I'm the School Data Analyst for the <a href="https://www.floridaufsd.org/" title="Florida Union Free School District" target="_blank">Florida Union Free School District</a> in the village of Florida, New York. I'm grateful to play a role in shaping the future of many youths by leveraging my skills.
 
-I'm a data analyst. I like Zelda.
+I'm excited to graduate from the <a href="https://www.newpaltz.edu/" title="SUNY New Paltz | the State University of New York at New Paltz" target="_blank">State University of New York at New Paltz</a> this spring. It’s been a long road to get here, and I’m looking forward to achieving what I set out to accomplish many years ago.
+
+You’ll find me with my wife and son in my free time, walking with the dogs, enjoying music and food, and playing board games and video games.
+
+I'd love to [hear from you](contact.qmd)!

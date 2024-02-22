@@ -1,0 +1,22 @@
+---
+title: "Accessibility Statement"
+---
+### Approach
+I am committed to ensuring accessibility for all visitors to my website. I strive to provide an inclusive and user-friendly experience for everyone, regardless of their abilities or disabilities.
+
+### Standards and Guidelines
+I have designed and developed this site with the aim of meeting accessibility standards and guidelines. I follow the <a href="https://www.w3.org/TR/WCAG21/" title="Web Content Accessibility Guidelines (WCAG) 2.1" target="_blank">Web Content Accessibility Guidelines (WCAG) 2.1</a>, a globally recognized standard for web accessibility. By adhering to these guidelines, I aim to make my website perceivable, operable, understandable, and robust for all users.
+
+### Accessible Design
+I have taken several measures to ensure an accessible design, including using clear and easy-to-read fonts, providing sufficient color contrast for readability, and using alt text for images to give descriptions. I have also structured the content intending to make it easier for screen readers and assistive technologies to interpret and navigate the site.
+
+### Keyboard navigation and assistive technology
+I have made efforts to ensure that my website is keyboard accessible, allowing you to navigate and interact with the content without relying solely on a mouse. I have also tested the site with popular screen readers and assistive technologies to ensure compatibility and improve accessibility for those of you who are visually impaired.
+
+### Continuous Improvement
+Accessibility is an ongoing process, and I am committed to continuously improving the accessibility of my website. I regularly review and update the site to address accessibility issues and incorporate feedback.
+
+### Contact Me
+I’m aware of the limitations of my perspective and warmly welcome any suggestions for improvement. So don’t hesitate to [contact me](contact.qml). Thank you for visiting my website, and I appreciate your support in promoting accessibility for everyone.
+
+I adapted this page from <a href="https://www.iamtamara.design/" title="Tamara Sredojevic" target="_blank">Tamara Sredojevic</a>.

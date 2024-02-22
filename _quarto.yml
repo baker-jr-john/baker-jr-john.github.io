@@ -1,21 +1,36 @@
 project:
+  title: "John Baker"
   type: website
   output-dir: docs
 
 website:
-  title: "John Baker"
+  search: false
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - href: about.qmd
-        text: About
-
+    right:
+      - about.qmd 
+      - contact.qmd       
+  page-footer: 
+    border: true
+    right: 
+      - text: "Accessibility Statement"
+        href: accessibility.qmd
+      - text: "Privacy Policy"
+        href: privacy.qmd
+      - text: "License"
+        href: license.qmd
+    left: Made with ♥️ and <a href="https://quarto.org/" title="Quarto" target="_blank"><img src="https://quarto.org/quarto.png" alt="Quarto" style="width:65px;"></a>.
+      
+      
 format:
   html:
-    theme: Flatly
+    theme:
+      light: flatly
+      dark: darkly
     css: styles.css
     toc: true
+    pagetitle: "John Baker | {{< meta title >}}"
+    smooth-scroll: true
+    link-external-newwindow: true
 
 
 

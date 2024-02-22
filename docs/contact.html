@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>John Baker | About</title>
+<title>John Baker | Contact</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,6 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
@@ -56,7 +57,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -73,11 +74,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./contact.html" rel="" target="">
+    <a class="nav-link active" href="./contact.html" rel="" target="" aria-current="page">
  <span class="menu-text">Contact</span></a>
   </li>  
 </ul>
@@ -92,38 +93,53 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
 <!-- main -->
-<div class="quarto-about-jolla">
-  <img src="images/Portrait_IMG_LG.jpg" class="about-image
-  round " style="height: 15em; width: 15em;">
- <header id="title-block-header" class="quarto-title-block default">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Contact</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
+
+    
+  
+    
   </div>
-</header><main class="content" id="quarto-document-content">
-<p>I’m the School Data Analyst for the <a href="https://www.floridaufsd.org/" title="Florida Union Free School District" target="_blank">Florida Union Free School District</a> in the village of Florida, New York. I’m grateful to play a role in shaping the future of many youths by leveraging my skills.</p>
-<p>I’m excited to graduate from the <a href="https://www.newpaltz.edu/" title="SUNY New Paltz | the State University of New York at New Paltz" target="_blank">State University of New York at New Paltz</a> this spring. It’s been a long road to get here, and I’m looking forward to achieving what I set out to accomplish many years ago.</p>
-<p>You’ll find me with my wife and son in my free time, walking with the dogs, enjoying music and food, and playing board games and video games.</p>
-<p>I’d love to <a href="./contact.html">hear from you</a>!</p>
+  
+
+</header>
+
+<p>Feel free to reach out!</p>
+<!-- source: https://github.com/mccarthy-m-g/tidytales/blob/main/about/index.qmd#L24-L46 -->
+<div>
+<form action="https://formspree.io/f/mrgnqnvn" method="POST" accept-charset="utf-8">
+<div class="form-group col-12">
+<p><label for="full-name">Full Name</label> <input type="text" name="name" id="full-name" class="form-control" placeholder="First and Last" required=""></p>
+</div>
+<div class="form-group">
+<p><label for="email-address">Email Address</label> <input type="email" name="_replyto" id="email-address" class="form-control" placeholder="your@email.here" required=""></p>
+</div>
+<div class="form-group">
+<label for="message">Message</label>
+<textarea rows="6" name="message" id="message" class="form-control" placeholder="Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla nullam quis risus." required=""></textarea>
+</div>
+<button type="submit" class="btn btn-primary mt-4">
+Send Message
+</button>
+</form>
+</div>
+<!-- end grid -->
 
 
-</main> 
-  <hr class="about-sep">
-   <div class="about-links">
-  <a href="https://www.linkedin.com/in/baker-jr-john/" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="https://twitter.com/baker_jr_john" class="about-link" rel="" target="">
-    <i class="bi bi-twitter"></i>
-     <span class="about-link-text">Twitter</span>
-  </a>
-</div>
-</div>
- <!-- /main -->
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -259,6 +275,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   } else {
     toggleColorMode(false);
   }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     
