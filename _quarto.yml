@@ -29,11 +29,11 @@ website:
         href: privacy.qmd
       - text: "License"
         href: license.qmd 
-    right:
-      - icon: github
-#        text: " Source Code"
-        href: https://github.com/baker-jr-john/baker-jr-john.github.io
-        target: blank
+    right:[{{< fa brands github >}} Source Code](https://github.com/baker-jr-john/baker-jr-john.github.io){target="_blank"}
+#      - icon: github
+#        text: "Source Code"
+#        href: https://github.com/baker-jr-john/baker-jr-john.github.io
+#        target: _blank
 
 format:
   html:
