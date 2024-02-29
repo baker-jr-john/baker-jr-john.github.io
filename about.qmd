@@ -2,7 +2,8 @@
 title: "About"
 image: images/Portrait_IMG_LG.jpg
 about:
-  template: jolla
+  template: trestles
+  image-shape: round
   links:
     - icon: linkedin
       text: LinkedIn
