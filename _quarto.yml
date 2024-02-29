@@ -30,7 +30,7 @@ website:
       - text: "License"
         href: license.qmd 
     right: |
-      [{{< fa brands github >}} Source Code](https://github.com/baker-jr-john/baker-jr-john.github.io){target="_blank"}
+      [{{< fa brands github >}}](https://github.com/baker-jr-john/baker-jr-john.github.io){target="_blank"}
 
 format:
   html:
