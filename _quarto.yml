@@ -7,10 +7,10 @@ title-meta: "John Baker"
 description-meta: "The Personal Website of John Baker"
 
 website:
+  search: false
   navbar:
     pinned: true
     background: primary
-    search: false
     right:
       - about.qmd
       - work.qmd
