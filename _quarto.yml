@@ -27,8 +27,7 @@ website:
         href: license.qmd 
   repo-url: "https://github.com/baker-jr-john/baker-jr-john.github.io"
   repo-branch: main 
-    right: 
-        <span class="faux-block"><a href="https://github.com/baker-jr-john/baker-jr-john.github.io" title="baker-jr-john/baker-jr-john.github.io" target="_blank">{{< fa brands github >}} Source Code</a></span>
+    right: <span class="faux-block"><a href="https://github.com/baker-jr-john/baker-jr-john.github.io" title="baker-jr-john/baker-jr-john.github.io" target="_blank">{{< fa brands github >}} Source Code</a></span>
 
 format:
   html:
