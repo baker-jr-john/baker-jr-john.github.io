@@ -33,7 +33,7 @@ website:
       - icon: github
 #        text: " Source Code"
         href: https://github.com/baker-jr-john/baker-jr-john.github.io
-        target: _blank
+        target: blank
 
 format:
   html:
