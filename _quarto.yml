@@ -30,9 +30,11 @@ website:
       - text: "License"
         href: license.qmd 
     right: 
-      - text: " Source Code"
+      - icon: github
+        text: " Source Code"
         href: https://github.com/baker-jr-john/baker-jr-john.github.io
-        icon: github
+        target: _blank
+        aria-label: GitHub
 
 format:
   html:
