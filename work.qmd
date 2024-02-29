@@ -6,4 +6,4 @@ listing:
   sort: "date desc" # can also sort on more than one field
   categories: false # allows you to sort posts by assigned categories 
 ---
-This page is under development.
+This page is still under development.
