@@ -1,7 +1,7 @@
 project:
-  title: "John Baker"
   type: website
   output-dir: docs
+  title: "John Baker"
 
 website:
   navbar:
