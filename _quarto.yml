@@ -21,7 +21,7 @@ website:
 
   page-footer: 
     border: true
-    left: Made with {{< fa heart >}} and [![Quarto](https://quarto.org/quarto.png)]{width=65}(https://quarto.org/){target="_blank"} 
+    left: Made with {{< fa heart >}} and [![Quarto](https://quarto.org/quarto.png){width=65}](https://quarto.org/){target="_blank"} 
     center: 
       - text: "Accessibility Statement"
         href: accessibility.qmd
