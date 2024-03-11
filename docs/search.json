@@ -14,18 +14,11 @@
     "text": "MIT License\nCopyright © 2024 John Richard Baker Jr.\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”) to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright and permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "\nHi, I’m John Baker. 👋\n",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "Hi, I’m John Baker. 👋\n\n\nI’m an experienced data analyst dedicated to facilitating data-driven decision-making, ensuring data privacy, and improving the educational process.\n\n\nLearn More"
-  },
-  {
-    "objectID": "contact.html",
-    "href": "contact.html",
-    "title": "Contact",
-    "section": "",
-    "text": "Feel free to reach out! I’d love to talk with you about x, y, or z.\n\n\n\n\nFull Name \n\n\nEmail Address \n\n\nMessage\n\n\n\nSend Message"
+    "text": "I’m the School Data Analyst for the Florida Union Free School District in the village of Florida, New York (not the state of Florida). I’m grateful to play a role in shaping the future of many youths by leveraging my skills.\nI’m excited to graduate from the State University of New York at New Paltz this spring. It’s been a long road to get here, and I’m looking forward to achieving what I set out to accomplish many years ago.\nYou’ll find me with my wife and son in my free time, walking with the dogs, enjoying music and food, and playing board games and video games.\nI’d love to hear from you!"
   },
   {
     "objectID": "work.html",
@@ -35,18 +28,18 @@
     "text": "This website\n\n\nI created a place on the internet to share my thoughts and projects.\n\n\n\nJohn Baker\n\n\nMar 11, 2024\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact",
     "section": "",
-    "text": "I’m the School Data Analyst for the Florida Union Free School District in the village of Florida, New York (not the state of Florida). I’m grateful to play a role in shaping the future of many youths by leveraging my skills.\nI’m excited to graduate from the State University of New York at New Paltz this spring. It’s been a long road to get here, and I’m looking forward to achieving what I set out to accomplish many years ago.\nYou’ll find me with my wife and son in my free time, walking with the dogs, enjoying music and food, and playing board games and video games.\nI’d love to hear from you!"
+    "text": "Feel free to reach out! I’d love to talk with you about x, y, or z.\n\n\n\n\nFull Name \n\n\nEmail Address \n\n\nMessage\n\n\n\nSend Message"
   },
   {
-    "objectID": "accessibility.html",
-    "href": "accessibility.html",
-    "title": "Accessibility Statement",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "\nHi, I’m John Baker. 👋\n",
     "section": "",
-    "text": "Approach\nI am committed to ensuring accessibility for all visitors to my website. I strive to provide an inclusive and user-friendly experience for everyone, regardless of their abilities or disabilities.\n\n\nStandards and Guidelines\nI have designed and developed this site with the aim of meeting accessibility standards and guidelines. I follow the Web Content Accessibility Guidelines (WCAG) 2.1, a globally recognized standard for web accessibility. By adhering to these guidelines, I aim to make my website perceivable, operable, understandable, and robust for all users.\n\n\nAccessible Design\nI have taken several measures to ensure an accessible design, including using clear and easy-to-read fonts, providing sufficient color contrast for readability, and using alt text for images to give descriptions. I have also structured the content intending to make it easier for screen readers and assistive technologies to interpret and navigate the site.\n\n\nKeyboard navigation and assistive technology\nI have made efforts to ensure that my website is keyboard accessible, allowing you to navigate and interact with the content without relying solely on a mouse. I have also tested the site with popular screen readers and assistive technologies to ensure compatibility and improve accessibility for those of you who are visually impaired.\n\n\nContinuous Improvement\nAccessibility is an ongoing process, and I am committed to continuously improving the accessibility of my website. I regularly review and update the site to address accessibility issues and incorporate feedback.\n\n\nContact Me\nI’m aware of the limitations of my perspective and warmly welcome any suggestions for improvement. So don’t hesitate to contact me. Thank you for visiting my website, and I appreciate your support in promoting accessibility for everyone.\nI adapted this page from Tamara Sredojevic."
+    "text": "Hi, I’m John Baker. 👋\n\n\nI’m an experienced data analyst dedicated to facilitating data-driven decision-making, ensuring data privacy, and improving the educational process.\n\n\nLearn More"
   },
   {
     "objectID": "work/2024-03-10_website_2.0/index.html",
@@ -54,5 +47,12 @@
     "title": "This website",
     "section": "",
     "text": "Here are some words."
+  },
+  {
+    "objectID": "accessibility.html",
+    "href": "accessibility.html",
+    "title": "Accessibility Statement",
+    "section": "",
+    "text": "Approach\nI am committed to ensuring accessibility for all visitors to my website. I strive to provide an inclusive and user-friendly experience for everyone, regardless of their abilities or disabilities.\n\n\nStandards and Guidelines\nI have designed and developed this site with the aim of meeting accessibility standards and guidelines. I follow the Web Content Accessibility Guidelines (WCAG) 2.1, a globally recognized standard for web accessibility. By adhering to these guidelines, I aim to make my website perceivable, operable, understandable, and robust for all users.\n\n\nAccessible Design\nI have taken several measures to ensure an accessible design, including using clear and easy-to-read fonts, providing sufficient color contrast for readability, and using alt text for images to give descriptions. I have also structured the content intending to make it easier for screen readers and assistive technologies to interpret and navigate the site.\n\n\nKeyboard navigation and assistive technology\nI have made efforts to ensure that my website is keyboard accessible, allowing you to navigate and interact with the content without relying solely on a mouse. I have also tested the site with popular screen readers and assistive technologies to ensure compatibility and improve accessibility for those of you who are visually impaired.\n\n\nContinuous Improvement\nAccessibility is an ongoing process, and I am committed to continuously improving the accessibility of my website. I regularly review and update the site to address accessibility issues and incorporate feedback.\n\n\nContact Me\nI’m aware of the limitations of my perspective and warmly welcome any suggestions for improvement. So don’t hesitate to contact me. Thank you for visiting my website, and I appreciate your support in promoting accessibility for everyone.\nI adapted this page from Tamara Sredojevic."
   }
 ]

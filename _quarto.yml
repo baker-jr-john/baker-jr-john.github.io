@@ -17,7 +17,7 @@ website:
       - contact.qmd 
 
   repo-url: "https://github.com/baker-jr-john/baker-jr-john.github.io"
-  repo-branch: main
+  repo-actions: [source]
 
   page-footer: 
     border: true

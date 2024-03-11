@@ -3,7 +3,6 @@ title: "This website"
 description: "I created a place on the internet to share my thoughts and projects."
 author:
   - name: John Baker
-    url: https://johnbaker.io/
 date: 03-11-2024
 categories: [Quarto, Work] # self-defined categories
 image: preview-image.png
