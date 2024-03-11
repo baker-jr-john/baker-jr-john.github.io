@@ -6,7 +6,7 @@ author:
 date: 03-11-2024
 categories: [Quarto, Work] # self-defined categories
 image: preview-image.png
-draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
 Here are some words.
