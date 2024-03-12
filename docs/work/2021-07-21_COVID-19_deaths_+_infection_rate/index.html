@@ -110,6 +110,8 @@ ul.task-list li input[type="checkbox"] {
                 <div class="quarto-category">Tableau</div>
                 <div class="quarto-category">SQL</div>
                 <div class="quarto-category">Python</div>
+                <div class="quarto-category">Pandas</div>
+                <div class="quarto-category">Visual Studio Code</div>
               </div>
                   </div>
   </div>
@@ -145,6 +147,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#preparation" id="toc-preparation" class="nav-link active" data-scroll-target="#preparation">Preparation</a></li>
   <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -155,46 +158,55 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p><img src="images/covid-19.png" class="img-fluid" alt="covid-19"> The coronavirus pandemic has affected nearly all aspects of our lives, sickened more than 186 million people worldwide, and more than 4 million people have died so far. In addition, it led to global lockdowns, a new era of frugality, and a third of Americans working from home. So, as it continues to feel like we could get back to normal-ish life soon in America, I decided to examine some of the data.</p>
-<p>Alex Freberg’s Data Analyst Portfolio Project series is the influence behind this activity. I made modifications to satisfy questions I wanted to answer and avoid simply copying his work. Alex’s YouTube channel is an inspirational and aspirational treasure trove of knowledge and ideas. If you’re interested in data analytics or another related field, I highly recommend that you check him out (if you haven’t already).</p>
-<p>You can find the data behind this undertaking here.</p>
-<p>Note: The data extract occurred on July 11, 2021.</p>
-<p>The code behind this project is on GitHub.</p>
-<p>You may view the dashboard at Tableau Public.</p>
+<p><img src="images/covid-19.png" class="img-fluid" alt="Image by CDC on Unsplash"> The coronavirus pandemic has affected nearly all aspects of our lives, sickened more than 186 million people worldwide, and more than 4 million people have died so far. In addition, it led to global lockdowns, a new era of frugality, and a third of Americans working from home. So, as it continues to feel like we could get back to normal-ish life soon in America, I decided to examine some of the data.</p>
+<p><a href="https://www.youtube.com/playlist?list=PLUaB-1hjhk8H48Pj32z4GZgGWyylqv85f">Alex Freberg’s Data Analyst Portfolio Project series</a> is the influence behind this activity. I made modifications to satisfy questions I wanted to answer and avoid simply copying his work. <a href="https://www.youtube.com/@AlexTheAnalyst">Alex’s YouTube channel</a> is an inspirational and aspirational treasure trove of knowledge and ideas. If you’re interested in data analytics or another related field, I highly recommend that you check him out (if you haven’t already).</p>
+<p>You can find the data behind this undertaking [here](https://ourworldindata.org/covid-deaths.</p>
+<p><strong>Note</strong>: The data extract occurred on July 11, 2021.</p>
+<p>The code behind this project is on <a href="https://github.com/baker-jr-john/Coronavirus_COVID-19_Deaths">GitHub</a>.</p>
+<p>You may view the dashboard at <a href="https://public.tableau.com/app/profile/baker.jr.john/viz/CoronavirusCOVID-19DeathsandInfectionRate/Dashboard">Tableau Public</a>.</p>
 <section id="preparation" class="level2">
 <h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
-<p>This project utilized Visual Studio Code, Azure Data Studio, Tableau, and Azure SQL Database. Furthermore, I also used the Python pandas library to download the data and prepare it. After that, I would usually use SQL to create the necessary tables and import the data from the CSVs into them, but I couldn’t get that to work with Azure SQL Database. (The code I attempted to use to that end can be seen here and here.) Since that was the case, I enlisted the SQL Server Import extension for Azure Data Studio. Then, with the data preparation complete, I moved my attention to data querying with SQL.</p>
+<p>This project utilized <a href="https://code.visualstudio.com/">Visual Studio Code</a>, <a href="https://azure.microsoft.com/en-us/products/data-studio">Azure Data Studio</a>, <a href="https://www.tableau.com/products/public">Tableau</a>, and <a href="https://azure.microsoft.com/en-us/products/azure-sql/database/">Azure SQL Database</a>. Furthermore, I also used the <a href="https://www.python.org/">Python</a> <a href="https://pandas.pydata.org/">pandas</a> library to download the data and prepare it. After that, I would usually use SQL to create the necessary tables and import the data from the CSVs into them, but I couldn’t get that to work with Azure SQL Database. (The code I attempted to use to that end can be seen <a href="https://github.com/baker-jr-john/Coronavirus_COVID-19_Deaths/blob/main/covid_deaths.sql">here</a> and <a href="https://github.com/baker-jr-john/Coronavirus_COVID-19_Deaths/blob/main/covid_vaccinations.sql">here</a>.) Since that was the case, I enlisted the <a href="https://learn.microsoft.com/en-us/azure-data-studio/extensions/sql-server-import-extension">SQL Server Import extension</a> for <a href="https://azure.microsoft.com/en-us/products/data-studio">Azure Data Studio</a>. Then, with the data preparation complete, I moved my attention to data querying with SQL.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/azure_data_studio_screenshot.png" class="img-fluid figure-img"></p>
-<figcaption>azure data studio screen shot</figcaption>
+<figcaption>The SQL Server flat-file import wizard for Azure Data Studio</figcaption>
 </figure>
 </div>
 </section>
 <section id="analysis" class="level2">
 <h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
-<p>First, I wanted to calculate the total cases, total deaths, and the number of totally vaccinated people. While the information for infections and deaths is in one table, vaccination data is in another table. Therefore, I joined the tables together on the location and date columns. Next, I totaled the new_cases and new_deaths columns as Total Cases and Total Deaths, respectively. Then, I used the most considerable number from the people_fully_vaccinated column of the vaccinated table as my People Fully Vaccinated total. Finally, I excluded world, continental, and non-nation-specific information from the global numbers.</p>
-<p><img src="images/totals_2021-07-11.png" class="img-fluid" alt="total covid-19 cases deaths and how many people were fully vaccinated"> Next, I began querying data to formulate the death count of six countries: the United States, Brazil, India, Russia, France, and China. I chose the first five countries where the death toll was most significant when I initiated this project. I also chose China due to COVID-19 allegedly originating there. Once I decided which countries to include in my query, I only needed to add the new_deaths.</p>
+<p>First, I wanted to calculate the total cases, total deaths, and the number of totally vaccinated people. While the information for infections and deaths is in one table, vaccination data is in another table. Therefore, I joined the tables together on the <em>location</em> and <em>date</em> columns. Next, I totaled the <em>new_cases</em> and <em>new_deaths</em> columns as <em>Total Cases</em> and <em>Total Deaths</em>, respectively. Then, I used the most considerable number from the people_fully_vaccinated column of the <strong>vaccinated</strong> table as my <em>People Fully Vaccinated</em> total. Finally, I excluded world, continental, and non-nation-specific information from the global numbers.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/totals_2021-07-11.png" class="img-fluid figure-img"></p>
+<figcaption>COVID-19 totals from July 11, 2021</figcaption>
+</figure>
+</div>
+<p>Next, I began querying data to formulate the death count of six countries: the United States, Brazil, India, Russia, France, and China. I chose the first five countries where the death toll was most significant when I initiated this project. I also chose China due to COVID-19 allegedly originating there. Once I decided which countries to include in my query, I only needed to add the <em>new_deaths</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/deaths_by_country_2021-07-11.png" class="img-fluid figure-img"></p>
-<figcaption>covid-19 deaths by country</figcaption>
+<figcaption>COVID-19 deaths by country as of July 11, 2021</figcaption>
 </figure>
 </div>
-<p>It seems like every COVID-19 dashboard has a map. So why should mine be any different? With that in mind, I mapped the infection rate by country. First, I took the highest number from the total_cases and divided that by the population. Then, I listed the results per country and fed the results of the new table into Tableau.</p>
+<p>It seems like every COVID-19 dashboard has a map. So why should mine be any different? With that in mind, I mapped the infection rate by country. First, I took the highest number from the <em>total_cases</em> and divided that by the <em>population</em>. Then, I listed the results per country and fed the results of the new table into Tableau.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/map_2021-07-11.png" class="img-fluid figure-img"></p>
-<figcaption>covid-19 map</figcaption>
+<figcaption>The darker the color, the higher the infection rate</figcaption>
 </figure>
 </div>
 <p>Finally, I wanted to examine the infection rate over time, separated by country. To do so, I used the same query that I did for the map visualization but added date as a criterion.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/infection_rate_2021-07-11.png" class="img-fluid figure-img"></p>
-<figcaption>covid-19 infection rates</figcaption>
+<figcaption>The United States had the highest infection rate as of July 11, 2021.</figcaption>
 </figure>
 </div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>While most of the world’s attention is currently laser-focused on getting vaccines to more people to stem the spread of the coronavirus, vaccines alone will not eliminate the escalation of COVID-19. As a result, scientists have significant pressure to find a cure to help those who contract the virus.</p>
 <p>Doctors have some medications they can use to treat the effects of COVID-19, but developing a drug that targets the virus itself is a complex and costly procedure. More than a year into the pandemic, only one antiviral treatment — remdesivir — is currently recommended for use in the US. Experts say remdesivir is not nearly effective enough, though.</p>
 <p>Scientists are hopeful that new drugs designed to stop the virus’ deadly reproduction could reduce hospitalizations and deaths from COVID-19. In addition, the treatments offer hope and a contingency plan for unvaccinated individuals, particularly in low-income countries lagging far behind in the race to vaccinate.</p>
