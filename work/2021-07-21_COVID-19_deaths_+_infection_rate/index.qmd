@@ -29,6 +29,7 @@ This project utilized Visual Studio Code, Azure Data Studio, Tableau, and Azure 
 First, I wanted to calculate the total cases, total deaths, and the number of totally vaccinated people. While the information for infections and deaths is in one table, vaccination data is in another table. Therefore, I joined the tables together on the location and date columns. Next, I totaled the new_cases and new_deaths columns as Total Cases and Total Deaths, respectively. Then, I used the most considerable number from the people_fully_vaccinated column of the vaccinated table as my People Fully Vaccinated total. Finally, I excluded world, continental, and non-nation-specific information from the global numbers.
 
 ![total covid-19 cases deaths and how many people were fully vaccinated](images/totals_2021-07-11.png)
+
 Next, I began querying data to formulate the death count of six countries: the United States, Brazil, India, Russia, France, and China. I chose the first five countries where the death toll was most significant when I initiated this project. I also chose China due to COVID-19 allegedly originating there. Once I decided which countries to include in my query, I only needed to add the new_deaths.
 
 ![covid-19 deaths by country](images/deaths_by_country_2021-07-11.png)
