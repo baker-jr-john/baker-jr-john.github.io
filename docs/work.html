@@ -66,9 +66,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: [{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: [],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -191,7 +191,31 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-
+<div class="g-col-1" data-index="0" data-categories="COVID-19,Alex the Analyst,Github,Tableau,SQL,Python,Pandas,Visual Studio Code" data-listing-date-sort="1626840000000" data-listing-file-modified-sort="1710211612393" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="721">
+<a href="./work/2021-07-21_COVID-19_deaths_+_infection_rate/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./work/2021-07-21_COVID-19_deaths_+_infection_rate/preview-image.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Coronavirus (COVID-19) Deaths and Infection Rate
+</h5>
+<div class="card-text listing-description">
+ The coronavirus pandemic has affected nearly all aspects of our lives, sickened more than 186 million people worldwide, and more than 4 million people have died so far. In…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+John Baker
+</div>
+<div class="listing-date">
+Jul 21, 2021
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
