@@ -144,6 +144,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#preparation" id="toc-preparation" class="nav-link active" data-scroll-target="#preparation">Preparation</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
   </ul>
 </nav>
     </div>
@@ -162,7 +163,39 @@ ul.task-list li input[type="checkbox"] {
 <p>You may view the dashboard at Tableau Public.</p>
 <section id="preparation" class="level2">
 <h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
-<p>This project utilized Visual Studio Code, Azure Data Studio, Tableau, and Azure SQL Database. Furthermore, I also used the Python pandas library to download the data and prepare it. After that, I would usually use SQL to create the necessary tables and import the data from the CSVs into them, but I couldn’t get that to work with Azure SQL Database. (The code I attempted to use to that end can be seen here and here.) Since that was the case, I enlisted the SQL Server Import extension for Azure Data Studio. Then, with the data preparation complete, I moved my attention to data querying with SQL. <img src="images/azure_data_studio_screenshot.png" class="img-fluid" alt="azure data studio screen shot"> ## Analysis First, I wanted to calculate the total cases, total deaths, and the number of totally vaccinated people. While the information for infections and deaths is in one table, vaccination data is in another table. Therefore, I joined the tables together on the location and date columns. Next, I totaled the new_cases and new_deaths columns as Total Cases and Total Deaths, respectively. Then, I used the most considerable number from the people_fully_vaccinated column of the vaccinated table as my People Fully Vaccinated total. Finally, I excluded world, continental, and non-nation-specific information from the global numbers. <img src="images/totals_2021-07-11.png" class="img-fluid" alt="total covid-19 cases deaths and how many people were fully vaccinated"> Next, I began querying data to formulate the death count of six countries: the United States, Brazil, India, Russia, France, and China. I chose the first five countries where the death toll was most significant when I initiated this project. I also chose China due to COVID-19 allegedly originating there. Once I decided which countries to include in my query, I only needed to add the new_deaths. <img src="images/deaths_by_country_2021-07-11.png" class="img-fluid" alt="covid-19 deaths by country"> It seems like every COVID-19 dashboard has a map. So why should mine be any different? With that in mind, I mapped the infection rate by country. First, I took the highest number from the total_cases and divided that by the population. Then, I listed the results per country and fed the results of the new table into Tableau. <img src="images/map_2021-07-11.png" class="img-fluid" alt="covid-19 map"> Finally, I wanted to examine the infection rate over time, separated by country. To do so, I used the same query that I did for the map visualization but added date as a criterion. <img src="images/infection_rate_2021-07-11.png" class="img-fluid" alt="covid-19 infection rates"> While most of the world’s attention is currently laser-focused on getting vaccines to more people to stem the spread of the coronavirus, vaccines alone will not eliminate the escalation of COVID-19. As a result, scientists have significant pressure to find a cure to help those who contract the virus.</p>
+<p>This project utilized Visual Studio Code, Azure Data Studio, Tableau, and Azure SQL Database. Furthermore, I also used the Python pandas library to download the data and prepare it. After that, I would usually use SQL to create the necessary tables and import the data from the CSVs into them, but I couldn’t get that to work with Azure SQL Database. (The code I attempted to use to that end can be seen here and here.) Since that was the case, I enlisted the SQL Server Import extension for Azure Data Studio. Then, with the data preparation complete, I moved my attention to data querying with SQL.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/azure_data_studio_screenshot.png" class="img-fluid figure-img"></p>
+<figcaption>azure data studio screen shot</figcaption>
+</figure>
+</div>
+</section>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<p>First, I wanted to calculate the total cases, total deaths, and the number of totally vaccinated people. While the information for infections and deaths is in one table, vaccination data is in another table. Therefore, I joined the tables together on the location and date columns. Next, I totaled the new_cases and new_deaths columns as Total Cases and Total Deaths, respectively. Then, I used the most considerable number from the people_fully_vaccinated column of the vaccinated table as my People Fully Vaccinated total. Finally, I excluded world, continental, and non-nation-specific information from the global numbers.</p>
+<p><img src="images/totals_2021-07-11.png" class="img-fluid" alt="total covid-19 cases deaths and how many people were fully vaccinated"> Next, I began querying data to formulate the death count of six countries: the United States, Brazil, India, Russia, France, and China. I chose the first five countries where the death toll was most significant when I initiated this project. I also chose China due to COVID-19 allegedly originating there. Once I decided which countries to include in my query, I only needed to add the new_deaths.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/deaths_by_country_2021-07-11.png" class="img-fluid figure-img"></p>
+<figcaption>covid-19 deaths by country</figcaption>
+</figure>
+</div>
+<p>It seems like every COVID-19 dashboard has a map. So why should mine be any different? With that in mind, I mapped the infection rate by country. First, I took the highest number from the total_cases and divided that by the population. Then, I listed the results per country and fed the results of the new table into Tableau.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/map_2021-07-11.png" class="img-fluid figure-img"></p>
+<figcaption>covid-19 map</figcaption>
+</figure>
+</div>
+<p>Finally, I wanted to examine the infection rate over time, separated by country. To do so, I used the same query that I did for the map visualization but added date as a criterion.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/infection_rate_2021-07-11.png" class="img-fluid figure-img"></p>
+<figcaption>covid-19 infection rates</figcaption>
+</figure>
+</div>
+<p>While most of the world’s attention is currently laser-focused on getting vaccines to more people to stem the spread of the coronavirus, vaccines alone will not eliminate the escalation of COVID-19. As a result, scientists have significant pressure to find a cure to help those who contract the virus.</p>
 <p>Doctors have some medications they can use to treat the effects of COVID-19, but developing a drug that targets the virus itself is a complex and costly procedure. More than a year into the pandemic, only one antiviral treatment — remdesivir — is currently recommended for use in the US. Experts say remdesivir is not nearly effective enough, though.</p>
 <p>Scientists are hopeful that new drugs designed to stop the virus’ deadly reproduction could reduce hospitalizations and deaths from COVID-19. In addition, the treatments offer hope and a contingency plan for unvaccinated individuals, particularly in low-income countries lagging far behind in the race to vaccinate.</p>
 
