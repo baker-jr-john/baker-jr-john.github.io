@@ -3,7 +3,7 @@ title: "Coronavirus (COVID-19) Deaths and Infection Rate"
 author:
   - name: John Baker
 date: 07-21-2021
-categories: [COVID-19, Alex the Analyst, Github, Tableau, SQL, Python, Pandas, Visual Studio Code] # self-defined categories
+categories: [COVID-19, Alex the Analyst, Github, Tableau, SQL, Python, pandas, Visual Studio Code] # self-defined categories
 image: images/covid-19.png
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
