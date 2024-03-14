@@ -5,7 +5,7 @@ author:
 date: 07-02-2021
 categories: [National Park Service, Github, Tableau, Python, pandas, NumPy, Matplotlib, seaborn, Visual Studio Code, Jupyter] # self-defined categories
 image: images/covid-19.png
-draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 ![Photo of Great Smoky Mountains National Park by Robert Thiemann on Unsplash](images/great_smoky_mountains_national_park.png)
 
