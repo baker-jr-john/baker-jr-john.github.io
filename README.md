@@ -1,1 +1,1 @@
-This is the repo for my personal website created with [Quarto](https://quarto.org/). Do with it as you want!
+Welcome to the repo for my personal website created with <a href="https://quarto.org/" target="_blank">Quarto</a>. Do with it as you want!
