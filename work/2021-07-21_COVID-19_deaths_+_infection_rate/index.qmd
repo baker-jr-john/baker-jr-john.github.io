@@ -1,5 +1,6 @@
 ---
 title: "Coronavirus (COVID-19) Deaths and Infection Rate"
+description: An independent examination of Coronavirus (COVID-19) death, infection, and vaccination data
 author:
   - name: John Baker
 date: 07-21-2021
@@ -7,7 +8,7 @@ categories: [COVID-19, Alex the Analyst, Github, Tableau, SQL, Python, pandas, V
 image: images/covid-19.png
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
-![Image by CDC on Unsplash](images/covid-19.png)
+![Image by the CDC on Unsplash](images/covid-19.png)
 The coronavirus pandemic has affected nearly all aspects of our lives, sickened more than 186 million people worldwide, and more than 4 million people have died so far. In addition, it led to global lockdowns, a new era of frugality, and a third of Americans working from home. So, as it continues to feel like we could get back to normal-ish life soon in America, I decided to examine some of the data.
 
 [Alex Freberg’s Data Analyst Portfolio Project series](https://www.youtube.com/playlist?list=PLUaB-1hjhk8H48Pj32z4GZgGWyylqv85f) is the influence behind this activity. I made modifications to satisfy questions I wanted to answer and avoid simply copying his work. [Alex’s YouTube channel](https://www.youtube.com/@AlexTheAnalyst) is an inspirational and aspirational treasure trove of knowledge and ideas. If you’re interested in data analytics or another related field, I highly recommend that you check him out (if you haven’t already).

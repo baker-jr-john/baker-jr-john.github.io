@@ -1,5 +1,6 @@
 ---
 title: "Biodiversity in National Parks"
+description: An interpretation of biodiversity data from the National Park Service, particularly around the various species observed in different national park locationss
 author:
   - name: John Baker
 date: 07-02-2021
