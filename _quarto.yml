@@ -8,6 +8,7 @@ description-meta: "The Personal Website of John Baker"
 
 website:
   search: false
+  back-to-top-navigation: true
   navbar:
     pinned: true
     background: primary
@@ -15,8 +16,6 @@ website:
       - about.qmd
       - work.qmd
       - contact.qmd 
-
-  back-to-top-navigation: true
 
   repo-url: "https://github.com/baker-jr-john/baker-jr-john.github.io"
   repo-actions: none
