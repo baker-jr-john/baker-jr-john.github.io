@@ -16,19 +16,21 @@ website:
       - work.qmd
       - contact.qmd 
 
+  back-to-top-navigation: true
+
   repo-url: "https://github.com/baker-jr-john/baker-jr-john.github.io"
   repo-actions: none
 
   page-footer: 
     border: true
     left: Made with {{< fa heart >}} and [![Quarto](https://quarto.org/quarto.png){width=65}](https://quarto.org/){target="_blank"} 
-    center: 
-      - text: "Accessibility Statement"
-        href: accessibility.qmd
-      - text: "Privacy Policy"
-        href: privacy.qmd
-      - text: "License"
-        href: license.qmd 
+#    center: 
+#      - text: "Accessibility Statement"
+#        href: accessibility.qmd
+#      - text: "Privacy Policy"
+#        href: privacy.qmd
+#      - text: "License"
+#        href: license.qmd 
     right: |
       [{{< fa brands github >}}](https://github.com/baker-jr-john/baker-jr-john.github.io){target="_blank"}
 
