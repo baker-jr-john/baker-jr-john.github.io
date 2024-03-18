@@ -1,8 +1,6 @@
 ---
 title: "Coronavirus (COVID-19) Deaths and Infection Rate"
 description: An independent examination of Coronavirus (COVID-19) death, infection, and vaccination data
-author:
-  - name: John Baker
 date: 07-21-2021
 categories: [COVID-19, Alex the Analyst, Github, Tableau, SQL, Python, pandas, Visual Studio Code] # self-defined categories
 image: images/covid-19.png
