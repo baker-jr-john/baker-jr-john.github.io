@@ -2,7 +2,7 @@
 title: "Contact"
 ---
 
-Feel free to reach out! I'd love to talk with you about x, y, or z.
+Feel free to reach out! I'd love to hear from you.
 
 <!-- source: https://github.com/mccarthy-m-g/tidytales/blob/main/about/index.qmd#L24-L46 -->
 
