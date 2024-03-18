@@ -18,4 +18,4 @@ I'm excited to graduate from the <a href="https://www.newpaltz.edu/" title="SUNY
 
 You’ll find me with my wife and son in my free time, walking with the dogs, enjoying music and food, and playing board games and video games.
 
-I'd love to [hear from you](contact.qmd)!
+I'd love to [hear from you](../contact)!
