@@ -17,6 +17,6 @@ I have made efforts to ensure that my website is keyboard accessible, allowing y
 Accessibility is an ongoing process, and I am committed to continuously improving the accessibility of my website. I regularly review and update the site to address accessibility issues and incorporate feedback.
 
 ### Contact Me
-I’m aware of the limitations of my perspective and warmly welcome any suggestions for improvement. So don’t hesitate to [contact me](contact.qmd). Thank you for visiting my website, and I appreciate your support in promoting accessibility for everyone.
+I’m aware of the limitations of my perspective and warmly welcome any suggestions for improvement. So don’t hesitate to [contact me](../contact). Thank you for visiting my website, and I appreciate your support in promoting accessibility for everyone.
 
 I adapted this page from <a href="https://www.iamtamara.design/" title="Tamara Sredojevic" target="_blank">Tamara Sredojevic</a>.
