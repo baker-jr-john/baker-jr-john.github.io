@@ -13,9 +13,12 @@ website:
     pinned: true
     background: primary
     right:
-      - about.qmd
-      - work.qmd
-      - contact.qmd 
+      - text: About
+        href: about/index.qmd
+      - text: Work
+        href: work/index.qmd
+      - text: Contact
+        href: contact/index.qmd
 
   repo-url: "https://github.com/baker-jr-john/baker-jr-john.github.io"
   repo-actions: none
@@ -35,13 +38,12 @@ website:
 
 format:
   html:
-    theme:
-      light: flatly
-      dark: darkly
-    css: styles.css
+    page-layout: full
+    sidebar: false
+    theme: 
+      - styles.scss
+    # css: styles.css
+    mainfont: Lato
     toc: true
     smooth-scroll: true
     link-external-newwindow: true
-
-
-
