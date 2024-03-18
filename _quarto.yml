@@ -41,7 +41,8 @@ format:
     page-layout: full
     sidebar: false
     theme: 
-      - styles.scss
+      light: light.scss
+      dark: dark.scss
     # css: styles.css
     mainfont: Lato
     toc: true

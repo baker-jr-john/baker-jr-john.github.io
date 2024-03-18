@@ -2,7 +2,7 @@
 title: "Privacy Policy"
 ---
 ### Policy
-I want to ensure the privacy of my website visitors. This Privacy Policy document contains details about the types of information collected and recorded and how I utilize it. If you have any questions or require further information regarding my Privacy Policy, please do not hesitate to [contact me](contact.qmd). This Privacy Policy is valid for visitors to my website regarding the information shared and collected. Please note that this policy does not apply to any information collected offline or through channels other than this website.
+I want to ensure the privacy of my website visitors. This Privacy Policy document contains details about the types of information collected and recorded and how I utilize it. If you have any questions or require further information regarding my Privacy Policy, please do not hesitate to [contact me](../contact). This Privacy Policy is valid for visitors to my website regarding the information shared and collected. Please note that this policy does not apply to any information collected offline or through channels other than this website.
 
 ### Consent
 By using my website, you consent to my Privacy Policy and agree to its terms. Your support and understanding of my commitment to safeguarding your privacy is greatly appreciated.

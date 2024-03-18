@@ -1,0 +1,106 @@
+/*-- scss:defaults --*/
+
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Lato:wght@400;700&display=swap');
+
+$main-font: 'Lato', sans-serif;
+$title-font: 'Chelsea Market', cursive;
+
+// Colors
+$rosy-brown: #B29496;
+$old-rose: #A87C7E;
+$ivory: #FEFBE6;
+$glaucous: #6A7799;
+$platinum: #DDE0E8;
+$light-gray: #949799;
+$black: #000000;
+$space-cadet: #1D2245;
+$raisin-black: #2D2B3A;
+$oxford-blue: #12172D;
+
+// Base document colors
+$navbar-bg: $space-cadet;
+$navbar-fg: $ivory; 
+$navbar-hl: $rosy-brown; 
+$body-bg: $oxford-blue;
+$body-color: $platinum;
+$footer-bg: $raisin-black; 
+$link-color: $rosy-brown;
+$link-hover-color: $old-rose;
+
+/*-- scss:rules --*/
+
+/* ELEMENT SELECTORS */
+
+body {
+  font-family: $main-font;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $main-font;
+}
+
+.navbar {
+  &-brand {
+    font-family: $title-font;
+  }
+
+  &-nav {
+    .nav-link {
+      font-family: $main-font;
+    }
+  }
+}
+
+/* CLASS SELECTORS */
+
+// btn styling
+.btn {
+  color: $raisin-black;
+  background-color: $ivory;
+  border-color: $glaucous;
+}
+
+// button hover styling
+.btn:hover,
+.btn:focus {
+  color: $raisin-black;
+  background-color: $rosy-brown;
+  border-color: $glaucous;
+  box-shadow: none;
+}
+
+.btn:active,
+.btn.active {
+  color: $raisin-black !important;
+  background-color: $rosy-brown !important;
+  border-color: $glaucous !important;
+  box-shadow: none !important;
+}
+
+// resize logo (top left corner)
+.navbar-brand img { 
+  max-height: 60px;
+  width: auto;
+}
+
+// button text size (landing page)
+.about-link-text { 
+  font-size: 18px;
+}
+
+// button icon size (landing page)
+.bi { 
+  font-size: 18px;
+}
+
+// listing card styling
+.card {
+  background-color: $space-cadet;
+  //border-radius: 5.25em;
+}
+
+// listing description text styling
+.description {
+  font-size: 25px;
+}
