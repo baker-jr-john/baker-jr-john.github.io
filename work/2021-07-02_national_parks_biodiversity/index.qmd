@@ -1,8 +1,6 @@
 ---
 title: "Biodiversity in National Parks"
 description: An interpretation of biodiversity data from the National Park Service, particularly around the various species observed in different national park locations
-author:
-  - name: John Baker
 date: 07-02-2021
 categories: [National Park Service, Github, Tableau, Python, pandas, NumPy, Matplotlib, seaborn, Visual Studio Code, Jupyter] # self-defined categories
 image: images/great_smoky_mountains_national_park.png
