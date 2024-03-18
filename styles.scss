@@ -1,0 +1,105 @@
+/*-- scss:defaults --*/
+
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Lato:wght@400;700&display=swap');
+
+$main-font: 'Lato', sans-serif;
+$title-font: 'Chelsea Market', cursive;
+
+// Colors
+$cream: #FDFBF7;
+$verdigris: #77A7A6;
+$jasper: #E16152;
+$dark-gray: #5A5856;
+$gray: #64605f;
+$light-gray: #949799;
+$black: #000000;
+$antique-white: #FFF1DD;
+$baby-powder: #FEFDFA;
+$papaya-whip: #FFEBCE;
+
+// Base document colors
+$navbar-bg: $antique-white;
+$navbar-fg: $jasper; 
+$navbar-hl: $verdigris; 
+$body-bg: $baby-powder;
+$body-color: $gray;
+$footer-bg: $papaya-whip; 
+$link-color: $verdigris;
+
+/*-- scss:rules --*/
+
+/* ELEMENT SELECTORS */
+
+body {
+  font-family: $main-font;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $main-font;
+}
+
+.navbar {
+  &-brand {
+    font-family: $title-font;
+  }
+
+  &-nav {
+    .nav-link {
+      font-family: $main-font;
+    }
+  }
+}
+
+/* CLASS SELECTORS */
+
+// btn styling
+.btn {
+  color: $baby-powder;
+  background-color: $jasper;
+  border-color: $dark-gray;
+}
+
+// button hover styling
+.btn:hover,
+.btn:focus {
+  color: $baby-powder;
+  background-color: $verdigris;
+  border-color: $dark-gray;
+  box-shadow: none;
+}
+
+.btn:active,
+.btn.active {
+  color: $baby-powder !important;
+  background-color: $verdigris !important;
+  border-color: $dark-gray !important;
+  box-shadow: none !important;
+}
+
+// resize logo (top left corner) see https://github.com/robertmitchellv/robertmitchellv.github.io/blob/main/custom-dark.scss
+.navbar-brand img { 
+  max-height: 60px;
+  width: auto;
+}
+
+// button text size (landing page)
+.about-link-text { 
+  font-size: 18px;
+}
+
+// button icon size (landing page)
+.bi { 
+  font-size: 18px;
+}
+
+// listing card styling
+.card {
+  background-color: $cream;
+  //border-radius: 5.25em;
+}
+
+// listing description text styling
+.description {
+  font-size: 25px;
+}

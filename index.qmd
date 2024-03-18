@@ -3,5 +3,5 @@ pagetitle: "John Baker - Welcome!"
 ---
 <h1>Hi, I'm <span class="gradient_text">John Baker</span>. 👋 </h1>
 <p>I'm an experienced data analyst dedicated to facilitating data-driven decision-making, ensuring data privacy, and improving the educational process.</p>
-<p><a href="about.qmd" title="Learn More"><button type="button" class="btn btn-primary btn-lg">Learn More</button></a></p>
+<p><a href="about" title="Learn More"><button type="button" class="btn btn-primary btn-lg">Learn More</button></a></p>
 
