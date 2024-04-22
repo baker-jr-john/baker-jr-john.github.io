@@ -2,8 +2,8 @@
 title: "Work"
 listing: 
   contents: # all Quarto docs in this directory will be included on your listing page
-      - "2021-07-02_national_parks_biodiversity/index.qmd"
-      - "2021-07-21_COVID-19_deaths_+_infection_rate/index.qmd"
+      - "2021/07/02/index.qmd"
+      - "2021/07/21/index.qmd"
   sort: "date desc" # can also sort on more than one field
   type: grid # or `default` or `table`; each type has its own set of yaml options to include
   categories: false # allows you to sort posts by assigned categories 
