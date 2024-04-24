@@ -1,7 +1,8 @@
 ---
-title: "Welcome to My Digital Garden!"
+title: "Welcome to My Digital Garden"
 description: "I created a place on the internet to share my thoughts and projects."
 date: 03-11-2024
+file-modified: 03-11-2024
 categories: [Quarto, Work] # self-defined categories
 image: preview-image.png
 draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
