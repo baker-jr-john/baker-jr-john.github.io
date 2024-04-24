@@ -1,5 +1,5 @@
 ---
-title: "This website"
+title: "Welcome to My Digital Garden!"
 description: "I created a place on the internet to share my thoughts and projects."
 date: 03-11-2024
 categories: [Quarto, Work] # self-defined categories
