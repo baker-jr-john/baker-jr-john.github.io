@@ -3,7 +3,7 @@ Welcome to the repo for my digital garden, which has been planted and tended to 
 This website is only possible with the work of people who came before me.
 
 [Jadey Ryan](https://jadeyryan.com/)
-- Her [guide to publishing a Quarto website with GitHub & Netlify](https://jadeyryan.com/blog/2023-11-19_publish-quarto-website/) was instrumental in my garden's development
+- Her [guide to publishing a Quarto website with GitHub & Netlify](https://jadeyryan.com/blog/2023-11-19_publish-quarto-website/) was instrumental in my garden's development.
 
 [Marvin Schmitt](https://www.marvinschmitt.com/)
 - His [tutorial on creating a website with Quarto](https://www.marvinschmitt.com/blog/website-tutorial-quarto/) helped me get some details how I like them.
