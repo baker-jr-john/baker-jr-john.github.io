@@ -18,36 +18,33 @@ Before this, I had a website I built with [Gatsby](https://www.gatsbyjs.com/). I
 
 I'd love to jump into a list of well-thought-out reasons for using Quarto to plant the seeds of my digital garden [like Silvia Canelón did](https://silviacanelon.com/blog/2023-09-29-hello-quarto/#why-port-to-quarto). However, it really boiled down to inspiration, availability, and ease of use.
 
-- Upon searching for websites built using Quarto, I was inspired by the myriad creatives using it not only to build websites but also a community, and I wanted to join the crowd.
+-   Upon searching for websites built using Quarto, I was inspired by the myriad creatives using it not only to build websites but also a community, and I wanted to join the crowd.
 
-- Quarto was already available within [RStudio Desktop](https://posit.co/download/rstudio-desktop/), a tool I've used extensively since starting my bachelor's program.
+-   Quarto was already available within [RStudio Desktop](https://posit.co/download/rstudio-desktop/), a tool I've used extensively since starting my bachelor's program.
 
-- [Quarto required little more than a knowledge of RMarkdown to get started](https://quarto.org/docs/faq/rmarkdown.html). Since I already possessed that, the barrier to entry was low for me.
+-   [Quarto required little more than a knowledge of RMarkdown to get started](https://quarto.org/docs/faq/rmarkdown.html). Since I already possessed that, the barrier to entry was low for me.
 
 ## Planting a Garden
 
 Hopefully, I won’t regret this later. Still, I won’t detail how I planted my digital garden’s seeds. Instead, I'm going to list where I got my information and inspiration from:
 
-- [Jadey Ryan: Intermediate guide to publish a Quarto website with GitHub & Netlify](https://jadeyryan.com/blog/2023-11-19_publish-quarto-website/)
-  - This was my go-to resource while building my site. If you're interested in using Quarto to start a digital garden, I highly recommend you start here. I did most of what Jadey outlined, with a few exceptions:
-    - I don't use [Netlify](https://www.netlify.com/) for deployment. I use [GitHub Pages](https://pages.github.com/).
-    - I didn't use [usethis](https://usethis.r-lib.org/).
-    - While I want my garden to be accessible to as many people as possible, I'm not using [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) to audit the accessibility.
-
-- [Marvin Schmitt: Create Your Website with Quarto: Complete Tutorial and Template](https://www.marvinschmitt.com/blog/website-tutorial-quarto/)
-  - I picked up a few tips and tricks here, mainly [on adding new pages](https://www.marvinschmitt.com/blog/website-tutorial-quarto/#adding-new-pages) and [deploying with GitHub Pages](https://www.marvinschmitt.com/blog/website-tutorial-quarto/#publishing-your-website-to-the-internet).
-
-- [Silvia Canelón](https://silviacanelon.com/)
-  - She inspired me to go repo-diving to learn how things were done on other people's sites, primarily how she built her [contact form](https://silviacanelon.com/contact)[^1].
+-   [Jadey Ryan: Intermediate guide to publish a Quarto website with GitHub & Netlify](https://jadeyryan.com/blog/2023-11-19_publish-quarto-website/)
+    -   This was my go-to resource while building my site. If you're interested in using Quarto to plant a digital garden, I highly recommend you start here. I did most of what Jadey outlined, with a few exceptions:
+        -   I don't use [Netlify](https://www.netlify.com/) for deployment. I use [GitHub Pages](https://pages.github.com/).
+        -   I didn't use [usethis](https://usethis.r-lib.org/).
+        -   While I want my garden to be accessible to as many people as possible, I'm not using [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) to audit the accessibility.
+-   [Marvin Schmitt: Create Your Website with Quarto: Complete Tutorial and Template](https://www.marvinschmitt.com/blog/website-tutorial-quarto/)
+    -   I picked up a few tips and tricks here, mainly [on adding new pages](https://www.marvinschmitt.com/blog/website-tutorial-quarto/#adding-new-pages) and [deploying with GitHub Pages](https://www.marvinschmitt.com/blog/website-tutorial-quarto/#publishing-your-website-to-the-internet).
+-   [Silvia Canelón](https://silviacanelon.com/)
+    -   She inspired me to go repo-diving to learn how things were done on other people's sites, primarily how she built her [contact form](https://silviacanelon.com/contact)[^1].
 
 [^1]: Silvia Canelón went repo-diving while working on her contact form and learned from [Tidy Tales'](https://tidytales.ca/) [About page](https://tidytales.ca/about/). I should probably update my source to reflect that.
 
-- [Samantha Csik: Adding a blog to your existing Quarto website](https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/)
-  - I followed Sam's guidance in adding a blog (i.e., this part of my garden) to my website.
-    - She also helped me figure out how to [add some *pizzazz* to my web pages](https://samanthacsik.github.io/talks_workshops/2023-08-03-just-enough-css/).
-
-- Hilda
-  - Hilda is a graphic novel series and an animated television show created by [Luke Pearson](https://lukepearson.com/). It features gorgeous artwork which has been described as “Scandinavia by way of Miyazaki.” Take a look for yourself and I think you'll get it.
+-   [Samantha Csik: Adding a blog to your existing Quarto website](https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/)
+    -   I followed Sam's guidance in adding a blog (i.e., this section of my garden) to my website.
+        -   She also helped me figure out how to [add some *pizzazz* to my web pages](https://samanthacsik.github.io/talks_workshops/2023-08-03-just-enough-css/).
+-   Hilda
+    -   Hilda is a graphic novel series and an animated television show created by [Luke Pearson](https://lukepearson.com/). It features gorgeous artwork which has been described as “Scandinavia by way of Miyazaki.” Take a look for yourself and I think you'll get it.
 
 ![An entire day in Trolberg](images/an-entire-day-in-trolberg.png)
 
