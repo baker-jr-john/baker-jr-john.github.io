@@ -32,9 +32,9 @@ Hopefully, I won’t regret this later. Still, I won’t detail how I planted my
     -   This was my go-to resource while building my site. If you're interested in using Quarto to plant a digital garden, I highly recommend you start here. I did most of what Jadey outlined, with a few exceptions:
         -   I don't use [Netlify](https://www.netlify.com/) for deployment. I use [GitHub Pages](https://pages.github.com/).
         -   I didn't use [usethis](https://usethis.r-lib.org/).
-        -   While I want my garden to be accessible to as many people as possible, I'm not using [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) to audit the accessibility.
+        -   While I want my garden to be accessible to as many people as possible, I'm not using [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) to audit the accessibility.<br /><br />
 -   [Marvin Schmitt: Create Your Website with Quarto: Complete Tutorial and Template](https://www.marvinschmitt.com/blog/website-tutorial-quarto/)
-    -   I picked up a few tips and tricks here, mainly [on adding new pages](https://www.marvinschmitt.com/blog/website-tutorial-quarto/#adding-new-pages) and [deploying with GitHub Pages](https://www.marvinschmitt.com/blog/website-tutorial-quarto/#publishing-your-website-to-the-internet).
+    -   I picked up a few tips and tricks here, mainly [on adding new pages](https://www.marvinschmitt.com/blog/website-tutorial-quarto/#adding-new-pages) and [deploying with GitHub Pages](https://www.marvinschmitt.com/blog/website-tutorial-quarto/#publishing-your-website-to-the-internet).<br /><br />
 -   [Silvia Canelón](https://silviacanelon.com/)
     -   She inspired me to go repo-diving to learn how things were done on other people's sites, primarily how she built her [contact form](https://silviacanelon.com/contact)[^1].
 
@@ -42,7 +42,7 @@ Hopefully, I won’t regret this later. Still, I won’t detail how I planted my
 
 -   [Samantha Csik: Adding a blog to your existing Quarto website](https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/)
     -   I followed Sam's guidance in adding a blog (i.e., this section of my garden) to my website.
-        -   She also helped me figure out how to [add some *pizzazz* to my web pages](https://samanthacsik.github.io/talks_workshops/2023-08-03-just-enough-css/).
+        -   She also helped me figure out how to [add some *pizzazz* to my web pages](https://samanthacsik.github.io/talks_workshops/2023-08-03-just-enough-css/).<br /><br />
 -   Hilda
     -   Hilda is a graphic novel series and an animated television show created by [Luke Pearson](https://lukepearson.com/). It features gorgeous artwork which has been described as “Scandinavia by way of Miyazaki.” Take a look for yourself and I think you'll get it.
 
