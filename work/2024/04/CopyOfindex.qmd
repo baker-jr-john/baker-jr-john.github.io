@@ -18,11 +18,11 @@ Before this, I had a website I built with [Gatsby](https://www.gatsbyjs.com/). I
 
 I'd love to jump into a list of well-thought-out reasons for using Quarto to plant the seeds of my digital garden [like Silvia Canelón did](https://silviacanelon.com/blog/2023-09-29-hello-quarto/#why-port-to-quarto). However, it really boiled down to inspiration, availability, and ease of use.
 
--   **Inspiration**: Upon searching for websites built using Quarto, I was inspired by the myriad of creatives using it to build not only websites but also communities, and I wanted to join the crowd.
+-   Upon searching for websites built using Quarto, I was inspired by the myriad of creatives using it to build not only websites but also communities, and I wanted to join the crowd.
 
--   **Availability**: Quarto was already available within [RStudio Desktop](https://posit.co/download/rstudio-desktop/), a tool I've used extensively since starting my bachelor's program.
+-   Quarto was already available within [RStudio Desktop](https://posit.co/download/rstudio-desktop/), a tool I've used extensively since starting my bachelor's program.
 
--   **Ease of Use**: [Quarto required little more than a knowledge of RMarkdown to get started](https://quarto.org/docs/faq/rmarkdown.html). Since I already possessed that, the barrier to entry was low for me.
+-   [Quarto required little more than a knowledge of RMarkdown to get started](https://quarto.org/docs/faq/rmarkdown.html). Since I already possessed that, the barrier to entry was low for me.
 
 ## Planting a Garden
 
