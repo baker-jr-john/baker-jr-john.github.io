@@ -2,7 +2,7 @@
 title: "Welcome to My Digital Garden"
 description: "A quiet space I can call my own"
 date: 04-26-2024
-file-modified: 04-29-2024
+date-modified: 04-29-2024
 categories: [Quarto, Work, Digital Garden, R, RStudio]
 image: images/preview-image.png
 draft: false
