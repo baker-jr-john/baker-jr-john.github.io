@@ -9,7 +9,7 @@ This website is only possible with the work of people who came before me.
 - His [tutorial on creating a website with Quarto](https://www.marvinschmitt.com/blog/website-tutorial-quarto/) helped me get some details how I like them.
 
 [Silvia Canelón](https://silviacanelon.com/)
-- Her website is gorgeous. Also, I went repo-diving through her code to figure out how to build my contact form.
+- Her website is gorgeous. Also, she helped me figure out how to build my contact form.
 
 [Samantha Csik](https://samanthacsik.github.io/)
 - She helped me [add a blog to my site](https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/) and [make my garden look pretty](https://samanthacsik.github.io/talks_workshops/2023-08-03-just-enough-css/).
