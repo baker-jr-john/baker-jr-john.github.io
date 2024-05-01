@@ -95,17 +95,13 @@ For this exercise, I utilized data from the [NCES's Digest of Education Statisti
 
 ### Data Loading and Preparation
 
-To use the data, I initally had to modify the spreadsheet in Excel. First, I un-merged cells A3:A4 and B3:B4. Then, I deleted row 5. Once the data was in a usable state, I moved the project to RStudio.
+To use the data, I initally had to modify the spreadsheet in Excel. First, I un-merged cells A3:A4 and B3:B4. Then, I deleted row 5. After the data was in a usable state, I moved the project to RStudio.
 
 Once in RStudio, I loaded the packages I would use: `readxl` for reading Excel files and `forecast` for time series forecasting. I used the `read_excel()` function from the `readxl` package to load data from the Excel file. Then, I used the `colnames()` function to rename the columns of the loaded data frame (`enrollment`) with more descriptive names. I also created a new column named "enrollment_total" to the `enrollment` data frame, which was calculated as the row-wise sum of all columns except the first one (assuming the first column is not numeric). The `na.rm = TRUE` argument was used to handle any missing values.
 
 ### Forecasting Functions
 
-I defined custom function named `forecast_grade_level()` to forecast enrollment for a specific grade level. This function takes a grade level as input and performs the following steps:
-   1. Prepares the time series data using the `ts()` function, specifying the start and end years and the frequency (1 for annual data).
-   2. Specifies and fits an AAN (Additive error, Additive trend, No seasonality) exponential smoothing model using the `ets()` function from the `forecast` package.
-   3. Makes predictions for the years 2022 to 2030 using the `forecast()` function.
-   4. Returns a list containing the forecasted means and the complete forecast object.
+I defined a custom function named `forecast_grade_level()` to forecast enrollment for a specific grade level. This function takes a grade level as input and performs the following steps: 1. Prepares the time series data using the `ts()` function, specifying the start and end years and the frequency (1 for annual data). 2. Specifies and fits an AAN (Additive error, Additive trend, No seasonality) exponential smoothing model using the `ets()` function from the `forecast` package. 3. Makes predictions for the years 2022 to 2030 using the `forecast()` function. 4. Returns a list containing the forecasted means and the complete forecast object.
 
 ### Forecasting Enrollment
 
@@ -120,4 +116,3 @@ I created a new data frame named `forecast_table` using the `data.frame()` funct
 I used the `par()` function to adjust the plot margins for better visualization. A loop was initiated to plot the forecasts for each grade level and the enrollment total. The `plot()` function was used to create a separate plot for each forecast, with the grade level as the plot title. The `par(mfrow = c(5, 4))` function was used to arrange the plots in a 5x4 grid layout.
 
 ## Conclusion
-
