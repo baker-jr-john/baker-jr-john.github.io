@@ -1,0 +1,123 @@
+---
+title: "Projecting Elementary and Secondary school Enrollment "
+description: ""
+date: 05-02-2024
+date-modified: 05-02-2024
+categories: []
+image: images/preview-image.png
+draft: true
+---
+
+## Introduction
+
+According to the National Center for Education Statistics (NCES), total public and private elementary and secondary school enrollment was 56 million in fall 2019, representing a 3 percent increase since fall 2010. However, between fall 2019 and the first fall of the coronavirus pandemic in fall 2020, enrollment decreased 2 percent. From fall 2020 to fall 2030, enrollments are expected to decrease another 6 percent. Both public and private school enrollments are projected to be lower in 2030 than in 2019.
+
+Accurate enrollment projections in elementary and secondary institutions are crucial for several reasons:
+
+1.  Budgeting and resource allocation: Enrollment projections help school districts plan their budgets effectively. By estimating the number of students expected to attend, districts can allocate resources appropriately, ensuring they have enough teachers, classrooms, and educational materials to meet the demand.
+
+2.  Short-term and long-term planning: Enrollment projections inform both short-term and long-term decision-making. In the short term, they help determine staffing needs and budgeting for specific programs. In the long term, they assist in planning for capital projects, such as building new schools or expanding existing facilities.
+
+3.  Public trust and support: Accurate enrollment projections can demonstrate the need for capital projects to the public, potentially influencing the outcome of school bond referenda. When the community understands the necessity of these projects based on reliable data, they are more likely to support them.
+
+4.  Improved forecasting accuracy: Larger schools or charter management organizations (CMOs) tend to have more accurate enrollment forecasts. With a larger student body, the impact of individual student withdrawals or last-minute changes is less significant. Additionally, larger organizations have more resources for dedicated forecasting and planning functions.
+
+5.  Financial stability: For charter schools, enrollment directly determines their revenue, as public funding is awarded on a per-pupil basis. Accurate enrollment projections are essential for charter schools to make informed financial decisions, such as hiring teachers and staff, to maintain the required teacher-student ratios.
+
+6.  Organizational decision-making: Enrollment forecasts are particularly sensitive for small charter schools, as adding or removing staff based on these projections can have a significant impact on their operations. Accurate projections help these schools make critical organizational decisions with confidence.
+
+Accurate enrollment projections are vital for effective budgeting, resource allocation, short-term and long-term planning, maintaining public trust, ensuring financial stability, and informed decision-making in elementary and secondary institutions. With that said, many institutions lack a reliable means by which to make long-range enrollment forecasts. I'm here to help.
+
+## How to Project Enrollment
+
+### Projection Techniques
+
+There are several key methods that can be used for projecting student enrollment in elementary and secondary institutions such as ratio-based methods, regression-based methods, the dwelling unit multiplier method, and the extended demographic model. After some research and experimentation, I elected to use an exponential smoothing technique.
+
+#### Exponential Smoothing
+
+Single exponential smoothing is a forecasting method suited for data that is relatively stable over time, where future values are expected to be around the same central value as observed historically, without significant shifts up or down. In developing projections of elementary and secondary enrollments, for example, the rate at which students progress from one particular grade to the next (e.g., from grade 2 to grade 3) can be projected using single exponential smoothing. Thus, this percentage is assumed to be constant over the forecast period.
+
+Generally, exponential smoothing places more weight on recent observations than on earlier ones. The weights for observations decrease exponentially as one moves further into the past. As a result, the older data have less influence on the projections. The rate at which the weights of older observations decrease is determined by the smoothing constant.
+
+When using single exponential smoothing for a time series, $P_t$, a smoothed series, $P$, is computed recursively by evaluating where $$\hat{P}_t = \alpha~P_t + (1 - \alpha) P_{t-1}$$$0 < \alpha \leq 1$ is the smoothing constant.
+
+By repeated substitution, we can rewrite the equation as $$
+P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}$$where time, $s$, goes from the first period in the time series, $0$, to time period $t-1$. The forecasts are constant for all years in the forecast period. The constant equals $$\hat{P}_{T+k} = \hat{P}_t$$where $t$ is the last year of actual data and $k$ is the $k^{th}$ year in the forecast period where $k > 0$.
+
+These equations illustrate that the projection is a weighted average based on exponentially decreasing weights. For higher smoothing constants, weights for earlier observations decrease more rapidly than for lower smoothing constants.
+
+### Approach Overview
+
+I utilized the *grade progression rate method* to project prekindergarten, kindergarten, grades 1 through 12, and elementary and secondary ungraded enrollments. With this approach, a rate of progression from each grade to the next grade was projected using single exponential smoothing. For example, the rate of progression from grade 2 to grade 3 is the current year’s grade 3 enrollment expressed as a percentage of the previous year’s grade 2 enrollment. To calculate enrollment for each year in the forecast period, the progression rate for each grade was applied to the previous year’s enrollment in the previous grade.
+
+#### Assumptions Underlying This Approach
+
+The grade progression rate method assumes that past trends affecting public and private elementary and secondary school enrollments will continue over the forecast period. This assumption implies that all factors influencing enrollments will display future patterns consistent with past patterns. This method implicitly includes the net effect of such factors as migration, dropouts, deaths, non-promotion, and transfers between public and private schools.
+
+### Procedures and Equations
+
+The notation and equations that follow describe the basic procedures used to project elementary and secondary enrollments in each of the three elementary and secondary enrollment projection models.
+
+Let:
+
+$j$ = Subscript denoting grade\
+$t$ = Subscript denoting time\
+$T$ = Subscript of the first year in the forecast period\
+$G_{j,t}$ = Enrollment\
+$R_{j,t}$ = Progression rate.
+
+***Step 1***: *Calculate historical grade progression rates for each of grade*. The first step in projecting the enrollments using the grade progression method was to calculate, for each grade, a progression rate for each year of actual data used to produce the projections except for the first year. The progression rate for grade $j$ in year $t$ equals $$R_{j,t} = \frac{G_{j,t}}{G_{j-1,t-1}}$$***Step 2***. *Produce a projected progression rate for each grade*. Projections for each grade’s progression rate were then produced for the forecast period using single exponential smoothing. A separate smoothing constant, chosen to minimize the sum of squared forecast errors, was used to calculate the projected progression rate for each grade. Single exponential smoothing produces a single forecast for all years in the forecast period. Therefore, for each grade $j$, the projected progression rate, $\hat{R}_j$, is the same for each year in the forecast period.
+
+***Step 3***. *Calculate enrollment projections for each grade*. For the first year in the forecast period, $T$, enrollment projections, $\hat{G}_{j,T}$, were produced using the projected progression rates and enrollments from the last year of actual data, $T–1$. Specifcally, $$\hat{G}_{j,T} = \hat{R}_j \cdot \hat{G}_{j-1, T-1}$$This same procedure was then used to produce the projections for the following year, $T+1$, except that enrollment projections for year $T$ were used rather than actual numbers: $$\hat{G}_{j,T+1} = \hat{R}_j \cdot \hat{G}_{j,T}$$ The enrollment projections for year $T$ were those just produced using the grade progression method.
+
+The same procedure was used for the remaining years in the projections period.
+
+***Step 4***. *Calculate total elementary and secondary enrollments by summing the projections for each grade and the ungraded categories*. To obtain projections of total enrollment, projections of enrollments for the individual grades, elementary ungraded, and secondary ungraded were summed.
+
+## Tools Utilized
+
+Here are the tools I used to perform this exercise:
+
+-   [Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel)
+-   [Posit RStudio Desktop](https://posit.co/products/open-source/rstudio/)[^1]
+    -   This required an installation of [R, the programming language](https://cran.rstudio.com/).
+
+[^1]: RStudio Desktop is a standalone opensource application that does not store information on the internet. RStudio Desktop ***Pro***, on the other hand, can or does. I'm not sure. If this is a concern for you, speak with Posit. They were very helpful helping the Florida UFSD determine whether their software is EdLaw 2-d compliant, which is always a concern when vetting new applications.
+
+## Process Overview
+
+The process for forecasting student enrollment by grade level and total enrollment using historical data begins by viewing the enrollment data in Excel and making some minor adjustments before loading it into RStudio and preparing the data by renaming columns and calculating the total enrollment. A custom forecasting function is defined using the AAN (Additive error, Additive trend, No seasonality) exponential smoothing model from the `forecast` package. The forecasting function is then applied to each grade level and the total enrollment to generate predictions for the years 2022 to 2030. The forecasted values are stored in a list and subsequently used to create a forecast table. Finally, the code visualizes the forecasts by creating a grid of plots, with each plot representing the forecasted enrollment for a specific grade level or the total enrollment.
+
+### Data Used
+
+For this exercise, I utilized data from the [NCES's Digest of Education Statistics](https://nces.ed.gov/programs/digest/d22/tables/dt22_203.10.asp). The dataset covers annual data from 1990 to 2021. it also inlcudes data from 1980, 1985, and projections from 2022 through 2031 which I chose to ignore.
+
+### Data Loading and Preparation
+
+To use the data, I initally had to modify the spreadsheet in Excel. First, I un-merged cells A3:A4 and B3:B4. Then, I deleted row 5. Once the data was in a usable state, I moved the project to RStudio.
+
+Once in RStudio, I loaded the packages I would use: `readxl` for reading Excel files and `forecast` for time series forecasting. I used the `read_excel()` function from the `readxl` package to load data from the Excel file. Then, I used the `colnames()` function to rename the columns of the loaded data frame (`enrollment`) with more descriptive names. I also created a new column named "enrollment_total" to the `enrollment` data frame, which was calculated as the row-wise sum of all columns except the first one (assuming the first column is not numeric). The `na.rm = TRUE` argument was used to handle any missing values.
+
+### Forecasting Functions
+
+I defined custom function named `forecast_grade_level()` to forecast enrollment for a specific grade level. This function takes a grade level as input and performs the following steps:
+   1. Prepares the time series data using the `ts()` function, specifying the start and end years and the frequency (1 for annual data).
+   2. Specifies and fits an AAN (Additive error, Additive trend, No seasonality) exponential smoothing model using the `ets()` function from the `forecast` package.
+   3. Makes predictions for the years 2022 to 2030 using the `forecast()` function.
+   4. Returns a list containing the forecasted means and the complete forecast object.
+
+### Forecasting Enrollment
+
+I created a vector named `grade_levels`, containing the names of all grade levels and the enrollment total. I used the `lapply()` function to apply the `forecast_grade_level()` function to each grade level in the `grade_levels` vector. The resulting list of forecasts was stored in the `forecasts` variable.
+
+### Forecast Table
+
+I created a new data frame named `forecast_table` using the `data.frame()` function. It combines the forecasted means for each grade level and the enrollment total, with the years 2022 to 2030 as the first column. The column names of `forecast_table` are then updated to match the grade levels. The `print()` function was used to display the `forecast_table` in the console.
+
+### Visualization
+
+I used the `par()` function to adjust the plot margins for better visualization. A loop was initiated to plot the forecasts for each grade level and the enrollment total. The `plot()` function was used to create a separate plot for each forecast, with the grade level as the plot title. The `par(mfrow = c(5, 4))` function was used to arrange the plots in a 5x4 grid layout.
+
+## Conclusion
+
