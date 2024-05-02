@@ -5,12 +5,216 @@ date: 05-02-2024
 date-modified: 05-02-2024
 categories: []
 image: images/preview-image.png
+format:
+  html:
+    code-link: true
 draft: true
 ---
-
 ## Introduction
 
 According to the National Center for Education Statistics (NCES), total public and private elementary and secondary school enrollment was 56 million in fall 2019, representing a 3 percent increase since fall 2010. However, between fall 2019 and the first fall of the coronavirus pandemic in fall 2020, enrollment decreased 2 percent. From fall 2020 to fall 2030, enrollments are expected to decrease another 6 percent. Both public and private school enrollments are projected to be lower in 2030 than in 2019.
+```{r}
+#| echo: false
+#| message: false
+
+# Load packages
+library(readxl)
+library(forecast)
+library(ggplot2)
+
+# Load data
+enrollment <- read_excel(
+  "data/tabn203.10.xlsx",
+  sheet = "Digest 2022 Table 203.10",
+  range = "A4:U38",
+  col_types = c(
+    "text",
+    "skip",
+    "skip",
+    "numeric",
+    "skip",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "skip",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric"
+  )
+)
+
+# Rename columns
+colnames(enrollment) <-
+  c(
+    "Year",
+    "Prekindergarten",
+    "Kindergarten",
+    "First_grade",
+    "Second_grade",
+    "Third_grade",
+    "Fourth_grade",
+    "Fifth_grade",
+    "Sixth_grade",
+    "Seventh_grade",
+    "Eighth_grade",
+    "Elementary_ungraded",
+    "Ninth_grade",
+    "Tenth_grade",
+    "Eleventh_grade",
+    "Twelfth_grade",
+    "Secondary_ungraded"
+  )
+
+# Calculate prekindergarten through eighth-grade enrollment
+enrollment$pk_8_enrollment <-
+  rowSums(enrollment[, c(
+    "Prekindergarten",
+    "Kindergarten",
+    "First_grade",
+    "Second_grade",
+    "Third_grade",
+    "Fourth_grade",
+    "Fifth_grade",
+    "Sixth_grade",
+    "Seventh_grade",
+    "Eighth_grade",
+    "Elementary_ungraded"
+  )])
+
+# Calculate grades nine through twelve enrollment
+enrollment$grades_9_12_enrollment <-
+  rowSums(enrollment[, c(
+    "Ninth_grade",
+    "Tenth_grade",
+    "Eleventh_grade",
+    "Twelfth_grade",
+    "Secondary_ungraded"
+  )])
+
+# Calculate total enrollment
+enrollment$enrollment_total <-
+  rowSums(enrollment[, c("pk_8_enrollment", "grades_9_12_enrollment")])
+
+# Function to forecast enrollment for a specific grade level or enrollment category
+forecast_enrollment <- function(enrollment_category) {
+  # Prepare the time series data
+  enrollment_ts <-
+    ts(enrollment[[enrollment_category]],
+       start = 1990,
+       end = 2021,
+       frequency = 1)
+  
+  # Specify and fit the AAN exponential smoothing model
+  enrollment_model <- ets(enrollment_ts, model = "AAN")
+  
+  # Make predictions for 2022 to 2030
+  enrollment_forecast <- forecast(enrollment_model, h = 9)
+  
+  # Return the forecast
+  return(list(mean = enrollment_forecast$mean, forecast = enrollment_forecast))
+}
+
+# Forecast enrollment for each grade level
+grade_levels <-
+  c(
+    "Prekindergarten",
+    "Kindergarten",
+    "First_grade",
+    "Second_grade",
+    "Third_grade",
+    "Fourth_grade",
+    "Fifth_grade",
+    "Sixth_grade",
+    "Seventh_grade",
+    "Eighth_grade",
+    "Elementary_ungraded",
+    "Ninth_grade",
+    "Tenth_grade",
+    "Eleventh_grade",
+    "Twelfth_grade",
+    "Secondary_ungraded"
+  )
+
+forecasts_grade_levels <- lapply(grade_levels, forecast_enrollment)
+
+# Forecast enrollment for enrollment categories
+enrollment_categories <-
+  c("pk_8_enrollment",
+    "grades_9_12_enrollment",
+    "enrollment_total")
+
+forecasts_enrollment_categories <-
+  lapply(enrollment_categories, forecast_enrollment)
+
+# Create a data frame with historical and forecasted data for enrollment categories
+enrollment_data <- data.frame(
+  Year = rep(2010:2030, 3),
+  Enrollment = c(
+    enrollment$pk_8_enrollment[enrollment$Year >= 2010],
+    forecasts_enrollment_categories[[1]]$mean,
+    enrollment$grades_9_12_enrollment[enrollment$Year >= 2010],
+    forecasts_enrollment_categories[[2]]$mean,
+    enrollment$enrollment_total[enrollment$Year >= 2010],
+    forecasts_enrollment_categories[[3]]$mean
+  ) / 1000,
+  Category = rep(c("PK-Grade 8", "Grades 9-12", "Total"), each = 21)
+)
+
+# Create the line plot
+enrollment_plot <-
+  ggplot(enrollment_data, aes(x = Year, y = Enrollment, color = Category)) +
+  geom_line() +
+  geom_vline(xintercept = 2021.5,
+             linetype = "solid",
+             color = "gray50") +
+  annotate(
+    "text",
+    x = 2016,
+    y = max(enrollment_data$Enrollment) * 0.9,
+    label = "Actual",
+    size = 4
+  ) +
+  annotate(
+    "text",
+    x = 2026,
+    y = max(enrollment_data$Enrollment) * 0.9,
+    label = "Projected",
+    size = 4
+  ) +
+  scale_color_manual(
+    values = c(
+      "Total" = "#009E73",
+      "PK-Grade 8" = "#E69F00",
+      "Grades 9-12" = "#56B4E9"
+    ),
+    breaks = c("Total", "PK-Grade 8", "Grades 9-12")
+  ) +
+  scale_y_continuous(
+    labels = function(x)
+      format(x, scientific = FALSE)
+  ) +
+  labs(title = "Enrollment in public elementary and secondary schools, by level",
+       x = "Year",
+       y = "Enrollment, in millions") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    legend.title = element_blank(),
+    legend.position = "bottom"
+  )
+
+# Print the plot
+print(enrollment_plot)
+```
 
 Accurate enrollment projections in elementary and secondary institutions are crucial for several reasons:
 
@@ -77,7 +281,7 @@ The same procedure was used for the remaining years in the projections period.
 
 ## Tools Utilized
 
-Here are the tools I used to perform this exercise:
+There are numerous tools to select from when tackling an exercise like this. Instead of delving into the varous options, I decided to simply tell you what I used:
 
 -   [Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel)
 -   [Posit RStudio Desktop](https://posit.co/products/open-source/rstudio/)[^1]
@@ -99,20 +303,313 @@ To use the data, I initally had to modify the spreadsheet in Excel. First, I un-
 
 Once in RStudio, I loaded the packages I would use: `readxl` for reading Excel files and `forecast` for time series forecasting. I used the `read_excel()` function from the `readxl` package to load data from the Excel file. Then, I used the `colnames()` function to rename the columns of the loaded data frame (`enrollment`) with more descriptive names. I also created a new column named "enrollment_total" to the `enrollment` data frame, which was calculated as the row-wise sum of all columns except the first one (assuming the first column is not numeric). The `na.rm = TRUE` argument was used to handle any missing values.
 
+::: {.callout-note title="Click here to view the code I used."  collapse="true"}
+```{r}
+#| eval: false
+
+# Load packages
+library(readxl)
+library(forecast)
+
+# Load data
+enrollment <- read_excel(
+  "tabn203.10.xlsx",
+  sheet = "Digest 2022 Table 203.10",
+  range = "A4:U38",
+  col_types = c(
+    "text",
+    "skip",
+    "skip",
+    "numeric",
+    "skip",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "skip",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric"
+  )
+)
+
+# Rename columns
+colnames(enrollment) <-
+  c(
+    "Year",
+    "Prekindergarten",
+    "Kindergarten",
+    "First_grade",
+    "Second_grade",
+    "Third_grade",
+    "Fourth_grade",
+    "Fifth_grade",
+    "Sixth_grade",
+    "Seventh_grade",
+    "Eighth_grade",
+    "Elementary_ungraded",
+    "Ninth_grade",
+    "Tenth_grade",
+    "Eleventh_grade",
+    "Twelfth_grade",
+    "Secondary_ungraded"
+  )
+
+# Calculate prekindergarten through eighth-grade enrollment
+enrollment$pk_8_enrollment <-
+  rowSums(enrollment[, c(
+    "Prekindergarten",
+    "Kindergarten",
+    "First_grade",
+    "Second_grade",
+    "Third_grade",
+    "Fourth_grade",
+    "Fifth_grade",
+    "Sixth_grade",
+    "Seventh_grade",
+    "Eighth_grade",
+    "Elementary_ungraded"
+  )], na.rm = TRUE)
+
+# Calculate grades nine through twelve enrollment
+enrollment$grades_9_12_enrollment <-
+  rowSums(enrollment[, c(
+    "Ninth_grade",
+    "Tenth_grade",
+    "Eleventh_grade",
+    "Twelfth_grade",
+    "Secondary_ungraded"
+  )], na.rm = TRUE)
+
+# Calculate total enrollment
+enrollment$enrollment_total <-
+  rowSums(enrollment[, c("pk_8_enrollment", "grades_9_12_enrollment")], na.rm = TRUE)
+```
+:::
+
 ### Forecasting Functions
 
 I defined a custom function named `forecast_grade_level()` to forecast enrollment for a specific grade level. This function takes a grade level as input and performs the following steps: 1. Prepares the time series data using the `ts()` function, specifying the start and end years and the frequency (1 for annual data). 2. Specifies and fits an AAN (Additive error, Additive trend, No seasonality) exponential smoothing model using the `ets()` function from the `forecast` package. 3. Makes predictions for the years 2022 to 2030 using the `forecast()` function. 4. Returns a list containing the forecasted means and the complete forecast object.
+
+::: {.callout-note title="Click here to view the code I used."  collapse="true"}
+```{r}
+#| eval: false
+
+# Function to forecast enrollment for a specific grade level or enrollment category
+forecast_enrollment <- function(enrollment_category) {
+  # Prepare the time series data
+  enrollment_ts <-
+    ts(enrollment[[enrollment_category]],
+       start = 1990,
+       end = 2021,
+       frequency = 1)
+  
+  # Specify and fit the AAN exponential smoothing model
+  enrollment_model <- ets(enrollment_ts, model = "AAN")
+  
+  # Make predictions for 2022 to 2030
+  enrollment_forecast <- forecast(enrollment_model, h = 9)
+  
+  # Return the forecast
+  return(list(mean = enrollment_forecast$mean, forecast = enrollment_forecast))
+}
+```
+:::
 
 ### Forecasting Enrollment
 
 I created a vector named `grade_levels`, containing the names of all grade levels and the enrollment total. I used the `lapply()` function to apply the `forecast_grade_level()` function to each grade level in the `grade_levels` vector. The resulting list of forecasts was stored in the `forecasts` variable.
 
+::: {.callout-note title="Click here to view the code I used."  collapse="true"}
+```{r}
+#| eval: false
+
+# Forecast enrollment for each grade level
+grade_levels <-
+  c(
+    "Prekindergarten",
+    "Kindergarten",
+    "First_grade",
+    "Second_grade",
+    "Third_grade",
+    "Fourth_grade",
+    "Fifth_grade",
+    "Sixth_grade",
+    "Seventh_grade",
+    "Eighth_grade",
+    "Elementary_ungraded",
+    "Ninth_grade",
+    "Tenth_grade",
+    "Eleventh_grade",
+    "Twelfth_grade",
+    "Secondary_ungraded"
+  )
+
+forecasts_grade_levels <- lapply(grade_levels, forecast_enrollment)
+```
+:::
+
 ### Forecast Table
 
-I created a new data frame named `forecast_table` using the `data.frame()` function. It combines the forecasted means for each grade level and the enrollment total, with the years 2022 to 2030 as the first column. The column names of `forecast_table` are then updated to match the grade levels. The `print()` function was used to display the `forecast_table` in the console.
+I created a new data frame named `forecast_table_grade_levels` using the `data.frame()` function. It combines the forecasted means for each grade level and the enrollment total, with the years 2022 to 2030 as the first column. The column names of `forecast_table` are then updated to match the grade levels. The `print()` function was used to display the `forecast_table` in the console.
+
+::: {.callout-note title="Click here to view the code I used."  collapse="true"}
+```{r}
+#| eval: false
+
+library(gt)
+
+# Create a data frame with the forecasts for grade levels
+forecast_table_df <-
+  data.frame(cbind(Year = 2022:2030, do.call(
+    cbind, lapply(forecasts_grade_levels, function(x)
+      x$mean)
+  )))
+
+# Assign grade levels to column names
+colnames(forecast_table_df)[-1] <- grade_levels
+
+# Create the gt table
+forecast_table <- gt(forecast_table_df)
+
+# Change the column names
+forecast_table <-
+  cols_label(
+    forecast_table,
+    First_grade = "First Grade",
+    Second_grade = "Second Grade",
+    Third_grade = "Third Grade",
+    Fourth_grade = "Fourth Grade",
+    Fifth_grade = "Fifth Grade",
+    Sixth_grade = "Sixth Grade",
+    Seventh_grade = "Seventh Grade",
+    Eighth_grade = "Eighth Grade",
+    Ninth_grade = "Ninth Grade",
+    Tenth_grade = "Tenth Grade",
+    Eleventh_grade = "Eleventh Grade",
+    Twelfth_grade = "Twelfth Grade"
+  )
+
+# Add a table header
+forecast_table <-
+  tab_header(forecast_table, title = "Enrollment in public elementary and secondary schools, by grade")
+
+# Display the table
+forecast_table
+```
+:::
+```{r}
+#| echo: false
+#| message: false
+
+library(gt)
+
+# Create a data frame with the forecasts for grade levels
+forecast_table_df <-
+  data.frame(cbind(Year = 2022:2030, do.call(
+    cbind, lapply(forecasts_grade_levels, function(x)
+      x$mean)
+  )))
+
+# Assign grade levels to column names
+colnames(forecast_table_df)[-1] <- grade_levels
+
+# Create the first table
+elementary_table_df <- forecast_table_df[, c("Year", "Prekindergarten", "Kindergarten", "First_grade", "Second_grade", "Third_grade", "Fourth_grade", "Fifth_grade")]
+
+# Create the gt table for the first table
+elementary_table <- gt(elementary_table_df)
+
+# Change the column names
+elementary_table <-
+  cols_label(
+    elementary_table,
+    First_grade = "First Grade",
+    Second_grade = "Second Grade",
+    Third_grade = "Third Grade",
+    Fourth_grade = "Fourth Grade",
+    Fifth_grade = "Fifth Grade"
+  )
+
+# Add a table header to the first table
+elementary_table <- tab_header(elementary_table, title = "Enrollment in public elementary schools, by grade (Prekindergarten to Fifth Grade)")
+
+# Display the first table
+elementary_table
+```
+```{r}
+#| echo: false
+
+# Create the second table
+secondary_table_df <- forecast_table_df[, c("Year", "Sixth_grade", "Seventh_grade", "Eighth_grade", "Ninth_grade", "Tenth_grade", "Eleventh_grade", "Twelfth_grade")]
+
+# Create the gt table for the second table
+secondary_table <- gt(secondary_table_df)
+
+# Change the column names
+secondary_table <-
+  cols_label(
+    secondary_table,
+    Sixth_grade = "Sixth Grade",
+    Seventh_grade = "Seventh Grade",
+    Eighth_grade = "Eighth Grade",
+    Ninth_grade = "Ninth Grade",
+    Tenth_grade = "Tenth Grade",
+    Eleventh_grade = "Eleventh Grade",
+    Twelfth_grade = "Twelfth Grade"
+  )
+
+# Add a table header to the second table
+secondary_table <- tab_header(secondary_table, title = "Enrollment in public secondary schools, by grade (Sixth to Twelfth Grade)")
+
+# Display the second table
+secondary_table
+```
 
 ### Visualization
 
 I used the `par()` function to adjust the plot margins for better visualization. A loop was initiated to plot the forecasts for each grade level and the enrollment total. The `plot()` function was used to create a separate plot for each forecast, with the grade level as the plot title. The `par(mfrow = c(5, 4))` function was used to arrange the plots in a 5x4 grid layout.
+
+::: {.callout-note title="Click here to view the code I used."  collapse="true"}
+```{r}
+#| eval: false
+
+# Adjust plot margins for grade level plots
+par(mar = c(2, 2, 2, 1))
+
+# Plot the forecasts for grade levels
+par(mfrow = c(4, 4))
+for (i in 1:length(forecast_table_df)) {
+  plot(
+    forecast_table_df[[i]]$forecast,
+    main = paste("Enrollment Forecast (2022-2030) -", grade_levels[i])
+  )
+}
+```
+:::
+```{r}
+#| echo: false
+
+# Adjust plot margins for grade level plots
+par(mar = c(2, 2, 2, 1))
+
+# Plot the forecasts for grade levels
+par(mfrow = c(4, 4))
+par(mfrow = c(4, 4))
+for (i in 1:length(forecasts_grade_levels)) {
+  plot(
+    forecasts_grade_levels[[i]]$forecast,
+    main = paste("Enrollment Forecast (2022-2030) -", grade_levels[i])
+  )
+}
+```
 
 ## Conclusion
