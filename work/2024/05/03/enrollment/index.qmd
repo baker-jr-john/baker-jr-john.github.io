@@ -1,5 +1,5 @@
 ---
-title: "Projecting Elementary and Secondary school Enrollment "
+title: "Projecting Elementary and Secondary School Enrollment "
 description: ""
 date: 05-02-2024
 date-modified: 05-02-2024
