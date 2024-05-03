@@ -1,6 +1,6 @@
 Welcome to the repo for my digital garden, which has been planted and tended to with [Quarto](https://quarto.org/). You can use the code here as your garden plot.
 
-This website is only possible with the work of people who came before me.
+My website is only possible with the work of people who came before me.
 
 [Jadey Ryan](https://jadeyryan.com/)
 - Her [guide to publishing a Quarto website with GitHub & Netlify](https://jadeyryan.com/blog/2023-11-19_publish-quarto-website/) was instrumental in my garden's development.
