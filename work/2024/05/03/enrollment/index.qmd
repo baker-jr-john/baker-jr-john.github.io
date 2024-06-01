@@ -10,9 +10,11 @@ format:
     code-link: true
 draft: true
 ---
+
 ## Introduction
 
 According to the National Center for Education Statistics (NCES), total public and private elementary and secondary school enrollment was 56 million in fall 2019, representing a 3 percent increase since fall 2010. However, between fall 2019 and the first fall of the coronavirus pandemic in fall 2020, enrollment decreased 2 percent. From fall 2020 to fall 2030, enrollments are expected to decrease another 6 percent. Both public and private school enrollments are projected to be lower in 2030 than in 2019.
+
 ```{r}
 #| echo: false
 #| message: false
@@ -303,7 +305,7 @@ To use the data, I initally had to modify the spreadsheet in Excel. First, I un-
 
 Once in RStudio, I loaded the packages I would use: `readxl` for reading Excel files and `forecast` for time series forecasting. I used the `read_excel()` function from the `readxl` package to load data from the Excel file. Then, I used the `colnames()` function to rename the columns of the loaded data frame (`enrollment`) with more descriptive names. I also created a new column named "enrollment_total" to the `enrollment` data frame, which was calculated as the row-wise sum of all columns except the first one (assuming the first column is not numeric). The `na.rm = TRUE` argument was used to handle any missing values.
 
-::: {.callout-note title="Click here to view the code I used."  collapse="true"}
+::: {.callout-note title="Click here to view the code I used." collapse="true"}
 ```{r}
 #| eval: false
 
@@ -399,7 +401,7 @@ enrollment$enrollment_total <-
 
 I defined a custom function named `forecast_grade_level()` to forecast enrollment for a specific grade level. This function takes a grade level as input and performs the following steps: 1. Prepares the time series data using the `ts()` function, specifying the start and end years and the frequency (1 for annual data). 2. Specifies and fits an AAN (Additive error, Additive trend, No seasonality) exponential smoothing model using the `ets()` function from the `forecast` package. 3. Makes predictions for the years 2022 to 2030 using the `forecast()` function. 4. Returns a list containing the forecasted means and the complete forecast object.
 
-::: {.callout-note title="Click here to view the code I used."  collapse="true"}
+::: {.callout-note title="Click here to view the code I used." collapse="true"}
 ```{r}
 #| eval: false
 
@@ -428,7 +430,7 @@ forecast_enrollment <- function(enrollment_category) {
 
 I created a vector named `grade_levels`, containing the names of all grade levels and the enrollment total. I used the `lapply()` function to apply the `forecast_grade_level()` function to each grade level in the `grade_levels` vector. The resulting list of forecasts was stored in the `forecasts` variable.
 
-::: {.callout-note title="Click here to view the code I used."  collapse="true"}
+::: {.callout-note title="Click here to view the code I used." collapse="true"}
 ```{r}
 #| eval: false
 
@@ -461,7 +463,7 @@ forecasts_grade_levels <- lapply(grade_levels, forecast_enrollment)
 
 I created a new data frame named `forecast_table_grade_levels` using the `data.frame()` function. It combines the forecasted means for each grade level and the enrollment total, with the years 2022 to 2030 as the first column. The column names of `forecast_table` are then updated to match the grade levels. The `print()` function was used to display the `forecast_table` in the console.
 
-::: {.callout-note title="Click here to view the code I used."  collapse="true"}
+::: {.callout-note title="Click here to view the code I used." collapse="true"}
 ```{r}
 #| eval: false
 
@@ -506,6 +508,7 @@ forecast_table <-
 forecast_table
 ```
 :::
+
 ```{r}
 #| echo: false
 #| message: false
@@ -545,6 +548,7 @@ elementary_table <- tab_header(elementary_table, title = "Enrollment in public e
 # Display the first table
 elementary_table
 ```
+
 ```{r}
 #| echo: false
 
@@ -578,7 +582,7 @@ secondary_table
 
 I used the `par()` function to adjust the plot margins for better visualization. A loop was initiated to plot the forecasts for each grade level and the enrollment total. The `plot()` function was used to create a separate plot for each forecast, with the grade level as the plot title. The `par(mfrow = c(5, 4))` function was used to arrange the plots in a 5x4 grid layout.
 
-::: {.callout-note title="Click here to view the code I used."  collapse="true"}
+::: {.callout-note title="Click here to view the code I used." collapse="true"}
 ```{r}
 #| eval: false
 
@@ -595,6 +599,7 @@ for (i in 1:length(forecast_table_df)) {
 }
 ```
 :::
+
 ```{r}
 #| echo: false
 

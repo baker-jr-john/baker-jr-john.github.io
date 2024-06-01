@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -190,7 +190,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Quarto,Work,Digital Garden,R,RStudio" data-listing-date-sort="1714104000000" data-listing-file-modified-sort="1714403990007" data-listing-date-modified-sort="1714363200000" data-listing-reading-time-sort="5" data-listing-word-count-sort="811">
+<div class="g-col-1" data-index="0" data-categories="Quarto,Work,Digital Garden,R,RStudio" data-listing-date-sort="1714104000000" data-listing-file-modified-sort="1714403990006" data-listing-date-modified-sort="1714363200000" data-listing-reading-time-sort="5" data-listing-word-count-sort="811">
 <a href="../work/2024/04/26/garden/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -215,7 +215,7 @@ Apr 26, 2024
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="COVID-19,Alex the Analyst,Github,Tableau,SQL,Python,pandas,Visual Studio Code" data-listing-date-sort="1626840000000" data-listing-file-modified-sort="1714000013962" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="722">
+<div class="g-col-1" data-index="1" data-categories="COVID-19,Alex the Analyst,Github,Tableau,SQL,Python,pandas,Visual Studio Code" data-listing-date-sort="1626840000000" data-listing-file-modified-sort="1714000013961" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="722">
 <a href="../work/2021/07/21/covid-19/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -240,7 +240,7 @@ Jul 21, 2021
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="National Park Service,Github,Tableau,Python,pandas,NumPy,Matplotlib,seaborn,Visual Studio Code,Jupyter" data-listing-date-sort="1625198400000" data-listing-file-modified-sort="1713999992502" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1502">
+<div class="g-col-1" data-index="2" data-categories="National Park Service,Github,Tableau,Python,pandas,NumPy,Matplotlib,seaborn,Visual Studio Code,Jupyter" data-listing-date-sort="1625198400000" data-listing-file-modified-sort="1717276300052" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1502">
 <a href="../work/2021/07/02/biodiversity/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -504,6 +504,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -545,7 +550,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
