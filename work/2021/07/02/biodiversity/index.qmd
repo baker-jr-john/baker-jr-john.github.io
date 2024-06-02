@@ -9,8 +9,6 @@ draft: false
 comments:
   giscus:
     repo: baker-jr-john/baker-jr-john.github.io
-    light: light
-    dark: dark_dimmed
 ---
 ![Photo of Great Smoky Mountains National Park by Robert Thiemann on Unsplash](images/great_smoky_mountains_national_park.png)
 
