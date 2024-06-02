@@ -8,9 +8,6 @@ about:
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/baker-jr-john/
-    - icon: twitter
-      text: X
-      href: https://x.com/baker_jr_john
 ---
 I'm a [Hudson Valley](https://travelhudsonvalley.com/) resident, but I was born and raised in [Philadelphia](https://www.visitphilly.com/). I live with my wife, son, two dogs, and two cats. I enjoy spending time with my family, experiencing music and food, and playing board and video games (❤️ Nintendo).
 
