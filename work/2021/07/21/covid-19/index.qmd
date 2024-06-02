@@ -3,9 +3,12 @@ title: "Coronavirus (COVID-19) Deaths and Infection Rate"
 description: An independent examination of Coronavirus (COVID-19) death, infection, and vaccination data
 date: 07-21-2021
 file-modified: 07-21-2021
-categories: [COVID-19, Alex the Analyst, Github, Tableau, SQL, Python, pandas, Visual Studio Code] # self-defined categories
+categories: [COVID-19, Alex the Analyst, Github, Tableau, SQL, Python, pandas, Visual Studio Code]
 image: images/covid-19.png
-draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+draft: false
+comments:
+  giscus:
+    repo: baker-jr-john/baker-jr-john.github.io
 ---
 ![Image by the CDC on Unsplash](images/covid-19.png)
 The coronavirus pandemic has affected nearly all aspects of our lives, sickened more than 186 million people worldwide, and more than 4 million people have died so far. In addition, it led to global lockdowns, a new era of frugality, and a third of Americans working from home. So, as it continues to feel like we could get back to normal-ish life soon in America, I decided to examine some of the data.
