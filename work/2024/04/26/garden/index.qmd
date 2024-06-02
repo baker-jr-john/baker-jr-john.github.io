@@ -6,6 +6,9 @@ date-modified: 04-29-2024
 categories: [Quarto, Work, Digital Garden, R, RStudio]
 image: images/preview-image.png
 draft: false
+comments:
+  giscus:
+    repo: baker-jr-john/baker-jr-john.github.io
 ---
 
 ## Planning For a Garden
