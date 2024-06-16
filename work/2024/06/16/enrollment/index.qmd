@@ -11,7 +11,7 @@ format:
 draft: false
 bibliography: bibliography/my-bib.bib
 nocite: |
-  @nces2024
+  @irwin2024projections
 comments:
   giscus:
     repo: baker-jr-john/baker-jr-john.github.io
