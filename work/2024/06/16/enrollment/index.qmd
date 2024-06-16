@@ -9,6 +9,9 @@ format:
   html:
     code-link: true
 draft: false
+bibliography: bibliography/my-bib.bib
+nocite: |
+  @nces2024
 comments:
   giscus:
     repo: baker-jr-john/baker-jr-john.github.io
