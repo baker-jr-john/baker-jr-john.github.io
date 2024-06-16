@@ -1,14 +1,14 @@
 ---
 title: "Projecting Elementary and Secondary School Enrollment"
 description: ""
-date: 06-09-2024
-date-modified: 06-09-2024
+date: 06-16-2024
+date-modified: 06-16-2024
 categories: []
 image: images/preview-image.png
 format:
   html:
     code-link: true
-draft: true
+draft: false
 comments:
   giscus:
     repo: baker-jr-john/baker-jr-john.github.io
