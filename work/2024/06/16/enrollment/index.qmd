@@ -1,10 +1,10 @@
 ---
 title: "Projecting Elementary and Secondary School Enrollment"
-description: ""
+description: "A  detailed walkthrough on projecting elementary and secondary school enrollments from 2022-2030"
 date: 06-16-2024
 date-modified: 06-16-2024
-categories: []
-image: images/preview-image.png
+categories: [Education Planning, Student Enrollment Forecasting, Education Statistics, Data Analysis, School Resource Allocation, Education Budgeting, Educational Demography, Time Series Analysis, Time Series Forecasting Methods, Data Visualization, Education Policy, Education Decision Making, Quantitative Methods in Education, Education Management, Education Administration, R Programming, Statistical Computing]
+image: images/enrollment_plot.png
 format:
   html:
     code-link: true
@@ -241,6 +241,9 @@ enrollment_plot <-
 
 # Print the plot
 print(enrollment_plot)
+
+# Save the plot as a PNG file
+# ggsave("enrollment_plot.png", plot = enrollment_plot, width = 10, height = 6, dpi = 300)
 ```
 
 Accurate enrollment projections in elementary and secondary institutions are crucial for several reasons:
@@ -332,10 +335,7 @@ I also utilized data from the [United States Census Bureau's Annual Estimates of
 
 To use the data, I initially had to modify the spreadsheet in Excel. First, I un-merged cells A3:A4 and B3:B4. Then, I deleted row 5. After the data was in a usable state, I moved the project to RStudio.
 
-Once in RStudio, I loaded the packages I used:
-- `readxl` for reading Excel files and
-- `forecast` for time series forecasting.
-I used the `read_excel()` function from the `readxl` package to load data from the Excel file. Then, I used the `colnames()` function to rename the columns of the loaded data frame (`enrollment`) with more descriptive names. I also created a new column named "enrollment_total" to the `enrollment` data frame, which was calculated as the row-wise sum of all columns except the first one (assuming the first column is not numeric). The `na.rm = TRUE` argument was used to handle any missing values.
+Once in RStudio, I loaded the packages I used: - `readxl` for reading Excel files and - `forecast` for time series forecasting. I used the `read_excel()` function from the `readxl` package to load data from the Excel file. Then, I used the `colnames()` function to rename the columns of the loaded data frame (`enrollment`) with more descriptive names. I also created a new column named "enrollment_total" to the `enrollment` data frame, which was calculated as the row-wise sum of all columns except the first one (assuming the first column is not numeric). The `na.rm = TRUE` argument was used to handle any missing values.
 
 ::: {.callout-note title="Click here to view the code I used." collapse="true"}
 ```{r}
@@ -650,3 +650,13 @@ for (i in 1:length(forecasts_grade_levels)) {
 ```
 
 ## Conclusion
+
+Accurate enrollment projections are crucial for effective planning and resource allocation in elementary and secondary institutions. This exercise demonstrates a systematic approach to forecasting student enrollments by grade level and total enrollment, by utilizing the grade progression rate method and the enrollment rate method, coupled with exponential smoothing techniques and historical data.
+
+The process involves analyzing past enrollment trends, calculating progression rates and enrollment rates, and applying exponential smoothing models to project future values. The utilization of tools like Microsoft Excel and RStudio, along with statistical packages like forecast, facilitates data manipulation, modeling, and visualization.
+
+The resulting forecast table and visualizations provide valuable insights into the anticipated enrollment patterns for the years 2022 to 2030. These projections can inform crucial decisions related to budgeting, staffing, facility planning, and overall organizational strategy within the educational system.
+
+It is important to note that these projections are based on historical trends and established statistical methods, but they are subject to inherent uncertainties and potential deviations due to unforeseen factors or changes in underlying assumptions. Consequently, it is advisable to periodically review and update the projections to reflect any significant shifts in the educational landscape or demographic patterns.
+
+Overall, this exercise showcases a rigorous and data-driven approach to enrollment forecasting. It equips educational institutions with valuable information to navigate the challenges of resource allocation and strategic planning effectively.
