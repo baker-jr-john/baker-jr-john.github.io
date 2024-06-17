@@ -5,7 +5,7 @@ listing:
       - "2021/07/02/biodiversity/index.qmd"
       - "2021/07/21/covid-19/index.qmd"
       - "2024/04/26/garden/index.qmd"
-      - "2024/06/16/enrollment/index.qmd"
+#      - "2024/06/16/enrollment/index.qmd"
   sort: "date desc" # can also sort on more than one field
   type: grid # or `default` or `table`; each type has its own set of yaml options to include
   categories: false # allows you to sort posts by assigned categories 
