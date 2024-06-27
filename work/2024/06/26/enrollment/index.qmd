@@ -1,6 +1,6 @@
 ---
 title: "Projecting Elementary and Secondary School Enrollment"
-description: ""
+description: "A comprehensive methodology for projecting elementary and secondary school enrollment using statistical techniques"
 date: 06-26-2024
 date-modified: 06-26-2024
 categories: [Education Statistics, Enrollment Projections, Forecasting Methods, Data Analysis, Data Visualization, Educational Planning, Time Series Analysis]
