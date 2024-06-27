@@ -1,0 +1,2462 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-06-26">
+<meta name="description" content="The Digital Garden of John Baker">
+
+<title>John Baker - Projecting Elementary and Secondary School Enrollment</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../../../index.html">
+    <span class="navbar-title">John Baker</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../about/index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../work/index.html"> 
+<span class="menu-text">Work</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../contact/index.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#how-to-project-enrollment" id="toc-how-to-project-enrollment" class="nav-link" data-scroll-target="#how-to-project-enrollment">How to Project Enrollment</a></li>
+  <li><a href="#tools-utilized" id="toc-tools-utilized" class="nav-link" data-scroll-target="#tools-utilized">Tools Utilized</a></li>
+  <li><a href="#process-overview" id="toc-process-overview" class="nav-link" data-scroll-target="#process-overview">Process Overview</a>
+  <ul class="collapse">
+  <li><a href="#data-used" id="toc-data-used" class="nav-link" data-scroll-target="#data-used">Data Used</a></li>
+  <li><a href="#data-loading-and-preparation" id="toc-data-loading-and-preparation" class="nav-link" data-scroll-target="#data-loading-and-preparation">Data Loading and Preparation</a></li>
+  <li><a href="#forecasting-functions" id="toc-forecasting-functions" class="nav-link" data-scroll-target="#forecasting-functions">Forecasting Functions</a></li>
+  <li><a href="#forecasting-enrollment" id="toc-forecasting-enrollment" class="nav-link" data-scroll-target="#forecasting-enrollment">Forecasting Enrollment</a></li>
+  <li><a href="#forecast-table" id="toc-forecast-table" class="nav-link" data-scroll-target="#forecast-table">Forecast Table</a></li>
+  <li><a href="#data-combination-and-visualization" id="toc-data-combination-and-visualization" class="nav-link" data-scroll-target="#data-combination-and-visualization">Data Combination and Visualization</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Projecting Elementary and Secondary School Enrollment</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Education Statistics</div>
+    <div class="quarto-category">Enrollment Projections</div>
+    <div class="quarto-category">Forecasting Methods</div>
+    <div class="quarto-category">Data Analysis</div>
+    <div class="quarto-category">Data Visualization</div>
+    <div class="quarto-category">Educational Planning</div>
+    <div class="quarto-category">Time Series Analysis</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 26, 2024</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 26, 2024</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>According to the National Center for Education Statistics (NCES), total public and private elementary and secondary school enrollment was 56 million in fall 2019, representing a 3 percent increase since fall 2010. However, between fall 2019 and the first fall of the coronavirus pandemic in fall 2020, enrollment decreased 2 percent. From fall 2020 to fall 2030, enrollments are expected to decrease another 6 percent. Both public and private school enrollments are projected to be lower in 2030 than in 2019.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Accurate enrollment projections in elementary and secondary institutions are crucial for several reasons:</p>
+<ol type="1">
+<li><p><strong>Budgeting and resource allocation</strong>: Enrollment projections help school districts plan their budgets effectively. By estimating the number of students expected to attend, districts can allocate resources appropriately, ensuring they have enough teachers, classrooms, and educational materials to meet the demand.</p></li>
+<li><p><strong>Short-term and long-term planning</strong>: Enrollment projections inform both short-term and long-term decision-making. In the short term, they help determine staffing needs and budgeting for specific programs. In the long term, they assist in planning for capital projects, such as building new schools or expanding existing facilities.</p></li>
+<li><p><strong>Public trust and support</strong>: Accurate enrollment projections can demonstrate the need for capital projects to the public, potentially influencing the outcome of school bond referenda. When the community understands the necessity of these projects based on reliable data, they are more likely to support them.</p></li>
+</ol>
+<p>Accurate enrollment projections are vital for effective budgeting, resource allocation, short-term and long-term planning, maintaining public trust, ensuring financial stability, and informed decision-making in elementary and secondary institutions. With that said, many institutions lack a reliable means by which to make long-range enrollment forecasts. I’m here to help.</p>
+</section>
+<section id="how-to-project-enrollment" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-project-enrollment">How to Project Enrollment</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Click here for a detailed methodology for projecting student enrollment using various statistical techniques.">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click here for a detailed methodology for projecting student enrollment using various statistical techniques.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="projection-techniques" class="level3">
+<h3 class="anchored" data-anchor-id="projection-techniques">Projection Techniques</h3>
+<p>There are several key methods that can be used for projecting student enrollment in elementary and secondary institutions such as ratio-based methods, regression-based methods, the dwelling unit multiplier method, and the extended demographic model. After some research and experimentation, I elected to use an exponential smoothing technique.</p>
+<section id="exponential-smoothing" class="level4">
+<h4 class="anchored" data-anchor-id="exponential-smoothing">Exponential Smoothing</h4>
+<p>Single exponential smoothing is a forecasting method suited for data that is relatively stable over time, where future values are expected to be around the same central value as observed historically, without significant shifts up or down. In developing projections of elementary and secondary enrollments, for example, the rate at which students progress from one particular grade to the next (e.g., from grade 2 to grade 3) can be projected using single exponential smoothing. Thus, this percentage is assumed to be constant over the forecast period.</p>
+<p>Generally, exponential smoothing places more weight on recent observations than on earlier ones. The weights for observations decrease exponentially as one moves further into the past. As a result, the older data have less influence on the projections. The rate at which the weights of older observations decrease is determined by the smoothing constant.</p>
+<p>When using single exponential smoothing for a time series, <span class="math inline">\(P_t\)</span>, a smoothed series, <span class="math inline">\(P\)</span>, is computed recursively by evaluating where <span class="math display">\[\hat{P}_t = \alpha~P_t + (1 - \alpha) P_{t-1}\]</span><span class="math inline">\(0 &lt; \alpha \leq 1\)</span> is the smoothing constant.</p>
+<p>By repeated substitution, we can rewrite the equation as <span class="math display">\[
+P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span class="math inline">\(s\)</span>, goes from the first period in the time series, <span class="math inline">\(0\)</span>, to time period <span class="math inline">\(t-1\)</span>. The forecasts are constant for all years in the forecast period. The constant equals <span class="math display">\[\hat{P}_{T+k} = \hat{P}_t\]</span>where <span class="math inline">\(t\)</span> is the last year of actual data and <span class="math inline">\(k\)</span> is the <span class="math inline">\(k^{th}\)</span> year in the forecast period where <span class="math inline">\(k &gt; 0\)</span>.</p>
+<p>These equations illustrate that the projection is a weighted average based on exponentially decreasing weights. For higher smoothing constants, weights for earlier observations decrease more rapidly than for lower smoothing constants.</p>
+</section>
+</section>
+<section id="approach-overview" class="level3">
+<h3 class="anchored" data-anchor-id="approach-overview">Approach Overview</h3>
+<p>I utilized the <em>grade progression rate method</em> to project grades 2 through 12. With this approach, a rate of progression from each grade (1 through 11) to the next grade (2 through 12) was projected using single exponential smoothing. For example, the rate of progression from grade 2 to grade 3 is the current year’s grade 3 enrollment expressed as a percentage of the previous year’s grade 2 enrollment. To calculate enrollment for each year in the forecast period, the progression rate for each grade was applied to the previous year’s enrollment in the previous grade.</p>
+<p>I also utilized the <em>enrollment rate method</em> to project prekindergarten, kindergarten, and first-grade enrollments as well as elementary and secondary ungraded enrollments. In this method, an enrollment rate for each grade (or ungraded level) was projected using single exponential smoothing. For example, the enrollment rate for grade 1 is the number of students enrolled in grade 1 divided by the number of 6-year-old children. To calculate enrollment for each year in the forecast period, the enrollment rate for each category was applied to the projected population in the appropriate age group.</p>
+<section id="assumptions-underlying-this-approach" class="level4">
+<h4 class="anchored" data-anchor-id="assumptions-underlying-this-approach">Assumptions Underlying This Approach</h4>
+<p>The grade progression rate method assumes that past trends affecting public and private elementary and secondary school enrollments will continue over the forecast period. This assumption implies that all factors influencing enrollments will display future patterns consistent with past patterns. This method implicitly includes the net effect of such factors as migration, dropouts, deaths, non-promotion, and transfers between public and private schools.</p>
+</section>
+<section id="limitations-of-projections" class="level4">
+<h4 class="anchored" data-anchor-id="limitations-of-projections">Limitations of Projections</h4>
+<p>Projections are complicated by the onset of the coronavirus pandemic in 2020. Projections are based on the assumption that historical patterns will continue into the future. This presents challenges both for (1) using prepandemic historical data to predict unprecedented pandemic-era behaviors and (2) using pandemic-era data to predict post-pandemic behaviors. This exercise includes both scenarios.</p>
+<p>Even without a pandemic, projections of a time series usually differ from the final reported data due to errors from many sources, such as the properties of the projection methodologies, which depend on the validity of many assumptions. These projections should be interpreted with caution.</p>
+</section>
+</section>
+<section id="procedures-and-equations" class="level3">
+<h3 class="anchored" data-anchor-id="procedures-and-equations">Procedures and Equations</h3>
+<p>The notation and equations that follow describe the basic procedures used to project elementary and secondary enrollments in each of the three elementary and secondary enrollment projection models.</p>
+<p>Let:</p>
+<p><span class="math inline">\(i\)</span> = Subscript denoting age<br>
+<span class="math inline">\(j\)</span> = Subscript denoting grade<br>
+<span class="math inline">\(t\)</span> = Subscript denoting time<br>
+<span class="math inline">\(T\)</span> = Subscript of the first year in the forecast period<br>
+<span class="math inline">\(N_t\)</span> = Enrollment at the prekindergarten (nursery) level<br>
+<span class="math inline">\(K_t\)</span> = Enrollment at the kindergarten level<br>
+<span class="math inline">\(G_{j,t}\)</span> = Enrollment<br>
+<span class="math inline">\(E_t\)</span> = Enrollment in elementary ungraded programs<br>
+<span class="math inline">\(S_t\)</span> = Enrollment in secondary ungraded programs<br>
+<span class="math inline">\(P_{i,t}\)</span> = Population<br>
+<span class="math inline">\(R_{j,t}\)</span> = Progression rate<br>
+<span class="math inline">\(RN_t\)</span> = Enrollment rate for prekindergarten (nursery school)<br>
+<span class="math inline">\(RK_t\)</span> = Enrollment rate for kindergarten<br>
+<span class="math inline">\(RG_{1,t}\)</span> = Enrollment rate for grade 1<br>
+<span class="math inline">\(RE_t\)</span> = Enrollment rate for elementary ungraded programs<br>
+<span class="math inline">\(RS_t\)</span> = Enrollment rate for secondary ungraded programs.</p>
+<p><strong><em>Step 1</em></strong>. <em>Calculate historical grade progression rates for each of grade</em>. The first step in projecting the enrollments using the grade progression method was to calculate, for each grade, a progression rate for each year of actual data used to produce the projections except for the first year. The progression rate for grade <span class="math inline">\(j\)</span> in year <span class="math inline">\(t\)</span> equals <span class="math display">\[R_{j,t} = \frac{G_{j,t}}{G_{j-1,t-1}}\]</span><strong><em>Step 2</em></strong>. <em>Produce a projected progression rate for each of grades 2 through 12</em>. Projections for each grade’s progression rate were then produced for the forecast period using single exponential smoothing. A separate smoothing constant, chosen to minimize the sum of squared forecast errors, was used to calculate the projected progression rate for each grade. Single exponential smoothing produces a single forecast for all years in the forecast period. Therefore, for each grade <span class="math inline">\(j\)</span>, the projected progression rate, <span class="math inline">\(\hat{R}_j\)</span>, is the same for each year in the forecast period.</p>
+<p><strong><em>Step 3</em></strong>. <em>Calculate enrollment projections for each of grades 2 through 12</em>. For the first year in the forecast period, <span class="math inline">\(T\)</span>, enrollment projections, <span class="math inline">\(\hat{G}_{j,T}\)</span>, for grades 2 though 12 were produced using the projected progression rates and enrollments of grades 1 though 11 from the last year of actual data, <span class="math inline">\(T–1\)</span>. Specifically, <span class="math display">\[\hat{G}_{j,T} = \hat{R}_j \cdot \hat{G}_{j-1, T-1}\]</span>This same procedure was then used to produce the projections for the following year, <span class="math inline">\(T+1\)</span>, except that enrollment projections for year <span class="math inline">\(T\)</span> were used rather than actual numbers: <span class="math display">\[\hat{G}_{j,T+1} = \hat{R}_j \cdot \hat{G}_{j,T}\]</span> The enrollment projections for grades 2 through 11 for year <span class="math inline">\(T\)</span> were those just produced using the grade progression method. The projection for grade 1 for year <span class="math inline">\(T\)</span> was produced using the enrollment rate method as outlined in steps 4, 5, and 6 below.</p>
+<p>The same procedure was used for the remaining years in the projections period.</p>
+<p><strong><em>Step 4</em></strong>. <em>Calculate historical enrollment rates for prekindergarten, kindergarten, grade 1, elementary ungraded, and secondary ungraded.</em> The first step in projecting prekindergarten, kindergarten, first-grade, elementary ungraded, and secondary ungraded enrollments using the enrollment rate method was to calculate enrollment rates for each enrollment category for the last year of actual data, <span class="math inline">\(T–1\)</span>, where: <span class="math display">\[RN_t = \frac{N_t}{P_{5,t}}\]</span> <span class="math display">\[RK_t = \frac{K_t}{P_{5,t}}\]</span> <span class="math display">\[RG_{1,t} = \frac{G_{1,t}} {P_{6,t}}\]</span> <span class="math display">\[RE_t = \frac{E_t}{\sum_{i=5}^{13}P_{i,t}}\]</span> <span class="math display">\[RS_t = \frac{S_t}{\sum_{i=14}^{17}P_{i,t}}\]</span> <strong><em>Step 5</em></strong>. <strong>Produce a projected enrollment rate for prekindergarten, kindergarten, grade 1, elementary ungraded, and secondary ungraded</strong>. Projections for each category’s enrollment rate were produced for the forecast period using single exponential smoothing. A separate smoothing constant, chosen to minimize the sum of squared forecast errors, was used to calculate the projected enrollment rate for each of these grades (or ungraded levels), specifically for prekindergarten, kindergarten, grade 1, elementary ungraded, and secondary ungraded. Single exponential smoothing produces a single forecast for all years in the forecast period. These enrollment rates were then used as the projected enrollment rates for each year in the forecast period (<span class="math inline">\(\hat{RN}\)</span>, <span class="math inline">\(\hat{RK}\)</span>, <span class="math inline">\(\hat{RG}_1\)</span>, <span class="math inline">\(\hat{RE}\)</span>, and <span class="math inline">\(\hat{RS}\)</span>).</p>
+<p><strong><em>Step 6</em></strong>. <em>Calculate enrollment projections for prekindergarten through grad 1 and the ungraded categories</em>. For each year in the forecast period, the enrollment rates were then multiplied by the appropriate population projections (<span class="math inline">\(\hat{P_{i,t}}\)</span>) to calculate enrollment projections for prekindergarten (<span class="math inline">\(\hat{N_t}\)</span>), kindergarten (<span class="math inline">\(\hat{K_t}\)</span>), first grade (<span class="math inline">\(\hat{G}_{1,t}\)</span>), elementary ungraded (<span class="math inline">\(\hat{E}_t\)</span>), and secondary ungraded (<span class="math inline">\(\hat{S}_t\)</span>).<span class="math display">\[\hat{N}_t = \hat{RN} \cdot \hat{P}_{5,t}\]</span> <span class="math display">\[\hat{K}_t = \hat{RK} \cdot \hat{P}_{5,t}\]</span> <span class="math display">\[\hat{G}_{1,t} = \hat{RG}_1 \cdot \hat{P}_{6,t}\]</span> <span class="math display">\[\hat{E}_t = \hat{RE} \cdot \sum_{i=5}^{13}\hat{P}_{i,t}\]</span> <span class="math display">\[\hat{S}_t = \hat{RS} \cdot \sum_{i=14}^{17}\hat{P}_{i,t}\]</span> <strong><em>Step 7</em></strong>. <em>Calculate total elementary and secondary enrollments by summing the projections for each grade and the ungraded categories</em>. To obtain projections of total enrollment, projections of enrollments for the individual grades, elementary ungraded, and secondary ungraded were summed.</p>
+<p>By following these steps and utilizing the provided methodologies, I can project national public school enrollments from 2021 through 2030 with a reasonable degree of accuracy.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
+<section id="tools-utilized" class="level2">
+<h2 class="anchored" data-anchor-id="tools-utilized">Tools Utilized</h2>
+<p>There are numerous tools to select from when tackling an exercise like this. Instead of delving into the various options, I decided to simply tell you what I used:</p>
+<ul>
+<li><a href="https://www.microsoft.com/en-us/microsoft-365/excel">Microsoft Excel</a></li>
+<li><a href="https://posit.co/products/open-source/rstudio/">Posit RStudio Desktop</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+<ul>
+<li>This required an installation of <a href="https://cran.rstudio.com/">R, the programming language</a>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="process-overview" class="level2">
+<h2 class="anchored" data-anchor-id="process-overview">Process Overview</h2>
+<p>The process for forecasting student enrollment by grade level and total enrollment using historical data begins by viewing the enrollment data in Excel and making some minor adjustments before loading it into RStudio. It calculates enrollment rates for various grades based on historical and projected population data, then applies exponential smoothing to the historical data to create a trend. Using historical progression rates, future enrollments from 2021 to 2030 are projected. It combines actual and projected data, filters for the years 2010 to 2030, and creates aggregate columns for PK-Grade 8, Grades 9-12, and Total enrollments. The data is reshaped for plotting, and a line plot is generated. The plot visualizes enrollment trends, distinguishing between actual and projected data.</p>
+<section id="data-used" class="level3">
+<h3 class="anchored" data-anchor-id="data-used">Data Used</h3>
+<p>For this exercise, I utilized data from the <a href="https://nces.ed.gov/programs/digest/d21/tables/dt21_203.10.asp">NCES’s Digest of Education Statistics’ Enrollment in public elementary and secondary schools, by level and grade: Selected years, fall 1980 through fall 2030</a>. The dataset covers annual data from 1990 to 2020. it also includes data from 1980, 1985, and projections from 2021 through 2030 which I chose to ignore.</p>
+<p>I also utilized Table B-1 and Table B-2 from the <a href="https://nces.ed.gov/programs/pes/">NCES’s <em>Projections of Education Statistics to 2030</em></a>. Table B-1 contains data on the population of prekindergarten- and kindergarten-age children from 2010 through 2030. Table B-2 contains data on the school-age population from 2010 through 2030, with the values. Both datasets include actual values for the years 2010 through 2020 and projected values from 2021 onward <span class="citation" data-cites="irwin2024projections">(<a href="#ref-irwin2024projections" role="doc-biblioref">Irwin et al. 2024</a>)</span>.</p>
+</section>
+<section id="data-loading-and-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="data-loading-and-preparation">Data Loading and Preparation</h3>
+<p>To use the data, I initially had to modify the spreadsheet in Excel. First, I un-merged cells A3:A4, B3:B4, and D4:E4. Then, I moved “Year” and “All” from cells A3 and B3 to cells A4 and B4. I also had to modify the ramining cells in row 4:</p>
+<ul>
+<li>Cell C4 from “Total” to “Total PK-8”</li>
+<li>Cell D4 from “Prekinder- garten” to “Prekindergarten”</li>
+<li>Cell F4 from ” Kinder-garten” to “Kindergarten”</li>
+<li>Cell G4 from ” 1st grade” to “1st grade”</li>
+<li>Cell H4 from ” 2nd grade” to “2nd grade”</li>
+<li>Cell I4 from ” 3rd grade” to “3rd grade”</li>
+<li>Cell J4 from ” 4th grade” to “4th grade”</li>
+<li>Cell K4 from ” 5th grade” to “5th grade”</li>
+<li>Cell L4 from ” 6th grade” to “6th grade”</li>
+<li>Cell M4 from ” 7th grade” to “7th grade”</li>
+<li>Cell N4 from ” 8th grade” to “8th grade”</li>
+<li>Cell O4 from “Un- graded\1” to “Ungraded PK-8”</li>
+<li>Cell P4 from “Total” to “Total 9-12”</li>
+<li>Cell Q4 from ” 9th grade” to “9th grade”</li>
+<li>Cell R4 from ” 10th grade” to “10th grade”</li>
+<li>Cell S4 from ” 11th grade” to “11th grade”</li>
+<li>Cell T4 from ” 12th grade” to “12th grade”</li>
+<li>Cell U4 from “Un- graded\1,2” to “Ungraded 9-12”</li>
+</ul>
+<p>Additionally, I had to delete “\4” from cell A37. Finally, I deleted row 5. I converted the spreadsheet from the <em><code>.xls</code></em> file format to <em><code>.xlsx</code></em> by saving it as <em><code>.xlsx</code></em>. After the data was in a usable state, I moved the project to RStudio.</p>
+<p>Once in RStudio, the script begins by loading the <code>readxl</code> library for reading Excel files. The <code>dplyr</code> library is also loaded to facilitate data manipulation. The enrollment data is then read from an Excel file, specifically from a range of cells (<code>A4:U37</code>), with certain columns skipped, and the remaining columns are renamed for convenience. Similarly, population data, which includes projected school-age population by selected age groups from 2010 through 2030, is read from another Excel file. To calculate enrollment rates, the enrollment data is joined with the population data on the <code>Year</code> column. This allows the script to compute the enrollment rates for Prekindergarten, Kindergarten, 1st grade, and ungraded enrollments based on the respective age groups in the population data. The mean enrollment rates are then computed, which will be used for forecasting future enrollments.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Click here to view the code I used.">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click here to view the code I used.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Load enrollment data</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>enrollment <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/tabn203.10.xlsx"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">"Digest 2021 Table 203.10"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">range =</span> <span class="st">"A4:U37"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">c</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"skip"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"skip"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"skip"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"skip"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the columns for convenience</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(enrollment) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Prekindergarten"</span>, <span class="st">"Kindergarten"</span>, <span class="st">"1st_grade"</span>, <span class="st">"2nd_grade"</span>, <span class="st">"3rd_grade"</span>,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"4th_grade"</span>, <span class="st">"5th_grade"</span>, <span class="st">"6th_grade"</span>, <span class="st">"7th_grade"</span>, <span class="st">"8th_grade"</span>, <span class="st">"9th_grade"</span>, </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"10th_grade"</span>, <span class="st">"11th_grade"</span>, <span class="st">"12th_grade"</span>, <span class="st">"Ungraded_PK_8"</span>, <span class="st">"Ungraded_9_12"</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Load population data</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/actual_and_projected_school-age_populations_by_selected_ages-_2010_through_2030.xlsx"</span>,</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">"Sheet1"</span>,</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">c</span>(</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate enrollment rates for Prekindergarten, Kindergarten, 1st grade, and Ungraded enrollments</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>enrollment_rates <span class="ot">&lt;-</span> enrollment <span class="sc">%&gt;%</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(population, <span class="at">by =</span> <span class="st">"Year"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">Prekindergarten_rate =</span> Prekindergarten <span class="sc">/</span> <span class="st">`</span><span class="at">3- to 5-year-olds</span><span class="st">`</span>,</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">Kindergarten_rate =</span> Kindergarten <span class="sc">/</span> <span class="st">`</span><span class="at">5-year-olds</span><span class="st">`</span>,</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_grade_rate =</span> <span class="st">`</span><span class="at">1st_grade</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">6-year-olds</span><span class="st">`</span>,</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ungraded_PK_8_rate =</span> Ungraded_PK_8 <span class="sc">/</span> <span class="st">`</span><span class="at">5- to 13-year-olds</span><span class="st">`</span>,</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ungraded_9_12_rate =</span> Ungraded_9_12 <span class="sc">/</span> <span class="st">`</span><span class="at">14- to 17-year-olds</span><span class="st">`</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">Prekindergarten_rate =</span> <span class="fu">mean</span>(Prekindergarten_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">Kindergarten_rate =</span> <span class="fu">mean</span>(Kindergarten_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_grade_rate =</span> <span class="fu">mean</span>(first_grade_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ungraded_PK_8_rate =</span> <span class="fu">mean</span>(Ungraded_PK_8_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ungraded_9_12_rate =</span> <span class="fu">mean</span>(Ungraded_9_12_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="forecasting-functions" class="level3">
+<h3 class="anchored" data-anchor-id="forecasting-functions">Forecasting Functions</h3>
+<p>In this section, the script defines an exponential smoothing function to create smoothed trends from historical enrollment data. This function, <code>exponential_smoothing</code>, takes a time series and a smoothing parameter, <code>alpha</code>, as inputs. It initializes the result with the first value of the series and then iteratively applies the exponential smoothing formula: each subsequent value is a weighted average of the current actual value and the previous smoothed value. This technique helps reduce variability in the data, making trends more apparent and stable for forecasting purposes. The smoothed values produced by this function are crucial for generating accurate and reliable projections of future enrollments based on historical trends.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Click here to view the code I used.">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click here to view the code I used.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define exponential smoothing function to return full series</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>exponential_smoothing <span class="ot">&lt;-</span> <span class="cf">function</span>(series, <span class="at">alpha =</span> <span class="fl">0.3</span>) {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(series))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  result[<span class="dv">1</span>] <span class="ot">&lt;-</span> series[<span class="dv">1</span>]  <span class="co"># Initialize with the first value</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(series)) {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    result[i] <span class="ot">&lt;-</span> alpha <span class="sc">*</span> series[i] <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> alpha) <span class="sc">*</span> result[i <span class="sc">-</span> <span class="dv">1</span>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="forecasting-enrollment" class="level3">
+<h3 class="anchored" data-anchor-id="forecasting-enrollment">Forecasting Enrollment</h3>
+<p>Here, the script utilizes the previously defined exponential smoothing function and calculated enrollment rates to project future enrollments from 2021 to 2030. Initially, the historical enrollment data is smoothed to reduce variability and create stable trends. A new dataframe is then created to hold projected enrollment values for each grade level. The script calculates progression rates, which represent the average proportion of students progressing from one grade to the next based on historical data. Using these rates, the script populates the projections dataframe, starting with the last smoothed value from the historical data and applying the progression rates for subsequent years. Specific projections for Prekindergarten, Kindergarten, 1st grade, and ungraded enrollments are computed using the enrollment rates and projected population data. This detailed approach ensures that the projections are grounded in historical trends and population forecasts, providing a comprehensive view of future enrollment patterns.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Click here to view the code I used.">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click here to view the code I used.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply exponential smoothing to historical data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>smoothed_values <span class="ot">&lt;-</span> enrollment <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Year) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span><span class="fu">exponential_smoothing</span>(.x, <span class="at">alpha =</span> <span class="fl">0.3</span>)))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize projections dataframe</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">2021</span><span class="sc">:</span><span class="dv">2030</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>projections <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Year =</span> years)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate progression rates for other grades</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>progression_rates <span class="ot">&lt;-</span> enrollment <span class="sc">%&gt;%</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"grade"</span>), <span class="fu">list</span>(<span class="at">rate =</span> <span class="sc">~</span><span class="fu">mean</span>(.x <span class="sc">/</span> <span class="fu">lag</span>(.x, <span class="dv">1</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), <span class="at">.names =</span> <span class="st">"{col}_rate"</span>))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Populate the projections dataframe for grades with historical progression rates</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (grade <span class="cf">in</span> <span class="fu">names</span>(smoothed_values)) {</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  last_value <span class="ot">&lt;-</span> <span class="fu">tail</span>(smoothed_values[[grade]], <span class="dv">1</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  projections[[grade]] <span class="ot">&lt;-</span> <span class="fu">c</span>(last_value, <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(years) <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (year_index <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(years)) {</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    year <span class="ot">&lt;-</span> years[year_index]</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    previous_year <span class="ot">&lt;-</span> years[year_index <span class="sc">-</span> <span class="dv">1</span>]</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    rate <span class="ot">&lt;-</span> progression_rates[[<span class="fu">paste0</span>(grade, <span class="st">"_rate"</span>)]]</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(rate) <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(rate)) {</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>      projections[year_index, grade] <span class="ot">&lt;-</span> projections[year_index <span class="sc">-</span> <span class="dv">1</span>, grade] <span class="sc">*</span> rate</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>      projections[year_index, grade] <span class="ot">&lt;-</span> projections[year_index <span class="sc">-</span> <span class="dv">1</span>, grade]</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Project Prekindergarten, Kindergarten, 1st grade, and Ungraded enrollments using enrollment rates</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (year <span class="cf">in</span> years) {</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  projections[projections<span class="sc">$</span>Year <span class="sc">==</span> year, <span class="st">"Prekindergarten"</span>] <span class="ot">&lt;-</span> population[population<span class="sc">$</span>Year <span class="sc">==</span> year, <span class="st">"3- to 5-year-olds"</span>] <span class="sc">*</span> enrollment_rates<span class="sc">$</span>Prekindergarten_rate</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  projections[projections<span class="sc">$</span>Year <span class="sc">==</span> year, <span class="st">"Kindergarten"</span>] <span class="ot">&lt;-</span> population[population<span class="sc">$</span>Year <span class="sc">==</span> year, <span class="st">"5-year-olds"</span>] <span class="sc">*</span> enrollment_rates<span class="sc">$</span>Kindergarten_rate</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  projections[projections<span class="sc">$</span>Year <span class="sc">==</span> year, <span class="st">"1st_grade"</span>] <span class="ot">&lt;-</span> population[population<span class="sc">$</span>Year <span class="sc">==</span> year, <span class="st">"6-year-olds"</span>] <span class="sc">*</span> enrollment_rates<span class="sc">$</span>first_grade_rate</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  projections[projections<span class="sc">$</span>Year <span class="sc">==</span> year, <span class="st">"Ungraded_PK_8"</span>] <span class="ot">&lt;-</span> population[population<span class="sc">$</span>Year <span class="sc">==</span> year, <span class="st">"5- to 13-year-olds"</span>] <span class="sc">*</span> enrollment_rates<span class="sc">$</span>Ungraded_PK_8_rate</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  projections[projections<span class="sc">$</span>Year <span class="sc">==</span> year, <span class="st">"Ungraded_9_12"</span>] <span class="ot">&lt;-</span> population[population<span class="sc">$</span>Year <span class="sc">==</span> year, <span class="st">"14- to 17-year-olds"</span>] <span class="sc">*</span> enrollment_rates<span class="sc">$</span>Ungraded_9_12_rate</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="forecast-table" class="level3">
+<h3 class="anchored" data-anchor-id="forecast-table">Forecast Table</h3>
+<p>In this section of code, the <code>gt</code> library is loaded to facilitate the creation of well-formatted tables. The code then constructs a data frame, <code>forecast_table_df</code>, which contains projected enrollment data for various grade levels. This data frame is derived from the <code>filtered_data</code> object, specifically filtering for projected enrollment data (<code>Type == "Projected"</code>). It selects the relevant columns: <code>Year</code>, <code>Prekindergarten</code>, <code>Kindergarten</code>, and grades from <code>1st_grade</code> to <code>12th_grade</code>. These grade columns are then renamed to more readable names, such as “First Grade” for <code>1st_grade</code>, “Second Grade” for <code>2nd_grade</code>, and so on. The renamed data frame is then passed to the <code>gt</code> function to create a table object, <code>forecast_table</code>. A header is added to this table with the title “Enrollment in public elementary and secondary schools, by grade (in thousands)”. Finally, the table is displayed. This process results in a well-organized and readable table that presents the projected enrollment figures for each grade level.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Click here to view the code I used.">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click here to view the code I used.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load `gt` library</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with the forecasts for grade levels</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>forecast_table_df <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Type <span class="sc">==</span> <span class="st">"Projected"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    Year,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    Prekindergarten,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    Kindergarten,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">1st_grade</span><span class="st">`</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2nd_grade</span><span class="st">`</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">3rd_grade</span><span class="st">`</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">4th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">5th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">6th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">7th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">8th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">9th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">10th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">11th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">12th_grade</span><span class="st">`</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First Grade"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">1st_grade</span><span class="st">`</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Second Grade"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2nd_grade</span><span class="st">`</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Third Grade"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">3rd_grade</span><span class="st">`</span>,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fourth Grade"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">4th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fifth Grade"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">5th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sixth Grade"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">6th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Seventh Grade"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">7th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Eighth Grade"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">8th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Ninth Grade"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">9th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Tenth Grade"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">10th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Eleventh Grade"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">11th_grade</span><span class="st">`</span>,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Twelfth Grade"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">12th_grade</span><span class="st">`</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the gt table</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>forecast_table <span class="ot">&lt;-</span> <span class="fu">gt</span>(forecast_table_df)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a table header</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>forecast_table <span class="ot">&lt;-</span> forecast_table <span class="sc">%&gt;%</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Enrollment in public elementary and secondary schools, by grade (in thousands)"</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the table</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>forecast_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div id="hyueiprsdm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hyueiprsdm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hyueiprsdm thead, #hyueiprsdm tbody, #hyueiprsdm tfoot, #hyueiprsdm tr, #hyueiprsdm td, #hyueiprsdm th {
+  border-style: none;
+}
+
+#hyueiprsdm p {
+  margin: 0;
+  padding: 0;
+}
+
+#hyueiprsdm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hyueiprsdm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hyueiprsdm .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hyueiprsdm .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hyueiprsdm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hyueiprsdm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hyueiprsdm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hyueiprsdm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hyueiprsdm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hyueiprsdm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hyueiprsdm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hyueiprsdm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hyueiprsdm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hyueiprsdm .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hyueiprsdm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hyueiprsdm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hyueiprsdm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hyueiprsdm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hyueiprsdm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hyueiprsdm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hyueiprsdm .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hyueiprsdm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hyueiprsdm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hyueiprsdm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hyueiprsdm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hyueiprsdm .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hyueiprsdm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hyueiprsdm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hyueiprsdm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hyueiprsdm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hyueiprsdm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hyueiprsdm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hyueiprsdm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hyueiprsdm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hyueiprsdm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hyueiprsdm .gt_left {
+  text-align: left;
+}
+
+#hyueiprsdm .gt_center {
+  text-align: center;
+}
+
+#hyueiprsdm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hyueiprsdm .gt_font_normal {
+  font-weight: normal;
+}
+
+#hyueiprsdm .gt_font_bold {
+  font-weight: bold;
+}
+
+#hyueiprsdm .gt_font_italic {
+  font-style: italic;
+}
+
+#hyueiprsdm .gt_super {
+  font-size: 65%;
+}
+
+#hyueiprsdm .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hyueiprsdm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hyueiprsdm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hyueiprsdm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hyueiprsdm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hyueiprsdm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hyueiprsdm .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border">Enrollment in public elementary schools, by grade (Prekindergarten to Fifth Grade, in thousands)</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Year</th>
+<th id="Prekindergarten" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Prekindergarten</th>
+<th id="Kindergarten" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Kindergarten</th>
+<th id="First Grade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">First Grade</th>
+<th id="Second Grade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Second Grade</th>
+<th id="Third Grade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Third Grade</th>
+<th id="Fourth Grade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Fourth Grade</th>
+<th id="Fifth Grade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Fifth Grade</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="Year">2021</td>
+<td class="gt_row gt_right" headers="Prekindergarten">1355.073</td>
+<td class="gt_row gt_right" headers="Kindergarten">3683.308</td>
+<td class="gt_row gt_right" headers="First Grade">3739.755</td>
+<td class="gt_row gt_right" headers="Second Grade">3647.011</td>
+<td class="gt_row gt_right" headers="Third Grade">3688.938</td>
+<td class="gt_row gt_right" headers="Fourth Grade">3716.536</td>
+<td class="gt_row gt_right" headers="Fifth Grade">3758.302</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Year">2022</td>
+<td class="gt_row gt_right" headers="Prekindergarten">1330.427</td>
+<td class="gt_row gt_right" headers="Kindergarten">3603.117</td>
+<td class="gt_row gt_right" headers="First Grade">3711.327</td>
+<td class="gt_row gt_right" headers="Second Grade">3647.011</td>
+<td class="gt_row gt_right" headers="Third Grade">3688.938</td>
+<td class="gt_row gt_right" headers="Fourth Grade">3716.536</td>
+<td class="gt_row gt_right" headers="Fifth Grade">3758.302</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Year">2023</td>
+<td class="gt_row gt_right" headers="Prekindergarten">1314.224</td>
+<td class="gt_row gt_right" headers="Kindergarten">3552.087</td>
+<td class="gt_row gt_right" headers="First Grade">3633.377</td>
+<td class="gt_row gt_right" headers="Second Grade">3647.011</td>
+<td class="gt_row gt_right" headers="Third Grade">3688.938</td>
+<td class="gt_row gt_right" headers="Fourth Grade">3716.536</td>
+<td class="gt_row gt_right" headers="Fifth Grade">3758.302</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Year">2024</td>
+<td class="gt_row gt_right" headers="Prekindergarten">1268.812</td>
+<td class="gt_row gt_right" headers="Kindergarten">3492.855</td>
+<td class="gt_row gt_right" headers="First Grade">3582.939</td>
+<td class="gt_row gt_right" headers="Second Grade">3647.011</td>
+<td class="gt_row gt_right" headers="Third Grade">3688.938</td>
+<td class="gt_row gt_right" headers="Fourth Grade">3716.536</td>
+<td class="gt_row gt_right" headers="Fifth Grade">3758.302</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Year">2025</td>
+<td class="gt_row gt_right" headers="Prekindergarten">1229.903</td>
+<td class="gt_row gt_right" headers="Kindergarten">3476.452</td>
+<td class="gt_row gt_right" headers="First Grade">3523.330</td>
+<td class="gt_row gt_right" headers="Second Grade">3647.011</td>
+<td class="gt_row gt_right" headers="Third Grade">3688.938</td>
+<td class="gt_row gt_right" headers="Fourth Grade">3716.536</td>
+<td class="gt_row gt_right" headers="Fifth Grade">3758.302</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Year">2026</td>
+<td class="gt_row gt_right" headers="Prekindergarten">1212.217</td>
+<td class="gt_row gt_right" headers="Kindergarten">3191.228</td>
+<td class="gt_row gt_right" headers="First Grade">3507.740</td>
+<td class="gt_row gt_right" headers="Second Grade">3647.011</td>
+<td class="gt_row gt_right" headers="Third Grade">3688.938</td>
+<td class="gt_row gt_right" headers="Fourth Grade">3716.536</td>
+<td class="gt_row gt_right" headers="Fifth Grade">3758.302</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Year">2027</td>
+<td class="gt_row gt_right" headers="Prekindergarten">1233.668</td>
+<td class="gt_row gt_right" headers="Kindergarten">3181.204</td>
+<td class="gt_row gt_right" headers="First Grade">3220.701</td>
+<td class="gt_row gt_right" headers="Second Grade">3647.011</td>
+<td class="gt_row gt_right" headers="Third Grade">3688.938</td>
+<td class="gt_row gt_right" headers="Fourth Grade">3716.536</td>
+<td class="gt_row gt_right" headers="Fifth Grade">3758.302</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Year">2028</td>
+<td class="gt_row gt_right" headers="Prekindergarten">1263.791</td>
+<td class="gt_row gt_right" headers="Kindergarten">3337.941</td>
+<td class="gt_row gt_right" headers="First Grade">3211.531</td>
+<td class="gt_row gt_right" headers="Second Grade">3647.011</td>
+<td class="gt_row gt_right" headers="Third Grade">3688.938</td>
+<td class="gt_row gt_right" headers="Fourth Grade">3716.536</td>
+<td class="gt_row gt_right" headers="Fifth Grade">3758.302</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Year">2029</td>
+<td class="gt_row gt_right" headers="Prekindergarten">1278.853</td>
+<td class="gt_row gt_right" headers="Kindergarten">3362.545</td>
+<td class="gt_row gt_right" headers="First Grade">3368.348</td>
+<td class="gt_row gt_right" headers="Second Grade">3647.011</td>
+<td class="gt_row gt_right" headers="Third Grade">3688.938</td>
+<td class="gt_row gt_right" headers="Fourth Grade">3716.536</td>
+<td class="gt_row gt_right" headers="Fifth Grade">3758.302</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Year">2030</td>
+<td class="gt_row gt_right" headers="Prekindergarten">1294.485</td>
+<td class="gt_row gt_right" headers="Kindergarten">3421.777</td>
+<td class="gt_row gt_right" headers="First Grade">3394.025</td>
+<td class="gt_row gt_right" headers="Second Grade">3647.011</td>
+<td class="gt_row gt_right" headers="Third Grade">3688.938</td>
+<td class="gt_row gt_right" headers="Fourth Grade">3716.536</td>
+<td class="gt_row gt_right" headers="Fifth Grade">3758.302</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div id="sjqdvfadwc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sjqdvfadwc table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#sjqdvfadwc thead, #sjqdvfadwc tbody, #sjqdvfadwc tfoot, #sjqdvfadwc tr, #sjqdvfadwc td, #sjqdvfadwc th {
+  border-style: none;
+}
+
+#sjqdvfadwc p {
+  margin: 0;
+  padding: 0;
+}
+
+#sjqdvfadwc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#sjqdvfadwc .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#sjqdvfadwc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#sjqdvfadwc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#sjqdvfadwc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sjqdvfadwc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sjqdvfadwc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sjqdvfadwc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#sjqdvfadwc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#sjqdvfadwc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#sjqdvfadwc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#sjqdvfadwc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#sjqdvfadwc .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#sjqdvfadwc .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#sjqdvfadwc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#sjqdvfadwc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#sjqdvfadwc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#sjqdvfadwc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#sjqdvfadwc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sjqdvfadwc .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#sjqdvfadwc .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#sjqdvfadwc .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#sjqdvfadwc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sjqdvfadwc .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#sjqdvfadwc .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#sjqdvfadwc .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sjqdvfadwc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sjqdvfadwc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#sjqdvfadwc .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sjqdvfadwc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#sjqdvfadwc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sjqdvfadwc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sjqdvfadwc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sjqdvfadwc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sjqdvfadwc .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sjqdvfadwc .gt_left {
+  text-align: left;
+}
+
+#sjqdvfadwc .gt_center {
+  text-align: center;
+}
+
+#sjqdvfadwc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#sjqdvfadwc .gt_font_normal {
+  font-weight: normal;
+}
+
+#sjqdvfadwc .gt_font_bold {
+  font-weight: bold;
+}
+
+#sjqdvfadwc .gt_font_italic {
+  font-style: italic;
+}
+
+#sjqdvfadwc .gt_super {
+  font-size: 65%;
+}
+
+#sjqdvfadwc .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#sjqdvfadwc .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#sjqdvfadwc .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#sjqdvfadwc .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#sjqdvfadwc .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#sjqdvfadwc .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#sjqdvfadwc .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border">Enrollment in public secondary schools, by grade (Sixth Grade to Twelfth Grade, in thousands)</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Year</th>
+<th id="Sixth Grade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Sixth Grade</th>
+<th id="Seventh Grade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Seventh Grade</th>
+<th id="Eighth Grade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Eighth Grade</th>
+<th id="Ninth Grade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Ninth Grade</th>
+<th id="Tenth Grade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Tenth Grade</th>
+<th id="Eleventh Grade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Eleventh Grade</th>
+<th id="Twelfth Grade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Twelfth Grade</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="Year">2021</td>
+<td class="gt_row gt_right" headers="Sixth Grade">3801.9</td>
+<td class="gt_row gt_right" headers="Seventh Grade">3831.481</td>
+<td class="gt_row gt_right" headers="Eighth Grade">3818.897</td>
+<td class="gt_row gt_right" headers="Ninth Grade">90.61842</td>
+<td class="gt_row gt_right" headers="Tenth Grade">4016.736</td>
+<td class="gt_row gt_right" headers="Eleventh Grade">3857.706</td>
+<td class="gt_row gt_right" headers="Twelfth Grade">3657.681</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Year">2022</td>
+<td class="gt_row gt_right" headers="Sixth Grade">3801.9</td>
+<td class="gt_row gt_right" headers="Seventh Grade">3831.481</td>
+<td class="gt_row gt_right" headers="Eighth Grade">3818.897</td>
+<td class="gt_row gt_right" headers="Ninth Grade">90.61842</td>
+<td class="gt_row gt_right" headers="Tenth Grade">4016.736</td>
+<td class="gt_row gt_right" headers="Eleventh Grade">3857.706</td>
+<td class="gt_row gt_right" headers="Twelfth Grade">3657.681</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Year">2023</td>
+<td class="gt_row gt_right" headers="Sixth Grade">3801.9</td>
+<td class="gt_row gt_right" headers="Seventh Grade">3831.481</td>
+<td class="gt_row gt_right" headers="Eighth Grade">3818.897</td>
+<td class="gt_row gt_right" headers="Ninth Grade">90.61842</td>
+<td class="gt_row gt_right" headers="Tenth Grade">4016.736</td>
+<td class="gt_row gt_right" headers="Eleventh Grade">3857.706</td>
+<td class="gt_row gt_right" headers="Twelfth Grade">3657.681</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Year">2024</td>
+<td class="gt_row gt_right" headers="Sixth Grade">3801.9</td>
+<td class="gt_row gt_right" headers="Seventh Grade">3831.481</td>
+<td class="gt_row gt_right" headers="Eighth Grade">3818.897</td>
+<td class="gt_row gt_right" headers="Ninth Grade">90.61842</td>
+<td class="gt_row gt_right" headers="Tenth Grade">4016.736</td>
+<td class="gt_row gt_right" headers="Eleventh Grade">3857.706</td>
+<td class="gt_row gt_right" headers="Twelfth Grade">3657.681</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Year">2025</td>
+<td class="gt_row gt_right" headers="Sixth Grade">3801.9</td>
+<td class="gt_row gt_right" headers="Seventh Grade">3831.481</td>
+<td class="gt_row gt_right" headers="Eighth Grade">3818.897</td>
+<td class="gt_row gt_right" headers="Ninth Grade">90.61842</td>
+<td class="gt_row gt_right" headers="Tenth Grade">4016.736</td>
+<td class="gt_row gt_right" headers="Eleventh Grade">3857.706</td>
+<td class="gt_row gt_right" headers="Twelfth Grade">3657.681</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Year">2026</td>
+<td class="gt_row gt_right" headers="Sixth Grade">3801.9</td>
+<td class="gt_row gt_right" headers="Seventh Grade">3831.481</td>
+<td class="gt_row gt_right" headers="Eighth Grade">3818.897</td>
+<td class="gt_row gt_right" headers="Ninth Grade">90.61842</td>
+<td class="gt_row gt_right" headers="Tenth Grade">4016.736</td>
+<td class="gt_row gt_right" headers="Eleventh Grade">3857.706</td>
+<td class="gt_row gt_right" headers="Twelfth Grade">3657.681</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Year">2027</td>
+<td class="gt_row gt_right" headers="Sixth Grade">3801.9</td>
+<td class="gt_row gt_right" headers="Seventh Grade">3831.481</td>
+<td class="gt_row gt_right" headers="Eighth Grade">3818.897</td>
+<td class="gt_row gt_right" headers="Ninth Grade">90.61842</td>
+<td class="gt_row gt_right" headers="Tenth Grade">4016.736</td>
+<td class="gt_row gt_right" headers="Eleventh Grade">3857.706</td>
+<td class="gt_row gt_right" headers="Twelfth Grade">3657.681</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Year">2028</td>
+<td class="gt_row gt_right" headers="Sixth Grade">3801.9</td>
+<td class="gt_row gt_right" headers="Seventh Grade">3831.481</td>
+<td class="gt_row gt_right" headers="Eighth Grade">3818.897</td>
+<td class="gt_row gt_right" headers="Ninth Grade">90.61842</td>
+<td class="gt_row gt_right" headers="Tenth Grade">4016.736</td>
+<td class="gt_row gt_right" headers="Eleventh Grade">3857.706</td>
+<td class="gt_row gt_right" headers="Twelfth Grade">3657.681</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Year">2029</td>
+<td class="gt_row gt_right" headers="Sixth Grade">3801.9</td>
+<td class="gt_row gt_right" headers="Seventh Grade">3831.481</td>
+<td class="gt_row gt_right" headers="Eighth Grade">3818.897</td>
+<td class="gt_row gt_right" headers="Ninth Grade">90.61842</td>
+<td class="gt_row gt_right" headers="Tenth Grade">4016.736</td>
+<td class="gt_row gt_right" headers="Eleventh Grade">3857.706</td>
+<td class="gt_row gt_right" headers="Twelfth Grade">3657.681</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Year">2030</td>
+<td class="gt_row gt_right" headers="Sixth Grade">3801.9</td>
+<td class="gt_row gt_right" headers="Seventh Grade">3831.481</td>
+<td class="gt_row gt_right" headers="Eighth Grade">3818.897</td>
+<td class="gt_row gt_right" headers="Ninth Grade">90.61842</td>
+<td class="gt_row gt_right" headers="Tenth Grade">4016.736</td>
+<td class="gt_row gt_right" headers="Eleventh Grade">3857.706</td>
+<td class="gt_row gt_right" headers="Twelfth Grade">3657.681</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-combination-and-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="data-combination-and-visualization">Data Combination and Visualization</h3>
+<p>The code performs a series of data manipulation and visualization tasks to create a line plot that displays the projected enrollment in public elementary and secondary schools from 2010 to 2030. First, it combines actual and projected enrollment data into a single dataset, marking each entry as either “Actual” or “Projected.” It then filters this combined dataset to include only the years 2010 to 2030 and arranges the data in chronological order. New columns are created to represent the total enrollment for PK-Grade 8, Grades 9-12, and the overall Total enrollment. The data is then reshaped into a long format suitable for plotting with <code>ggplot2</code>.</p>
+<p>In the visualization step, a line plot is created using <code>ggplot2</code>, with different colors representing the categories Total, PK-Grade 8, and Grades 9-12. The x-axis shows the years, and the y-axis shows the enrollment in thousands. Vertical dashed lines and annotations indicate the separation between actual and projected data. The plot is customized with specific colors, labels, and a minimal theme. Finally, the plot is printed, displaying the enrollment trends over time with clear distinctions between different grade levels.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Click here to view the code I used.">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click here to view the code I used.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load `ggplot2` library</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine actual and projected data</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>combined_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  enrollment <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="st">"Actual"</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  projections <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="st">"Projected"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for the years 2010 to 2030</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> combined_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year <span class="sc">&gt;=</span> <span class="dv">2010</span> <span class="sc">&amp;</span> Year <span class="sc">&lt;=</span> <span class="dv">2030</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrange the data in the required format and sort by Year</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(Year)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create new columns for PK-Grade 8, Grades 9-12, and Total</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">PK_Grade_8 =</span> Prekindergarten <span class="sc">+</span> Kindergarten <span class="sc">+</span> <span class="st">`</span><span class="at">1st_grade</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">2nd_grade</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">3rd_grade</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">4th_grade</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">5th_grade</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">6th_grade</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">7th_grade</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">8th_grade</span><span class="st">`</span> <span class="sc">+</span> Ungraded_PK_8,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">Grades_9_12 =</span> <span class="st">`</span><span class="at">9th_grade</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">10th_grade</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">11th_grade</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">12th_grade</span><span class="st">`</span> <span class="sc">+</span> Ungraded_9_12,</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Total =</span> PK_Grade_8 <span class="sc">+</span> Grades_9_12</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a long format dataframe for plotting</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, PK_Grade_8, Grades_9_12, Total) <span class="sc">%&gt;%</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(PK_Grade_8, Grades_9_12, Total), <span class="at">names_to =</span> <span class="st">"Category"</span>, <span class="at">values_to =</span> <span class="st">"Enrollment"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Category =</span> <span class="fu">factor</span>(Category, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Total"</span>, <span class="st">"PK_Grade_8"</span>, <span class="st">"Grades_9_12"</span>)))</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the line plot</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>enrollment_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Enrollment <span class="sc">/</span> <span class="dv">1000</span>, <span class="at">color =</span> Category)) <span class="sc">+</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">2021</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"gray50"</span>) <span class="sc">+</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">2015</span>, <span class="at">y =</span> <span class="fu">max</span>(plot_data<span class="sc">$</span>Enrollment) <span class="sc">/</span> <span class="dv">1000</span> <span class="sc">*</span> <span class="fl">0.9</span>, <span class="at">label =</span> <span class="st">"Actual"</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">2025</span>, <span class="at">y =</span> <span class="fu">max</span>(plot_data<span class="sc">$</span>Enrollment) <span class="sc">/</span> <span class="dv">1000</span> <span class="sc">*</span> <span class="fl">0.9</span>, <span class="at">label =</span> <span class="st">"Projected"</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Total"</span> <span class="ot">=</span> <span class="st">"#009E73"</span>, <span class="st">"PK_Grade_8"</span> <span class="ot">=</span> <span class="st">"#E69F00"</span>, <span class="st">"Grades_9_12"</span> <span class="ot">=</span> <span class="st">"#56B4E9"</span>),</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Total"</span>, <span class="st">"PK-Grade 8"</span>, <span class="st">"Grades 9-12"</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Enrollment in public elementary and secondary schools, by level"</span>,</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Enrollment (in thousands)"</span>) <span class="sc">+</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the plot</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(enrollment_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This comprehensive methodology for projecting student enrollment in elementary and secondary schools provides a robust framework for educational planners and policymakers. By utilizing exponential smoothing techniques, grade progression rates, and enrollment rate methods, this approach offers a nuanced view of future enrollment trends from 2021 through 2030.</p>
+<p>The process outlined here, from data preparation to visualization, allows for a detailed analysis of enrollment patterns across different grade levels and age groups. It takes into account historical trends, demographic shifts, and the potential long-term impacts of unprecedented events like the COVID-19 pandemic.</p>
+<p>While these projections offer valuable insights for resource allocation, budgeting, and long-term planning in education, it’s crucial to interpret them with caution. The inherent limitations of forecasting, particularly in the face of unforeseen circumstances, underscore the need for regular updates and adaptations to these projections.</p>
+<p>By combining rigorous statistical methods with clear data visualization, this approach not only aids in decision-making processes but also facilitates effective communication of enrollment trends to stakeholders. As the education landscape continues to evolve, such data-driven projections will play an increasingly vital role in shaping responsive and resilient educational systems.</p>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-irwin2024projections" class="csl-entry" role="listitem">
+Irwin et al. 2024. <span>“Projections of Education Statistics to 2030.”</span> NCES 2024-034. Washington, DC: U.S. Department of Education; National Center for Education Statistics.
+</div>
+</div>
+
+
+</section>
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>RStudio Desktop is a standalone opensource application that does not store information on the internet. RStudio Desktop <strong><em>Pro</em></strong>, on the other hand, can or does. I’m not sure. If this is a concern for you, speak with Posit. They were very helpful helping the Florida UFSD determine whether their software is EdLaw 2-d compliant, which is always a concern when vetting new applications.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="baker-jr-john/baker-jr-john.github.io" data-repo-id="R_kgDOLWJ6nQ" data-category="General" data-category-id="DIC_kwDOLWJ6nc4CfybW" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Made with <i class="fa-solid fa-heart" aria-label="heart"></i> and <a href="https://quarto.org/" target="_blank"><img src="https://quarto.org/quarto.png" class="img-fluid" width="65" alt="Quarto"></a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/baker-jr-john/mywebsite.git" target="_blank"><i class="fa-brands fa-github" aria-label="github"></i></a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
