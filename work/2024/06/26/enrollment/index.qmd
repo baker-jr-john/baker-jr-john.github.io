@@ -1,17 +1,14 @@
 ---
 title: "Projecting Elementary and Secondary School Enrollment"
-description: "A  detailed walkthrough on projecting elementary and secondary school enrollments from 2022-2030"
-date: 06-16-2024
-date-modified: 06-16-2024
-categories: [Education Planning, Student Enrollment Forecasting, Education Statistics, Data Analysis, School Resource Allocation, Education Budgeting, Educational Demography, Time Series Analysis, Time Series Forecasting Methods, Data Visualization, Education Policy, Education Decision Making, Quantitative Methods in Education, Education Management, Education Administration, R Programming, Statistical Computing]
+description: ""
+date: 06-26-2024
+date-modified: 06-26-2024
+categories: []
 image: images/enrollment_plot.png
 format:
   html:
     code-link: true
 draft: true
-bibliography: bibliography/my-bib.bib
-nocite: |
-  @irwin2024projections
 comments:
   giscus:
     repo: baker-jr-john/baker-jr-john.github.io
@@ -25,19 +22,19 @@ According to the National Center for Education Statistics (NCES), total public a
 #| echo: false
 #| message: false
 
-# Load packages
+# Load necessary packages
 library(readxl)
-library(readr)
-library(forecast)
+library(dplyr)
+library(tidyr)
 library(ggplot2)
 
-# Load data
+# Load enrollment data
 enrollment <- read_excel(
   "data/tabn203.10.xlsx",
-  sheet = "Digest 2022 Table 203.10",
-  range = "A4:U38",
+  sheet = "Digest 2021 Table 203.10",
+  range = "A4:U37",
   col_types = c(
-    "text",
+    "numeric",
     "skip",
     "skip",
     "numeric",
@@ -61,180 +58,134 @@ enrollment <- read_excel(
   )
 )
 
-population <- read_csv(
-  "data/nc-est2020-agesex-res.csv",
+# Rename the columns for convenience
+colnames(enrollment) <- c("Year", "Prekindergarten", "Kindergarten", "1st_grade", "2nd_grade", "3rd_grade",
+                          "4th_grade", "5th_grade", "6th_grade", "7th_grade", "8th_grade", "9th_grade", 
+                          "10th_grade", "11th_grade", "12th_grade", "Ungraded_PK_8", "Ungraded_9_12")
+
+# Load population data
+population <- read_excel(
+  "data/actual_and_projected_school-age_populations_by_selected_ages-_2010_through_2030.xlsx",
+  sheet = "Sheet1",
   col_types = c(
-    "n",
-    "n",
-    "_",
-    "_",
-    "n",
-    "n",
-    "n",
-    "n",
-    "n",
-    "n",
-    "n",
-    "n",
-    "n",
-    "n",
-    "n"
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric"
   )
 )
 
-# Rename columns
-colnames(enrollment) <-
-  c(
-    "Year",
-    "Prekindergarten",
-    "Kindergarten",
-    "First_grade",
-    "Second_grade",
-    "Third_grade",
-    "Fourth_grade",
-    "Fifth_grade",
-    "Sixth_grade",
-    "Seventh_grade",
-    "Eighth_grade",
-    "Elementary_ungraded",
-    "Ninth_grade",
-    "Tenth_grade",
-    "Eleventh_grade",
-    "Twelfth_grade",
-    "Secondary_ungraded"
+# Calculate enrollment rates for Prekindergarten, Kindergarten, 1st grade, and Ungraded enrollments
+enrollment_rates <- enrollment %>%
+  inner_join(population, by = "Year") %>%
+  mutate(
+    Prekindergarten_rate = Prekindergarten / `3- to 5-year-olds`,
+    Kindergarten_rate = Kindergarten / `5-year-olds`,
+    first_grade_rate = `1st_grade` / `6-year-olds`,
+    Ungraded_PK_8_rate = Ungraded_PK_8 / `5- to 13-year-olds`,
+    Ungraded_9_12_rate = Ungraded_9_12 / `14- to 17-year-olds`
+  ) %>%
+  summarise(
+    Prekindergarten_rate = mean(Prekindergarten_rate, na.rm = TRUE),
+    Kindergarten_rate = mean(Kindergarten_rate, na.rm = TRUE),
+    first_grade_rate = mean(first_grade_rate, na.rm = TRUE),
+    Ungraded_PK_8_rate = mean(Ungraded_PK_8_rate, na.rm = TRUE),
+    Ungraded_9_12_rate = mean(Ungraded_9_12_rate, na.rm = TRUE)
   )
 
-# Calculate prekindergarten through eighth-grade enrollment
-enrollment$pk_8_enrollment <-
-  rowSums(enrollment[, c(
-    "Prekindergarten",
-    "Kindergarten",
-    "First_grade",
-    "Second_grade",
-    "Third_grade",
-    "Fourth_grade",
-    "Fifth_grade",
-    "Sixth_grade",
-    "Seventh_grade",
-    "Eighth_grade",
-    "Elementary_ungraded"
-  )])
-
-# Calculate grades nine through twelve enrollment
-enrollment$grades_9_12_enrollment <-
-  rowSums(enrollment[, c(
-    "Ninth_grade",
-    "Tenth_grade",
-    "Eleventh_grade",
-    "Twelfth_grade",
-    "Secondary_ungraded"
-  )])
-
-# Calculate total enrollment
-enrollment$enrollment_total <-
-  rowSums(enrollment[, c("pk_8_enrollment", "grades_9_12_enrollment")])
-
-# Function to forecast enrollment for a specific grade level or enrollment category
-forecast_enrollment <- function(enrollment_category) {
-  # Prepare the time series data
-  enrollment_ts <-
-    ts(enrollment[[enrollment_category]],
-       start = 1990,
-       end = 2021,
-       frequency = 1)
-  
-  # Specify and fit the AAN exponential smoothing model
-  enrollment_model <- ets(enrollment_ts, model = "AAN")
-  
-  # Make predictions for 2022 to 2030
-  enrollment_forecast <- forecast(enrollment_model, h = 9)
-  
-  # Return the forecast
-  return(list(mean = enrollment_forecast$mean, forecast = enrollment_forecast))
+# Define exponential smoothing function to return full series
+exponential_smoothing <- function(series, alpha = 0.3) {
+  result <- numeric(length(series))
+  result[1] <- series[1]  # Initialize with the first value
+  for (i in 2:length(series)) {
+    result[i] <- alpha * series[i] + (1 - alpha) * result[i - 1]
+  }
+  return(result)
 }
 
-# Forecast enrollment for each grade level
-grade_levels <-
-  c(
-    "Prekindergarten",
-    "Kindergarten",
-    "First_grade",
-    "Second_grade",
-    "Third_grade",
-    "Fourth_grade",
-    "Fifth_grade",
-    "Sixth_grade",
-    "Seventh_grade",
-    "Eighth_grade",
-    "Elementary_ungraded",
-    "Ninth_grade",
-    "Tenth_grade",
-    "Eleventh_grade",
-    "Twelfth_grade",
-    "Secondary_ungraded"
-  )
+# Apply exponential smoothing to historical data
+smoothed_values <- enrollment %>%
+  select(-Year) %>%
+  mutate(across(everything(), ~exponential_smoothing(.x, alpha = 0.3)))
 
-forecasts_grade_levels <- lapply(grade_levels, forecast_enrollment)
+# Initialize projections dataframe
+years <- 2021:2030
+projections <- data.frame(Year = years)
 
-# Forecast enrollment for enrollment categories
-enrollment_categories <-
-  c("pk_8_enrollment",
-    "grades_9_12_enrollment",
-    "enrollment_total")
+# Calculate progression rates for other grades
+progression_rates <- enrollment %>%
+  summarise(across(starts_with("grade"), list(rate = ~mean(.x / lag(.x, 1), na.rm = TRUE)), .names = "{col}_rate"))
 
-forecasts_enrollment_categories <-
-  lapply(enrollment_categories, forecast_enrollment)
+# Populate the projections dataframe for grades with historical progression rates
+for (grade in names(smoothed_values)) {
+  last_value <- tail(smoothed_values[[grade]], 1)
+  projections[[grade]] <- c(last_value, rep(NA, length(years) - 1))
+  
+  for (year_index in 2:length(years)) {
+    year <- years[year_index]
+    previous_year <- years[year_index - 1]
+    rate <- progression_rates[[paste0(grade, "_rate")]]
+    if (!is.null(rate) && !is.na(rate)) {
+      projections[year_index, grade] <- projections[year_index - 1, grade] * rate
+    } else {
+      projections[year_index, grade] <- projections[year_index - 1, grade]
+    }
+  }
+}
 
-# Create a data frame with historical and forecasted data for enrollment categories
-enrollment_data <- data.frame(
-  Year = rep(2010:2030, 3),
-  Enrollment = c(
-    enrollment$pk_8_enrollment[enrollment$Year >= 2010],
-    forecasts_enrollment_categories[[1]]$mean,
-    enrollment$grades_9_12_enrollment[enrollment$Year >= 2010],
-    forecasts_enrollment_categories[[2]]$mean,
-    enrollment$enrollment_total[enrollment$Year >= 2010],
-    forecasts_enrollment_categories[[3]]$mean
-  ) / 1000,
-  Category = rep(c("PK-Grade 8", "Grades 9-12", "Total"), each = 21)
+# Project Prekindergarten, Kindergarten, 1st grade, and Ungraded enrollments using enrollment rates
+for (year in years) {
+  projections[projections$Year == year, "Prekindergarten"] <- population[population$Year == year, "3- to 5-year-olds"] * enrollment_rates$Prekindergarten_rate
+  projections[projections$Year == year, "Kindergarten"] <- population[population$Year == year, "5-year-olds"] * enrollment_rates$Kindergarten_rate
+  projections[projections$Year == year, "1st_grade"] <- population[population$Year == year, "6-year-olds"] * enrollment_rates$first_grade_rate
+  projections[projections$Year == year, "Ungraded_PK_8"] <- population[population$Year == year, "5- to 13-year-olds"] * enrollment_rates$Ungraded_PK_8_rate
+  projections[projections$Year == year, "Ungraded_9_12"] <- population[population$Year == year, "14- to 17-year-olds"] * enrollment_rates$Ungraded_9_12_rate
+}
+
+# Combine actual and projected data
+combined_data <- bind_rows(
+  enrollment %>% mutate(Type = "Actual"),
+  projections %>% mutate(Type = "Projected")
 )
 
+# Filter data for the years 2010 to 2030
+filtered_data <- combined_data %>% filter(Year >= 2010 & Year <= 2030)
+
+# Arrange the data in the required format and sort by Year
+filtered_data <- filtered_data %>% arrange(Year)
+
+# Create new columns for PK-Grade 8, Grades 9-12, and Total
+filtered_data <- filtered_data %>%
+  mutate(
+    PK_Grade_8 = Prekindergarten + Kindergarten + `1st_grade` + `2nd_grade` + `3rd_grade` + `4th_grade` + `5th_grade` + `6th_grade` + `7th_grade` + `8th_grade` + Ungraded_PK_8,
+    Grades_9_12 = `9th_grade` + `10th_grade` + `11th_grade` + `12th_grade` + Ungraded_9_12,
+    Total = PK_Grade_8 + Grades_9_12
+  )
+
+# Create a long format dataframe for plotting
+plot_data <- filtered_data %>%
+  select(Year, PK_Grade_8, Grades_9_12, Total) %>%
+  pivot_longer(cols = c(PK_Grade_8, Grades_9_12, Total), names_to = "Category", values_to = "Enrollment") %>%
+  mutate(Category = factor(Category, levels = c("Total", "PK_Grade_8", "Grades_9_12")))
+
 # Create the line plot
-enrollment_plot <-
-  ggplot(enrollment_data, aes(x = Year, y = Enrollment, color = Category)) +
-  geom_line() +
-  geom_vline(xintercept = 2021.5,
-             linetype = "solid",
-             color = "gray50") +
-  annotate(
-    "text",
-    x = 2016,
-    y = max(enrollment_data$Enrollment) * 0.9,
-    label = "Actual",
-    size = 4
-  ) +
-  annotate(
-    "text",
-    x = 2026,
-    y = max(enrollment_data$Enrollment) * 0.9,
-    label = "Projected",
-    size = 4
-  ) +
+enrollment_plot <- ggplot(plot_data, aes(x = Year, y = Enrollment / 1000, color = Category)) +
+  geom_line(linewidth = 1.2) +
+  geom_vline(xintercept = 2021, linetype = "dashed", color = "gray50") +
+  annotate("text", x = 2015, y = max(plot_data$Enrollment) / 1000 * 0.9, label = "Actual", size = 4) +
+  annotate("text", x = 2025, y = max(plot_data$Enrollment) / 1000 * 0.9, label = "Projected", size = 4) +
   scale_color_manual(
-    values = c(
-      "Total" = "#009E73",
-      "PK-Grade 8" = "#E69F00",
-      "Grades 9-12" = "#56B4E9"
-    ),
-    breaks = c("Total", "PK-Grade 8", "Grades 9-12")
+    values = c("Total" = "#009E73", "PK_Grade_8" = "#E69F00", "Grades_9_12" = "#56B4E9"),
+    labels = c("Total", "PK-Grade 8", "Grades 9-12")
   ) +
-  scale_y_continuous(
-    labels = function(x)
-      format(x, scientific = FALSE)
-  ) +
+  scale_y_continuous(labels = scales::comma) +
   labs(title = "Enrollment in public elementary and secondary schools, by level",
        x = "Year",
-       y = "Enrollment, in millions") +
+       y = "Enrollment (in thousands)") +
   theme_minimal() +
   theme(
     plot.title = element_text(hjust = 0.5),
@@ -245,6 +196,7 @@ enrollment_plot <-
 # Print the plot
 print(enrollment_plot)
 ```
+
 
 Accurate enrollment projections in elementary and secondary institutions are crucial for several reasons:
 
@@ -297,23 +249,34 @@ The notation and equations that follow describe the basic procedures used to pro
 
 Let:
 
+$i$ = Subscript denoting age\
 $j$ = Subscript denoting grade\
 $t$ = Subscript denoting time\
 $T$ = Subscript of the first year in the forecast period\
+$N_t$ = Enrollment at the prekindergarten (nursery) level\
+$K_t$ = Enrollment at the kindergarten level\
 $G_{j,t}$ = Enrollment\
-$R_{j,t}$ = Progression rate.
+$E_t$ = Enrollment in elementary ungraded programs\
+$S_t$ = Enrollment in secondary ungraded programs\
+$P_{i,t}$ = Population\
+$R_{j,t}$ = Progression rate\
+$RN_t$ = Enrollment rate for prekindergarten (nursery school)\
+$RK_t$ = Enrollment rate for kindergarten\
+$RG_{1,t}$ = Enrollment rate for grade 1\
+$RE_t$ = Enrollment rate for elementary ungraded programs\
+$RS_t$ = Enrollment rate for secondary ungraded programs.
 
-***Step 1***: *Calculate historical grade progression rates for each of grade*. The first step in projecting the enrollments using the grade progression method was to calculate, for each grade, a progression rate for each year of actual data used to produce the projections except for the first year. The progression rate for grade $j$ in year $t$ equals $$R_{j,t} = \frac{G_{j,t}}{G_{j-1,t-1}}$$***Step 2***. *Produce a projected progression rate for each grade*. Projections for each grade’s progression rate were then produced for the forecast period using single exponential smoothing. A separate smoothing constant, chosen to minimize the sum of squared forecast errors, was used to calculate the projected progression rate for each grade. Single exponential smoothing produces a single forecast for all years in the forecast period. Therefore, for each grade $j$, the projected progression rate, $\hat{R}_j$, is the same for each year in the forecast period.
+***Step 1***. *Calculate historical grade progression rates for each of grade*. The first step in projecting the enrollments using the grade progression method was to calculate, for each grade, a progression rate for each year of actual data used to produce the projections except for the first year. The progression rate for grade $j$ in year $t$ equals $$R_{j,t} = \frac{G_{j,t}}{G_{j-1,t-1}}$$***Step 2***. *Produce a projected progression rate for each of grades 2 through 12*. Projections for each grade’s progression rate were then produced for the forecast period using single exponential smoothing. A separate smoothing constant, chosen to minimize the sum of squared forecast errors, was used to calculate the projected progression rate for each grade. Single exponential smoothing produces a single forecast for all years in the forecast period. Therefore, for each grade $j$, the projected progression rate, $\hat{R}_j$, is the same for each year in the forecast period.
 
-***Step 3***. *Calculate enrollment projections for each grade*. For the first year in the forecast period, $T$, enrollment projections, $\hat{G}_{j,T}$, were produced using the projected progression rates and enrollments from the last year of actual data, $T–1$. Specifcally, $$\hat{G}_{j,T} = \hat{R}_j \cdot \hat{G}_{j-1, T-1}$$This same procedure was then used to produce the projections for the following year, $T+1$, except that enrollment projections for year $T$ were used rather than actual numbers: $$\hat{G}_{j,T+1} = \hat{R}_j \cdot \hat{G}_{j,T}$$ The enrollment projections for year $T$ were those just produced using the grade progression method.
+***Step 3***. *Calculate enrollment projections for each of grades 2 through 12*. For the first year in the forecast period, $T$, enrollment projections, $\hat{G}_{j,T}$, for grades 2 though 12 were produced using the projected progression rates and enrollments of grades 1 though 11 from the last year of actual data, $T–1$. Specifically, $$\hat{G}_{j,T} = \hat{R}_j \cdot \hat{G}_{j-1, T-1}$$This same procedure was then used to produce the projections for the following year, $T+1$, except that enrollment projections for year $T$ were used rather than actual numbers: $$\hat{G}_{j,T+1} = \hat{R}_j \cdot \hat{G}_{j,T}$$ The enrollment projections for grades 2 through 11 for year $T$ were those just produced using the grade progression method. The projection for grade 1 for year $T$ was produced using the enrollment rate method as outlined in steps 4, 5, and 6 below.
 
 The same procedure was used for the remaining years in the projections period.
 
-***Step 4***. *Calculate total elementary and secondary enrollments by summing the projections for each grade and the ungraded categories*. To obtain projections of total enrollment, projections of enrollments for the individual grades, elementary ungraded, and secondary ungraded were summed.
+***Step 4***. *Calculate historical enrollment rates for prekindergarten, kindergarten, grade 1, elementary ungraded, and secondary ungraded.* The first step in projecting prekindergarten, kindergarten, first-grade, elementary ungraded, and secondary ungraded enrollments using the enrollment rate method was to calculate enrollment rates for each enrollment category for the last year of actual data, $T–1$, where: $$RN_t = \frac{N_t}{P_{5,t}}$$ $$RK_t = \frac{K_t}{P_{5,t}}$$ $$RG_{1,t} = \frac{G_{1,t}} {P_{6,t}}$$ $$RE_t = \frac{E_t}{\sum_{i=5}^{13}P_{i,t}}$$ $$RS_t = \frac{S_t}{\sum_{i=14}^{17}P_{i,t}}$$ ***Step 5***. **Produce a projected enrollment rate for prekindergarten, kindergarten, grade 1, elementary ungraded, and secondary ungraded**. Projections for each category’s enrollment rate were produced for the forecast period using single exponential smoothing. A separate smoothing constant, chosen to minimize the sum of squared forecast errors, was used to calculate the projected enrollment rate for each of these grades (or ungraded levels), specifically for prekindergarten, kindergarten, grade 1, elementary ungraded, and secondary ungraded. Single exponential smoothing produces a single forecast for all years in the forecast period. These enrollment rates were then used as the projected enrollment rates for each year in the forecast period ($\hat{RN}$, $\hat{RK}$, $\hat{RG}_1$, $\hat{RE}$, and $\hat{RS}$). ***Step 6***. *Calculate enrollment projections for prekindergarten through grad 1 and the ungraded categories*. For each year in the forecast period, the enrollment rates were then multiplied by the appropriate population projections ($\hat{P_{i,t}}$) to calculate enrollment projections for prekindergarten ($\hat{N_t}$), kindergarten ($\hat{K_t}$), first grade ($\hat{G}_{1,t}$), elementary ungraded ($\hat{E}_t$), and secondary ungraded ($\hat{S}_t$).$$\hat{N}_t = \hat{RN} \cdot \hat{P}_{5,t}$$ $$\hat{K}_t = \hat{RK} \cdot \hat{P}_{5,t}$$ $$\hat{G}_{1,t} = \hat{RG}_1 \cdot \hat{P}_{6,t}$$ $$\hat{E}_t = \hat{RE} \cdot \sum_{i=5}^{13}\hat{P}_{i,t}$$ $$\hat{S}_t = \hat{RS} \cdot \sum_{i=14}^{17}\hat{P}_{i,t}$$ ***Step 7***. *Calculate total elementary and secondary enrollments by summing the projections for each grade and the ungraded categories*. To obtain projections of total enrollment, projections of enrollments for the individual grades, elementary ungraded, and secondary ungraded were summed.
 
 ## Tools Utilized
 
-There are numerous tools to select from when tackling an exercise like this. Instead of delving into the varous options, I decided to simply tell you what I used:
+There are numerous tools to select from when tackling an exercise like this. Instead of delving into the various options, I decided to simply tell you what I used:
 
 -   [Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel)
 -   [Posit RStudio Desktop](https://posit.co/products/open-source/rstudio/)[^1]
@@ -327,13 +290,32 @@ The process for forecasting student enrollment by grade level and total enrollme
 
 ### Data Used
 
-For this exercise, I utilized data from the [NCES's Digest of Education Statistics' Enrollment in public elementary and secondary schools, by level and grade: Selected years, fall 1980 through fall 2031](https://nces.ed.gov/programs/digest/d23/tables/dt23_203.10.asp). The dataset covers annual data from 1990 to 2021. it also includes data from 1980, 1985, and projections from 2022 through 2031 which I chose to ignore.
+For this exercise, I utilized data from the [NCES's Digest of Education Statistics' Enrollment in public elementary and secondary schools, by level and grade: Selected years, fall 1980 through fall 2030](https://nces.ed.gov/programs/digest/d21/tables/dt21_203.10.asp). The dataset covers annual data from 1990 to 2020. it also includes data from 1980, 1985, and projections from 2021 through 2030 which I chose to ignore.
 
-I also utilized data from the [United States Census Bureau's Annual Estimates of the Resident Population by Single Year of Age and Sex for the United States: April 1, 2010 to July 1, 2020](https://www.census.gov/programs-surveys/popest/technical-documentation/research/evaluation-estimates/2020-evaluation-estimates/2010s-national-detail.html). This dataset provides detailed population estimates for the United States by single year of age, sex, and year from 2010 to 2020.
+I also utilized Table B-1 and Table B-2 from the National Center for Educational Statistics' *Projections of Education Statistics to 2030*. Table B-1 contains data on the population of prekindergarten- and kindergarten-age children from 2010 through 2030. Table B-2 contains data on the school-age population from 2010 through 2030, with the values. Both datasets include actual values for the years 2010 through 2020 and projected values from 2021 onward.
 
 ### Data Loading and Preparation
 
-To use the data, I initially had to modify the spreadsheet in Excel. First, I un-merged cells A3:A4 and B3:B4. Then, I deleted row 5. After the data was in a usable state, I moved the project to RStudio.
+To use the data, I initially had to modify the spreadsheet in Excel. First, I un-merged cells A3:A4, B3:B4, and D4:E4. Then, I moved "Year" and "All" from cells A3 and B3 to cells A4 and B4. I also had to modify the ramining cells in row 4:
+- Cell C4 from "Total" to "Total PK-8"
+- Cell D4 from "Prekinder- garten" to "Prekindergarten"
+- Cell F4 from "  Kinder-garten" to "Kindergarten"
+- Cell G4 from "  1st grade" to "1st grade"
+- Cell H4 from "  2nd grade" to "2nd grade"
+- Cell I4 from "  3rd grade" to "3rd grade"
+- Cell J4 from "  4th grade" to "4th grade"
+- Cell K4 from "  5th grade" to "5th grade"
+- Cell L4 from "  6th grade" to "6th grade"
+- Cell M4 from "  7th grade" to "7th grade"
+- Cell N4 from "  8th grade" to "8th grade"
+- Cell O4 from "Un- graded\1\" to "Ungraded PK-8"
+- Cell P4 from "Total" to "Total 9-12"
+- Cell Q4 from "  9th grade" to "9th grade"
+- Cell R4 from "  10th grade" to "10th grade"
+- Cell S4 from "  11th grade" to "11th grade"
+- Cell T4 from "  12th grade" to "12th grade"
+- Cell U4 from "Un- graded\1,2\" to "Ungraded 9-12"
+Additionally, I had to delete "\4\" from cell A37. Finally, I deleted row 5. I converted the spreadsheet from the *`.xls`* file format to *`.xlsx`* by saving it as *`.xlsx`*. After the data was in a usable state, I moved the project to RStudio.
 
 Once in RStudio, I loaded the packages I used: - `readxl` for reading Excel files and - `forecast` for time series forecasting. I used the `read_excel()` function from the `readxl` package to load data from the Excel file. Then, I used the `colnames()` function to rename the columns of the loaded data frame (`enrollment`) with more descriptive names. I also created a new column named "enrollment_total" to the `enrollment` data frame, which was calculated as the row-wise sum of all columns except the first one (assuming the first column is not numeric). The `na.rm = TRUE` argument was used to handle any missing values.
 
@@ -650,13 +632,3 @@ for (i in 1:length(forecasts_grade_levels)) {
 ```
 
 ## Conclusion
-
-Accurate enrollment projections are crucial for effective planning and resource allocation in elementary and secondary institutions. This exercise demonstrates a systematic approach to forecasting student enrollments by grade level and total enrollment, by utilizing the grade progression rate method and the enrollment rate method, coupled with exponential smoothing techniques and historical data.
-
-The process involves analyzing past enrollment trends, calculating progression rates and enrollment rates, and applying exponential smoothing models to project future values. The utilization of tools like Microsoft Excel and RStudio, along with statistical packages like forecast, facilitates data manipulation, modeling, and visualization.
-
-The resulting forecast table and visualizations provide valuable insights into the anticipated enrollment patterns for the years 2022 to 2030. These projections can inform crucial decisions related to budgeting, staffing, facility planning, and overall organizational strategy within the educational system.
-
-It is important to note that these projections are based on historical trends and established statistical methods, but they are subject to inherent uncertainties and potential deviations due to unforeseen factors or changes in underlying assumptions. Consequently, it is advisable to periodically review and update the projections to reflect any significant shifts in the educational landscape or demographic patterns.
-
-Overall, this exercise showcases a rigorous and data-driven approach to enrollment forecasting. It equips educational institutions with valuable information to navigate the challenges of resource allocation and strategic planning effectively.
