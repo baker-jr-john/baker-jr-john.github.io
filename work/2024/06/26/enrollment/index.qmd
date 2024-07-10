@@ -633,15 +633,14 @@ enrollment_table
 ```
 ### Data Combination and Visualization
 
-The code performs a series of data manipulation and visualization tasks to create a line plot that displays the projected enrollment in public elementary and secondary schools from 2010 to 2030. First, it combines actual and projected enrollment data into a single dataset, marking each entry as either "Actual" or "Projected." It then filters this combined dataset to include only the years 2010 to 2030 and arranges the data in chronological order. New columns are created to represent the total enrollment for PK-Grade 8, Grades 9-12, and the overall Total enrollment. The data is then reshaped into a long format suitable for plotting with `ggplot2`.
-
-In the visualization step, a line plot is created using `ggplot2`, with different colors representing the categories Total, PK-Grade 8, and Grades 9-12. The x-axis shows the years, and the y-axis shows the enrollment in thousands. Vertical dashed lines and annotations indicate the separation between actual and projected data. The plot is customized with specific colors, labels, and a minimal theme. Finally, the plot is printed, displaying the enrollment trends over time with clear distinctions between different grade levels.
+This R code performs a series of data manipulation and visualization tasks to create a line plot that displays the projected enrollment. It starts by combining actual enrollment data with projected figures, focusing on the years 2010 to 2030. The data is then organized into three main categories: PK-Grade 8, Grades 9-12, and Total enrollment. Using the `ggplot2` library, the code generates a line plot that displays these enrollment numbers over time, measured in millions of students. The visualization distinguishes between historical data and future projections by using solid lines for actual data up to 2021 and dashed lines for projected data beyond that point. A vertical line at 2021 further emphasizes this distinction, with annotations clarifying which sections represent actual versus projected data. The plot uses different colors for each enrollment category, making it easy to differentiate between total enrollment and the two grade range subgroups. The x-axis spans from 2010 to 2030, while the y-axis shows enrollment figures. Various styling elements are applied to enhance the plot's readability and visual appeal, including a centered title, a legend at the bottom, and angled x-axis labels to prevent overlapping. This comprehensive visualization allows viewers to easily compare enrollment trends across different grade ranges and see how these trends are expected to evolve in the coming years, providing a valuable tool for educational planning and analysis.
 
 ::: {.callout-note title="Click here to view the code I used." collapse="true"}
 ```{r}
 #| eval: false
 
-# Load `ggplot2` library
+# Load `tidyr` and `ggplot2` libraries
+library(tidyr)
 library(ggplot2)
 
 # Combine actual and projected data
@@ -730,85 +729,6 @@ print(enrollment_plot)
 
 ```{r}
 #| echo: false
-
-# Combine actual and projected data
-combined_data <- bind_rows(enrollment %>% mutate(Type = "Actual"),
-                           projections %>% mutate(Type = "Projected"))
-
-# Filter data for the years 2010 to 2030
-filtered_data <- combined_data %>% filter(Year >= 2010 &
-                                            Year <= 2030)
-
-# Arrange the data in the required format and sort by Year
-filtered_data <- filtered_data %>% arrange(Year)
-
-# Create new columns for PK-Grade 8, Grades 9-12, and Total
-filtered_data <- filtered_data %>%
-  mutate(
-    PK_Grade_8 = Prekindergarten + Kindergarten + `1st_grade` + `2nd_grade` + `3rd_grade` + `4th_grade` + `5th_grade` + `6th_grade` + `7th_grade` + `8th_grade` + Ungraded_PK_8,
-    Grades_9_12 = `9th_grade` + `10th_grade` + `11th_grade` + `12th_grade` + Ungraded_9_12,
-    Total = PK_Grade_8 + Grades_9_12
-  )
-
-# Create a long format dataframe for plotting
-plot_data <- filtered_data %>%
-  select(Year, PK_Grade_8, Grades_9_12, Total) %>%
-  pivot_longer(
-    cols = c(PK_Grade_8, Grades_9_12, Total),
-    names_to = "Category",
-    values_to = "Enrollment"
-  ) %>%
-  mutate(Category = factor(Category, levels = c("Total", "PK_Grade_8", "Grades_9_12")))
-
-# Create the line plot
-enrollment_plot <- ggplot(plot_data, aes(x = Year, y = Enrollment / 1000, color = Category)) +
-  # Solid lines up to 2021
-  geom_line(data = subset(plot_data, Year <= 2021), linewidth = 1.2) +
-  # Dashed lines from 2021 onward
-  geom_line(data = subset(plot_data, Year >= 2021), linewidth = 1.2, linetype = "dashed") +
-  geom_vline(xintercept = 2021, color = "gray50") +
-  annotate(
-    "text",
-    x = 2015,
-    y = max(plot_data$Enrollment) / 1000 * 0.9,
-    label = "Actual",
-    size = 4
-  ) +
-  annotate(
-    "text",
-    x = 2025,
-    y = max(plot_data$Enrollment) / 1000 * 0.9,
-    label = "Projected",
-    size = 4
-  ) +
-  scale_color_manual(
-    values = c(
-      "Total" = "#009E73",
-      "PK_Grade_8" = "#E69F00",
-      "Grades_9_12" = "#56B4E9"
-    ),
-    labels = c("Total", "PK-Grade 8", "Grades 9-12")
-  ) +
-  scale_x_continuous(breaks = 2010:2030, expand = c(0, 0)) +
-  scale_y_continuous(
-    breaks = seq(0, 50, by = 10),
-    limits = c(5, 55),
-    expand = c(0, 0)
-  ) +
-  coord_cartesian(xlim = c(2010, 2030)) +
-  labs(title = "Enrollment in public elementary and secondary schools, by level", x = "Year", y = "Enrollment (in millions)") +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank(),
-    legend.position = "bottom",
-    axis.text.x = element_text(
-      angle = 45,
-      hjust = 1,
-      size = 8
-    ),
-    panel.grid.minor = element_blank()
-  )
 
 # Print the plot
 print(enrollment_plot)
