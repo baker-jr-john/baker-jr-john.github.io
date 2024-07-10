@@ -2,7 +2,7 @@
 title: "Projecting Elementary and Secondary School Enrollment"
 description: "A comprehensive methodology for projecting elementary and secondary school enrollment using statistical techniques"
 date: 06-26-2024
-date-modified: 06-26-2024
+date-modified: 07-09-2024
 categories: [Education Statistics, Enrollment Projections, Forecasting Methods, Data Analysis, Data Visualization, Educational Planning, Time Series Analysis]
 image: images/enrollment_plot.png
 format:
@@ -17,7 +17,7 @@ comments:
 
 ## Introduction
 
-According to the National Center for Education Statistics (NCES), total public and private elementary and secondary school enrollment was 56 million in fall 2019, representing a 3 percent increase since fall 2010. However, between fall 2019 and the first fall of the coronavirus pandemic in fall 2020, enrollment decreased 2 percent. From fall 2020 to fall 2030, enrollments are expected to decrease another 6 percent. Both public and private school enrollments are projected to be lower in 2030 than in 2019.
+According to the [National Center for Education Statistics (NCES)](https://nces.ed.gov/), total public and private elementary and secondary school enrollment was 56 million in fall 2019, representing a three percent increase since fall 2010. However, between fall 2019 and the first fall of the coronavirus pandemic in 2020, enrollment decreased two percent. From fall 2020 to fall 2030, enrollments are expected to decrease another six percent. Both public and private school enrollments are projected to be lower in 2030 than in 2019.
 
 ```{r}
 #| echo: false
@@ -133,7 +133,7 @@ smoothed_values <- enrollment %>%
 years <- 2021:2030
 projections <- data.frame(Year = years)
 
-# Calculate progression rates for other grades
+# Calculate progression rates for grades 2 through 12
 progression_rates <- enrollment %>%
   summarise(across(starts_with("grade"), list(rate = ~ mean(
     .x / lag(.x, 1), na.rm = TRUE
@@ -141,12 +141,10 @@ progression_rates <- enrollment %>%
 
 # Populate the projections dataframe for grades with historical progression rates
 for (grade in names(smoothed_values)) {
-  last_value <- tail(smoothed_values[[grade]], 1)
-  projections[[grade]] <- c(last_value, rep(NA, length(years) - 1))
+  projections[[grade]] <- NA
+  projections[1, grade] <- tail(smoothed_values[[grade]], 1) # Initial value from smoothed historical data
   
   for (year_index in 2:length(years)) {
-    year <- years[year_index]
-    previous_year <- years[year_index - 1]
     rate <- progression_rates[[paste0(grade, "_rate")]]
     if (!is.null(rate) && !is.na(rate)) {
       projections[year_index, grade] <- projections[year_index - 1, grade] * rate
@@ -157,12 +155,13 @@ for (grade in names(smoothed_values)) {
 }
 
 # Project Prekindergarten, Kindergarten, 1st grade, and Ungraded enrollments using enrollment rates
-for (year in years) {
-  projections[projections$Year == year, "Prekindergarten"] <- population[population$Year == year, "3- to 5-year-olds"] * enrollment_rates$Prekindergarten_rate
-  projections[projections$Year == year, "Kindergarten"] <- population[population$Year == year, "5-year-olds"] * enrollment_rates$Kindergarten_rate
-  projections[projections$Year == year, "1st_grade"] <- population[population$Year == year, "6-year-olds"] * enrollment_rates$first_grade_rate
-  projections[projections$Year == year, "Ungraded_PK_8"] <- population[population$Year == year, "5- to 13-year-olds"] * enrollment_rates$Ungraded_PK_8_rate
-  projections[projections$Year == year, "Ungraded_9_12"] <- population[population$Year == year, "14- to 17-year-olds"] * enrollment_rates$Ungraded_9_12_rate
+for (year_index in 1:length(years)) {
+  year <- years[year_index]
+  projections[year_index, "Prekindergarten"] <- population[population$Year == year, "3- to 5-year-olds"] * enrollment_rates$Prekindergarten_rate
+  projections[year_index, "Kindergarten"] <- population[population$Year == year, "5-year-olds"] * enrollment_rates$Kindergarten_rate
+  projections[year_index, "1st_grade"] <- population[population$Year == year, "6-year-olds"] * enrollment_rates$first_grade_rate
+  projections[year_index, "Ungraded_PK_8"] <- population[population$Year == year, "5- to 13-year-olds"] * enrollment_rates$Ungraded_PK_8_rate
+  projections[year_index, "Ungraded_9_12"] <- population[population$Year == year, "14- to 17-year-olds"] * enrollment_rates$Ungraded_9_12_rate
 }
 
 # Combine actual and projected data
@@ -196,10 +195,11 @@ plot_data <- filtered_data %>%
 
 # Create the line plot
 enrollment_plot <- ggplot(plot_data, aes(x = Year, y = Enrollment / 1000, color = Category)) +
-  geom_line(linewidth = 1.2) +
-  geom_vline(xintercept = 2021,
-             linetype = "dashed",
-             color = "gray50") +
+  # Solid lines up to 2021
+  geom_line(data = subset(plot_data, Year <= 2021), linewidth = 1.2) +
+  # Dashed lines from 2021 onward
+  geom_line(data = subset(plot_data, Year >= 2021), linewidth = 1.2, linetype = "dashed") +
+  geom_vline(xintercept = 2021, color = "gray50") +
   annotate(
     "text",
     x = 2015,
@@ -222,19 +222,30 @@ enrollment_plot <- ggplot(plot_data, aes(x = Year, y = Enrollment / 1000, color 
     ),
     labels = c("Total", "PK-Grade 8", "Grades 9-12")
   ) +
-  scale_y_continuous(labels = scales::comma) +
+  scale_x_continuous(breaks = 2010:2030, expand = c(0, 0)) +
+  scale_y_continuous(
+    breaks = seq(0, 50, by = 10),
+    limits = c(5, 55),
+    expand = c(0, 0)
+  ) +
+  coord_cartesian(xlim = c(2010, 2030)) +
   labs(title = "Enrollment in public elementary and secondary schools, by level", x = "Year", y = "Enrollment (in millions)") +
   theme_minimal() +
   theme(
     plot.title = element_text(hjust = 0.5),
     legend.title = element_blank(),
-    legend.position = "bottom"
+    legend.position = "bottom",
+    axis.text.x = element_text(
+      angle = 45,
+      hjust = 1,
+      size = 8
+    ),
+    panel.grid.minor = element_blank()
   )
 
 # Print the plot
 print(enrollment_plot)
 ```
-
 Accurate enrollment projections in elementary and secondary institutions are crucial for several reasons:
 
 1.  **Budgeting and resource allocation**: Enrollment projections help school districts plan their budgets effectively. By estimating the number of students expected to attend, districts can allocate resources appropriately, ensuring they have enough teachers, classrooms, and educational materials to meet the demand.
@@ -246,6 +257,8 @@ Accurate enrollment projections in elementary and secondary institutions are cru
 Accurate enrollment projections are vital for effective budgeting, resource allocation, short-term and long-term planning, maintaining public trust, ensuring financial stability, and informed decision-making in elementary and secondary institutions. With that said, many institutions lack a reliable means by which to make long-range enrollment forecasts. I'm here to help.
 
 ## How to Project Enrollment
+
+For this project, I attempted to emulate the work of the NCES, specifically their [*Projections of Education Statistics to 2030*](https://nces.ed.gov/programs/pes/) &nbsp; [@irwin2024projections].
 
 ::: {.callout-note title="Click here for a detailed methodology for projecting student enrollment using various statistical techniques." collapse="true"}
 ### Projection Techniques
@@ -319,7 +332,7 @@ By following these steps and utilizing the provided methodologies, I can project
 
 ## Tools Utilized
 
-There are numerous tools to select from when tackling an exercise like this. Instead of delving into the various options, I decided to simply tell you what I used:
+There are numerous tools to select from when tackling a project like this. Instead of delving into the various options, I decided to simply tell you what I used:
 
 -   [Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel)
 -   [Posit RStudio Desktop](https://posit.co/products/open-source/rstudio/)[^1]
@@ -327,7 +340,15 @@ There are numerous tools to select from when tackling an exercise like this. Ins
 
 [^1]: RStudio Desktop is a standalone opensource application that does not store information on the internet. RStudio Desktop ***Pro***, on the other hand, can or does. I'm not sure. If this is a concern for you, speak with Posit. They were very helpful helping the Florida UFSD determine whether their software is EdLaw 2-d compliant, which is always a concern when vetting new applications.
 
-## Process Overview
+::: {.callout-tip}
+## Getting Started With R
+
+If you're new to R, there are many resources out there to help you get started. I recommend [R for the Rest of Us](https://rfortherestofus.com/), particularly their [Getting Started With R](https://rfortherestofus.com/courses/getting-started) and [Fundamentals of R](https://rfortherestofus.com/courses/fundamentals) courses.
+:::
+
+## Enrollment Projection Process
+
+### Process Overview
 
 The process for forecasting student enrollment by grade level and total enrollment using historical data begins by viewing the enrollment data in Excel and making some minor adjustments before loading it into RStudio. It calculates enrollment rates for various grades based on historical and projected population data, then applies exponential smoothing to the historical data to create a trend. Using historical progression rates, future enrollments from 2021 to 2030 are projected. It combines actual and projected data, filters for the years 2010 to 2030, and creates aggregate columns for PK-Grade 8, Grades 9-12, and Total enrollments. The data is reshaped for plotting, and a line plot is generated. The plot visualizes enrollment trends, distinguishing between actual and projected data.
 
@@ -339,7 +360,7 @@ I also utilized Table B-1 and Table B-2 from the [NCES's *Projections of Educati
 
 ### Data Loading and Preparation
 
-To use the data, I initially had to modify the spreadsheet in Excel. First, I un-merged cells A3:A4, B3:B4, and D4:E4. Then, I moved "Year" and "All" from cells A3 and B3 to cells A4 and B4. I also had to modify the ramining cells in row 4:
+To use the data, I initially had to modify the spreadsheet in Excel. First, I un-merged cells A3:A4, B3:B4, and D4:E4. Then, I moved "Year" and "All" from cells A3 and B3 to cells A4 and B4. I also had to modify the remaining cells in row 4:
 
 - Cell C4 from "Total" to "Total PK-8" 
 - Cell D4 from "Prekinder- garten" to "Prekindergarten" 
@@ -360,7 +381,7 @@ To use the data, I initially had to modify the spreadsheet in Excel. First, I un
 - Cell T4 from " 12th grade" to "12th grade" 
 - Cell U4 from "Un- graded\\1,2" to "Ungraded 9-12" 
 
-Additionally, I had to delete "\\4" from cell A37. Finally, I deleted row 5. I converted the spreadsheet from the *`.xls`* file format to *`.xlsx`* by saving it as *`.xlsx`*. After the data was in a usable state, I moved the project to RStudio.
+Additionally, I had to delete "\\4" from cell A37. Finally, I deleted row 5 and I converted the spreadsheet from the *`.xls`* file format to *`.xlsx`* by saving it as *`.xlsx`*. After the data was in a usable state, I moved the project to RStudio.
 
 Once in RStudio, the script begins by loading the `readxl` library for reading Excel files. The `dplyr` library is also loaded to facilitate data manipulation. The enrollment data is then read from an Excel file, specifically from a range of cells (`A4:U37`), with certain columns skipped, and the remaining columns are renamed for convenience. Similarly, population data, which includes projected school-age population by selected age groups from 2010 through 2030, is read from another Excel file. To calculate enrollment rates, the enrollment data is joined with the population data on the `Year` column. This allows the script to compute the enrollment rates for Prekindergarten, Kindergarten, 1st grade, and ungraded enrollments based on the respective age groups in the population data. The mean enrollment rates are then computed, which will be used for forecasting future enrollments.
 
@@ -403,9 +424,25 @@ enrollment <- read_excel(
 )
 
 # Rename the columns for convenience
-colnames(enrollment) <- c("Year", "Prekindergarten", "Kindergarten", "1st_grade", "2nd_grade", "3rd_grade",
-                          "4th_grade", "5th_grade", "6th_grade", "7th_grade", "8th_grade", "9th_grade", 
-                          "10th_grade", "11th_grade", "12th_grade", "Ungraded_PK_8", "Ungraded_9_12")
+colnames(enrollment) <- c(
+  "Year",
+  "Prekindergarten",
+  "Kindergarten",
+  "1st_grade",
+  "2nd_grade",
+  "3rd_grade",
+  "4th_grade",
+  "5th_grade",
+  "6th_grade",
+  "7th_grade",
+  "8th_grade",
+  "9th_grade",
+  "10th_grade",
+  "11th_grade",
+  "12th_grade",
+  "Ungraded_PK_8",
+  "Ungraded_9_12"
+)
 
 # Load population data
 population <- read_excel(
@@ -474,24 +511,24 @@ Here, the script utilizes the previously defined exponential smoothing function 
 # Apply exponential smoothing to historical data
 smoothed_values <- enrollment %>%
   select(-Year) %>%
-  mutate(across(everything(), ~exponential_smoothing(.x, alpha = 0.3)))
+  mutate(across(everything(), ~ exponential_smoothing(.x, alpha = 0.3)))
 
 # Initialize projections dataframe
 years <- 2021:2030
 projections <- data.frame(Year = years)
 
-# Calculate progression rates for other grades
+# Calculate progression rates for grades 2 through 12
 progression_rates <- enrollment %>%
-  summarise(across(starts_with("grade"), list(rate = ~mean(.x / lag(.x, 1), na.rm = TRUE)), .names = "{col}_rate"))
+  summarise(across(starts_with("grade"), list(rate = ~ mean(
+    .x / lag(.x, 1), na.rm = TRUE
+  )), .names = "{col}_rate"))
 
 # Populate the projections dataframe for grades with historical progression rates
 for (grade in names(smoothed_values)) {
-  last_value <- tail(smoothed_values[[grade]], 1)
-  projections[[grade]] <- c(last_value, rep(NA, length(years) - 1))
+  projections[[grade]] <- NA
+  projections[1, grade] <- tail(smoothed_values[[grade]], 1) # Initial value from smoothed historical data
   
   for (year_index in 2:length(years)) {
-    year <- years[year_index]
-    previous_year <- years[year_index - 1]
     rate <- progression_rates[[paste0(grade, "_rate")]]
     if (!is.null(rate) && !is.na(rate)) {
       projections[year_index, grade] <- projections[year_index - 1, grade] * rate
@@ -502,19 +539,20 @@ for (grade in names(smoothed_values)) {
 }
 
 # Project Prekindergarten, Kindergarten, 1st grade, and Ungraded enrollments using enrollment rates
-for (year in years) {
-  projections[projections$Year == year, "Prekindergarten"] <- population[population$Year == year, "3- to 5-year-olds"] * enrollment_rates$Prekindergarten_rate
-  projections[projections$Year == year, "Kindergarten"] <- population[population$Year == year, "5-year-olds"] * enrollment_rates$Kindergarten_rate
-  projections[projections$Year == year, "1st_grade"] <- population[population$Year == year, "6-year-olds"] * enrollment_rates$first_grade_rate
-  projections[projections$Year == year, "Ungraded_PK_8"] <- population[population$Year == year, "5- to 13-year-olds"] * enrollment_rates$Ungraded_PK_8_rate
-  projections[projections$Year == year, "Ungraded_9_12"] <- population[population$Year == year, "14- to 17-year-olds"] * enrollment_rates$Ungraded_9_12_rate
+for (year_index in 1:length(years)) {
+  year <- years[year_index]
+  projections[year_index, "Prekindergarten"] <- population[population$Year == year, "3- to 5-year-olds"] * enrollment_rates$Prekindergarten_rate
+  projections[year_index, "Kindergarten"] <- population[population$Year == year, "5-year-olds"] * enrollment_rates$Kindergarten_rate
+  projections[year_index, "1st_grade"] <- population[population$Year == year, "6-year-olds"] * enrollment_rates$first_grade_rate
+  projections[year_index, "Ungraded_PK_8"] <- population[population$Year == year, "5- to 13-year-olds"] * enrollment_rates$Ungraded_PK_8_rate
+  projections[year_index, "Ungraded_9_12"] <- population[population$Year == year, "14- to 17-year-olds"] * enrollment_rates$Ungraded_9_12_rate
 }
 ```
 :::
 
 ### Forecast Table
 
-In this section of code, the `gt` library is loaded to facilitate the creation of well-formatted tables. The code then constructs a data frame, `forecast_table_df`, which contains projected enrollment data for various grade levels. This data frame is derived from the `filtered_data` object, specifically filtering for projected enrollment data (`Type == "Projected"`). It selects the relevant columns: `Year`, `Prekindergarten`, `Kindergarten`, and grades from `1st_grade` to `12th_grade`. These grade columns are then renamed to more readable names, such as "First Grade" for `1st_grade`, "Second Grade" for `2nd_grade`, and so on. The renamed data frame is then passed to the `gt` function to create a table object, `forecast_table`. A header is added to this table with the title "Enrollment in public elementary and secondary schools, by grade (in thousands)". Finally, the table is displayed. This process results in a well-organized and readable table that presents the projected enrollment figures for each grade level.
+In this section, the `gt` library is loaded to facilitate the creation of well-formatted tables. The code takes the processed enrollment data and organizes it into a clear, easy-to-read format. It shows enrollment numbers for total students, prekindergarten through grade 8, and grades 9 through 12, with all numbers formatted as whole integers. The data is implicitly divided into "Actual" and "Projected" sections. The code applies various styling elements to enhance readability, such as right-aligning numeric columns, setting specific column widths, and using light gray backgrounds for row groups and column labels. The resulting table presents the enrollment data in a professional, organized manner that's easy for viewers to understand and analyze.
 
 ::: {.callout-note title="Click here to view the code I used." collapse="true"}
 ```{r}
@@ -523,111 +561,76 @@ In this section of code, the `gt` library is loaded to facilitate the creation o
 # Load `gt` library
 library(gt)
 
-# Create a data frame with the forecasts for grade levels
-forecast_table_df <- filtered_data %>%
-  filter(Type == "Projected") %>%
-  select(
-    Year,
-    Prekindergarten,
-    Kindergarten,
-    `1st_grade`,
-    `2nd_grade`,
-    `3rd_grade`,
-    `4th_grade`,
-    `5th_grade`,
-    `6th_grade`,
-    `7th_grade`,
-    `8th_grade`,
-    `9th_grade`,
-    `10th_grade`,
-    `11th_grade`,
-    `12th_grade`
+# Process the data
+processed_data <- plot_data %>%
+  pivot_wider(names_from = Category, values_from = Enrollment) %>%
+  mutate(Type = ifelse(Year <= 2020, "Actual", "Projected"), across(c(Total, PK_Grade_8, Grades_9_12), ~ . * 1000)) %>%
+  select(Year, Type, Total, PK_Grade_8, Grades_9_12)
+
+# Create the table
+enrollment_table <- processed_data %>%
+  gt(groupname_col = "Type") %>%
+  tab_header(title = "School Enrollment Projections", subtitle = "2010-2030") %>%
+  fmt_number(columns = c(Total, PK_Grade_8, Grades_9_12),
+             decimals = 0) %>%
+  cols_label(PK_Grade_8 = "Pre-K through grade 8", Grades_9_12 = "Grades 9 through 12") %>%
+  cols_align(align = "right",
+             columns = c(Total, PK_Grade_8, Grades_9_12)) %>%
+  cols_width(Year ~ px(80),
+             Total ~ px(120),
+             PK_Grade_8 ~ px(200),
+             Grades_9_12 ~ px(160)) %>%
+  tab_options(
+    row_group.background.color = "#F0F0F0",
+    column_labels.background.color = "#E0E0E0",
+    table.border.top.style = "hidden",
+    table.border.bottom.style = "hidden",
+    data_row.padding = px(5)
   ) %>%
-  rename(
-    "First Grade" = `1st_grade`,
-    "Second Grade" = `2nd_grade`,
-    "Third Grade" = `3rd_grade`,
-    "Fourth Grade" = `4th_grade`,
-    "Fifth Grade" = `5th_grade`,
-    "Sixth Grade" = `6th_grade`,
-    "Seventh Grade" = `7th_grade`,
-    "Eighth Grade" = `8th_grade`,
-    "Ninth Grade" = `9th_grade`,
-    "Tenth Grade" = `10th_grade`,
-    "Eleventh Grade" = `11th_grade`,
-    "Twelfth Grade" = `12th_grade`
-  )
-
-# Create the gt table
-forecast_table <- gt(forecast_table_df)
-
-# Add a table header
-forecast_table <- forecast_table %>%
-  tab_header(title = "Enrollment in public elementary and secondary schools, by grade (in thousands)")
+  cols_hide(columns = c(Type))  # Hide the Type column
 
 # Display the table
-forecast_table
+enrollment_table
 ```
 :::
 
 ```{r}
 #| echo: false
-#| message: false
 
 # Load `gt` library
 library(gt)
 
-# Create a data frame for elementary grades
-elementary_table_df <- filtered_data %>%
-  filter(Type == "Projected") %>%
-  select(Year, Prekindergarten, Kindergarten, `1st_grade`, `2nd_grade`, `3rd_grade`, `4th_grade`, `5th_grade`) %>%
-  rename(
-    `First Grade` = `1st_grade`,
-    `Second Grade` = `2nd_grade`,
-    `Third Grade` = `3rd_grade`,
-    `Fourth Grade` = `4th_grade`,
-    `Fifth Grade` = `5th_grade`
-  )
+# Process the data
+processed_data <- plot_data %>%
+  pivot_wider(names_from = Category, values_from = Enrollment) %>%
+  mutate(Type = ifelse(Year <= 2020, "Actual", "Projected"), across(c(Total, PK_Grade_8, Grades_9_12), ~ . * 1000)) %>%
+  select(Year, Type, Total, PK_Grade_8, Grades_9_12)
 
-# Create the gt table for elementary grades
-elementary_table <- gt(elementary_table_df)
+# Create the table
+enrollment_table <- processed_data %>%
+  gt(groupname_col = "Type") %>%
+  tab_header(title = "Public School Enrollment Over Time and During the Pandemic", subtitle = "2010-2030") %>%
+  fmt_number(columns = c(Total, PK_Grade_8, Grades_9_12),
+             decimals = 0) %>%
+  cols_label(PK_Grade_8 = "Pre-K through grade 8", Grades_9_12 = "Grades 9 through 12") %>%
+  cols_align(align = "right",
+             columns = c(Total, PK_Grade_8, Grades_9_12)) %>%
+  cols_width(Year ~ px(80),
+             Total ~ px(120),
+             PK_Grade_8 ~ px(200),
+             Grades_9_12 ~ px(160)) %>%
+  tab_options(
+    row_group.background.color = "#F0F0F0",
+    column_labels.background.color = "#E0E0E0",
+    table.border.top.style = "hidden",
+    table.border.bottom.style = "hidden",
+    data_row.padding = px(5)
+  ) %>%
+  cols_hide(columns = c(Type))  # Hide the Type column
 
-# Add a table header to the elementary table
-elementary_table <- elementary_table %>%
-  tab_header(title = "Enrollment in public elementary schools, by grade (Prekindergarten to Fifth Grade, in thousands)")
-
-# Display the elementary table
-elementary_table
+# Display the table
+enrollment_table
 ```
-
-```{r}
-#| echo: false
-
-# Create a data frame for middle and high school grades
-middle_high_table_df <- filtered_data %>%
-  filter(Type == "Projected") %>%
-  select(Year, `6th_grade`, `7th_grade`, `8th_grade`, `9th_grade`, `10th_grade`, `11th_grade`, `12th_grade`) %>%
-  rename(
-    `Sixth Grade` = `6th_grade`,
-    `Seventh Grade` = `7th_grade`,
-    `Eighth Grade` = `8th_grade`,
-    `Ninth Grade` = `9th_grade`,
-    `Tenth Grade` = `10th_grade`,
-    `Eleventh Grade` = `11th_grade`,
-    `Twelfth Grade` = `12th_grade`
-  )
-
-# Create the gt table for middle and high school grades
-middle_high_table <- gt(middle_high_table_df)
-
-# Add a table header to the middle and high school table
-middle_high_table <- middle_high_table %>%
-  tab_header(title = "Enrollment in public secondary schools, by grade (Sixth Grade to Twelfth Grade, in thousands)")
-
-# Display the middle and high school table
-middle_high_table
-```
-
 ### Data Combination and Visualization
 
 The code performs a series of data manipulation and visualization tasks to create a line plot that displays the projected enrollment in public elementary and secondary schools from 2010 to 2030. First, it combines actual and projected enrollment data into a single dataset, marking each entry as either "Actual" or "Projected." It then filters this combined dataset to include only the years 2010 to 2030 and arranges the data in chronological order. New columns are created to represent the total enrollment for PK-Grade 8, Grades 9-12, and the overall Total enrollment. The data is then reshaped into a long format suitable for plotting with `ggplot2`.
@@ -642,13 +645,12 @@ In the visualization step, a line plot is created using `ggplot2`, with differen
 library(ggplot2)
 
 # Combine actual and projected data
-combined_data <- bind_rows(
-  enrollment %>% mutate(Type = "Actual"),
-  projections %>% mutate(Type = "Projected")
-)
+combined_data <- bind_rows(enrollment %>% mutate(Type = "Actual"),
+                           projections %>% mutate(Type = "Projected"))
 
 # Filter data for the years 2010 to 2030
-filtered_data <- combined_data %>% filter(Year >= 2010 & Year <= 2030)
+filtered_data <- combined_data %>% filter(Year >= 2010 &
+                                            Year <= 2030)
 
 # Arrange the data in the required format and sort by Year
 filtered_data <- filtered_data %>% arrange(Year)
@@ -664,28 +666,61 @@ filtered_data <- filtered_data %>%
 # Create a long format dataframe for plotting
 plot_data <- filtered_data %>%
   select(Year, PK_Grade_8, Grades_9_12, Total) %>%
-  pivot_longer(cols = c(PK_Grade_8, Grades_9_12, Total), names_to = "Category", values_to = "Enrollment") %>%
+  pivot_longer(
+    cols = c(PK_Grade_8, Grades_9_12, Total),
+    names_to = "Category",
+    values_to = "Enrollment"
+  ) %>%
   mutate(Category = factor(Category, levels = c("Total", "PK_Grade_8", "Grades_9_12")))
 
 # Create the line plot
 enrollment_plot <- ggplot(plot_data, aes(x = Year, y = Enrollment / 1000, color = Category)) +
-  geom_line(linewidth = 1.2) +
-  geom_vline(xintercept = 2021, linetype = "dashed", color = "gray50") +
-  annotate("text", x = 2015, y = max(plot_data$Enrollment) / 1000 * 0.9, label = "Actual", size = 4) +
-  annotate("text", x = 2025, y = max(plot_data$Enrollment) / 1000 * 0.9, label = "Projected", size = 4) +
+  # Solid lines up to 2021
+  geom_line(data = subset(plot_data, Year <= 2021), linewidth = 1.2) +
+  # Dashed lines from 2021 onward
+  geom_line(data = subset(plot_data, Year >= 2021), linewidth = 1.2, linetype = "dashed") +
+  geom_vline(xintercept = 2021, color = "gray50") +
+  annotate(
+    "text",
+    x = 2015,
+    y = max(plot_data$Enrollment) / 1000 * 0.9,
+    label = "Actual",
+    size = 4
+  ) +
+  annotate(
+    "text",
+    x = 2025,
+    y = max(plot_data$Enrollment) / 1000 * 0.9,
+    label = "Projected",
+    size = 4
+  ) +
   scale_color_manual(
-    values = c("Total" = "#009E73", "PK_Grade_8" = "#E69F00", "Grades_9_12" = "#56B4E9"),
+    values = c(
+      "Total" = "#009E73",
+      "PK_Grade_8" = "#E69F00",
+      "Grades_9_12" = "#56B4E9"
+    ),
     labels = c("Total", "PK-Grade 8", "Grades 9-12")
   ) +
-  scale_y_continuous(labels = scales::comma) +
-  labs(title = "Enrollment in public elementary and secondary schools, by level",
-       x = "Year",
-       y = "Enrollment (in thousands)") +
+  scale_x_continuous(breaks = 2010:2030, expand = c(0, 0)) +
+  scale_y_continuous(
+    breaks = seq(0, 50, by = 10),
+    limits = c(5, 55),
+    expand = c(0, 0)
+  ) +
+  coord_cartesian(xlim = c(2010, 2030)) +
+  labs(title = "Enrollment in public elementary and secondary schools, by level", x = "Year", y = "Enrollment (in millions)") +
   theme_minimal() +
   theme(
     plot.title = element_text(hjust = 0.5),
     legend.title = element_blank(),
-    legend.position = "bottom"
+    legend.position = "bottom",
+    axis.text.x = element_text(
+      angle = 45,
+      hjust = 1,
+      size = 8
+    ),
+    panel.grid.minor = element_blank()
   )
 
 # Print the plot
@@ -697,13 +732,12 @@ print(enrollment_plot)
 #| echo: false
 
 # Combine actual and projected data
-combined_data <- bind_rows(
-  enrollment %>% mutate(Type = "Actual"),
-  projections %>% mutate(Type = "Projected")
-)
+combined_data <- bind_rows(enrollment %>% mutate(Type = "Actual"),
+                           projections %>% mutate(Type = "Projected"))
 
 # Filter data for the years 2010 to 2030
-filtered_data <- combined_data %>% filter(Year >= 2010 & Year <= 2030)
+filtered_data <- combined_data %>% filter(Year >= 2010 &
+                                            Year <= 2030)
 
 # Arrange the data in the required format and sort by Year
 filtered_data <- filtered_data %>% arrange(Year)
@@ -719,28 +753,61 @@ filtered_data <- filtered_data %>%
 # Create a long format dataframe for plotting
 plot_data <- filtered_data %>%
   select(Year, PK_Grade_8, Grades_9_12, Total) %>%
-  pivot_longer(cols = c(PK_Grade_8, Grades_9_12, Total), names_to = "Category", values_to = "Enrollment") %>%
+  pivot_longer(
+    cols = c(PK_Grade_8, Grades_9_12, Total),
+    names_to = "Category",
+    values_to = "Enrollment"
+  ) %>%
   mutate(Category = factor(Category, levels = c("Total", "PK_Grade_8", "Grades_9_12")))
 
 # Create the line plot
 enrollment_plot <- ggplot(plot_data, aes(x = Year, y = Enrollment / 1000, color = Category)) +
-  geom_line(linewidth = 1.2) +
-  geom_vline(xintercept = 2021, linetype = "dashed", color = "gray50") +
-  annotate("text", x = 2015, y = max(plot_data$Enrollment) / 1000 * 0.9, label = "Actual", size = 4) +
-  annotate("text", x = 2025, y = max(plot_data$Enrollment) / 1000 * 0.9, label = "Projected", size = 4) +
+  # Solid lines up to 2021
+  geom_line(data = subset(plot_data, Year <= 2021), linewidth = 1.2) +
+  # Dashed lines from 2021 onward
+  geom_line(data = subset(plot_data, Year >= 2021), linewidth = 1.2, linetype = "dashed") +
+  geom_vline(xintercept = 2021, color = "gray50") +
+  annotate(
+    "text",
+    x = 2015,
+    y = max(plot_data$Enrollment) / 1000 * 0.9,
+    label = "Actual",
+    size = 4
+  ) +
+  annotate(
+    "text",
+    x = 2025,
+    y = max(plot_data$Enrollment) / 1000 * 0.9,
+    label = "Projected",
+    size = 4
+  ) +
   scale_color_manual(
-    values = c("Total" = "#009E73", "PK_Grade_8" = "#E69F00", "Grades_9_12" = "#56B4E9"),
+    values = c(
+      "Total" = "#009E73",
+      "PK_Grade_8" = "#E69F00",
+      "Grades_9_12" = "#56B4E9"
+    ),
     labels = c("Total", "PK-Grade 8", "Grades 9-12")
   ) +
-  scale_y_continuous(labels = scales::comma) +
-  labs(title = "Enrollment in public elementary and secondary schools, by level",
-       x = "Year",
-       y = "Enrollment (in thousands)") +
+  scale_x_continuous(breaks = 2010:2030, expand = c(0, 0)) +
+  scale_y_continuous(
+    breaks = seq(0, 50, by = 10),
+    limits = c(5, 55),
+    expand = c(0, 0)
+  ) +
+  coord_cartesian(xlim = c(2010, 2030)) +
+  labs(title = "Enrollment in public elementary and secondary schools, by level", x = "Year", y = "Enrollment (in millions)") +
   theme_minimal() +
   theme(
     plot.title = element_text(hjust = 0.5),
     legend.title = element_blank(),
-    legend.position = "bottom"
+    legend.position = "bottom",
+    axis.text.x = element_text(
+      angle = 45,
+      hjust = 1,
+      size = 8
+    ),
+    panel.grid.minor = element_blank()
   )
 
 # Print the plot
