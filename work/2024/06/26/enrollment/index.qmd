@@ -744,7 +744,7 @@ While these projections offer valuable insights for resource allocation, budgeti
 
 By combining rigorous statistical methods with clear data visualization, this approach not only aids in decision-making processes but also facilitates effective communication of enrollment trends to stakeholders. As the education landscape continues to evolve, such data-driven projections will play an increasingly vital role in shaping responsive and resilient educational systems.
 
-### References
+## References
 
 ::: {#refs}
 :::
