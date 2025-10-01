@@ -33,10 +33,11 @@ format:
   html:
     page-layout: full
     sidebar: false
+    mainfont: Lato
+    respect-user-color-scheme: true
     theme: 
       light: light.scss
       dark: dark.scss
-    mainfont: Lato
     toc: true
     smooth-scroll: true
     link-external-newwindow: true
