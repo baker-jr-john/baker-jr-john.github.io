@@ -2,7 +2,9 @@
 title: "Calling the OpenAI API from an IDE"
 description: "A Student's Guide to Secure Development"
 date: 10-01-2025
-draft: true
+categories: [Educational Technology, Python Programming,API Development, Tutorial/How-To]
+image: images/Gemini_Generated_Image_nz61mxnz61mxnz61.png
+draft: false
 execute:
   eval: false
 comments:
@@ -12,7 +14,7 @@ comments:
 
 ## Introduction
 
-As Dr. Li explained during our Week 2 class, you can use Python scripting to call the OpenAI API from [Google Colab](https://colab.google/) and get a short, focused response from a chat model. Instead of using Google Colab, which is a cloud-based [Jupyter Notebook](https://jupyter.org/) environment, I prefer to use a traditional software application installed directly on my computer called an integrated development environment (IDE). There are several reasons I like to work with an IDE, including having complete control over my environment, seamless integration of local files, and the ability to work offline. There are many IDEs to choose from, such as [Visual Studio Code](https://code.visualstudio.com/) (often referred to as VS Code) and [PyCharm](https://www.jetbrains.com/pycharm/), which offer built-in support for Jupyter Notebooks. I like to use [Positron](https://positron.posit.co/), which takes the modern, extensible foundation of VS Code and combines it with data-centric features. If you're interested in learning how I called the OpenAI API from Positron, please read on.
+You can use Python scripting to call the OpenAI API and get a short, focused response from a chat model. While there are cloud-based environments like [Google Colab](https://colab.google/), which is a cloud-based [Jupyter Notebook](https://jupyter.org/) environment, I prefer to use a traditional software application installed directly on my computer called an integrated development environment (IDE). There are several reasons I like to work with an IDE, including having complete control over my environment, seamless integration of local files, and the ability to work offline. There are many IDEs to choose from, such as [Visual Studio Code](https://code.visualstudio.com/) (often referred to as VS Code) and [PyCharm](https://www.jetbrains.com/pycharm/), which offer built-in support for Jupyter Notebooks. I like to use [Positron](https://positron.posit.co/), which takes the modern, extensible foundation of VS Code and combines it with data-centric features. If you're interested in learning how I called the OpenAI API from Positron, please read on.
 
 ## What You'll Learn
 
@@ -22,11 +24,11 @@ By following this guide, you'll master several crucial skills for working with A
 
 Before we start, it's crucial to understand the process of storing your secret API key in a separate file, having your code securely load it without exposing the key in the script itself, and why this process is necessary. Think of your API key like a credit card number that allows you to make purchases from OpenAI's services. Hard-coding your API key directly into your script is akin to writing your credit card number on a sticky note and leaving it on your desk, where anyone can see it.
 
-If you accidentally share your code or upload it to a public repository like GitHub, your secret key will be exposed, allowing anyone to use your account and incur charges on your behalf. Unlike Dr. Li's Google Colab approach, where the key can be stored in Colab's secure environment, we need a different strategy when working locally.
+If you accidentally share your code or upload it to a public repository like GitHub, your secret key will be exposed, allowing anyone to use your account and incur charges on your behalf. We need a strategy to keep our API keys secure.
 
 Here is where environment variables come into play. Environment variables are like labeled containers that store information your program can access without that information being visible in your code itself. Think of them as a secure filing cabinet that only your program can open. The information lives separately from your code, so you can safely share your scripts without exposing your secrets.
 
-Fortunately, there are several ways we can manage this securely. Dr. Li discussed one approach using Google Colab's built-in secrets management. For local development, we'll use a tool called `dotenv`, which helps you manage application secrets and configuration by loading them from a special file into your program's environment variables.
+Fortunately, there are several ways we can manage this securely. We'll use a tool called `dotenv`, which helps you manage application secrets and configuration by loading them from a special file into your program's environment variables.
 
 ## Calling the OpenAI API from an IDE
 
@@ -36,7 +38,7 @@ First, you need to get your API key from the OpenAI platform.
 
 1. Go to [platform.openai.com](https://platform.openai.com/) and log in.
 2. Navigate to Dashboard > API keys.
-3. Click **"Create new secret key"** and create one if you haven't already, as Dr. Li previously discussed.
+3. Click **"Create new secret key"** and create one if you haven't already.
 4. Copy the key immediately and save it somewhere safe. You won't be able to see it again after you close the window.
     a. I used [1Password](https://1password.com/) for this, but any secure password manager will work.
 
@@ -98,9 +100,8 @@ def get_chatbot_response(user_prompt, model="gpt-4o-mini"):
     """
     Function to get a response from OpenAI's chat models.
     
-    This approach differs from Dr. Li's linear script by encapsulating
-    the API logic in a reusable function that can be called multiple times
-    with different prompts.
+    This function encapsulates the API logic in a reusable way
+    that can be called multiple times with different prompts.
     
     Args:
         user_prompt (str): The question or prompt to send to the AI
@@ -163,8 +164,8 @@ def get_chatbot_response(user_prompt, model="gpt-4o-mini"):
 # This Python convention allows the script to run directly or be imported as a module
 if __name__ == "__main__":
     # Define your prompt
-    # Unlike Dr. Li's hardcoded approach, you can easily change this
-    # or even make it interactive by using input() to ask the user for questions
+    # You can easily change this or make it interactive by using input()
+    # to ask the user for questions
     prompt = (
         "What are the most effective prompt engineering techniques for creating "
         "educational chatbots that can adapt to different student learning levels "
@@ -176,15 +177,15 @@ if __name__ == "__main__":
     print(f"AI Response: {assistant_reply}")
 ```
 
-## Key Differences from Dr. Li's Approach
+## Understanding the Code Structure
 
-This implementation differs from Dr. Li's Google Colab version in several important ways. Dr. Li used a linear script that runs from top to bottom to perform a single, specific task with a hardcoded prompt. To ask a different question, you would need to manually edit the content of the user's message within the code.
+This implementation uses a modular approach with a reusable function, `get_chatbot_response(user_prompt, model)`. This function encapsulates all the logic for making the API call, which means you can easily call it multiple times with different prompts without rewriting code.
 
-My script is more modular because it defines a reusable function, `get_chatbot_response(user_prompt, model)`. This function encapsulates all the logic for making the API call, which means you can easily call this function multiple times with different prompts without rewriting code. The use of `if __name__ == "__main__":` is a standard Python convention that allows the script to be run directly or imported as a module into a larger application.
+The code includes robust error handling that first checks if the API key was found and returns a helpful message if not. It also wraps the API call in a `try...except` block to gracefully catch any potential issues, like network problems or API errors, and report them without crashing.
 
-Additionally, Dr. Li's code lacks comprehensive error handling. If the API key is missing or the network call fails, the script will crash with an unhandled error. My script includes robust error handling that first checks if it found the API key and returns a helpful message if not. It also wraps the API call in a `try...except` block to gracefully catch any other potential issues, like network problems or API errors, and report them without crashing.
+The use of `if __name__ == "__main__":` is a standard Python convention that allows the script to be run directly or imported as a module into a larger application.
 
-Finally, there's a strategic difference in model selection. While Dr. Li uses `gpt-3.5-turbo`, I've chosen `gpt-4o-mini` as the default model for several vital reasons. `gpt-4o-mini` is more cost-effective than `gpt-3.5-turbo`, which is crucial for educational projects where budget constraints are a concern. You want to maximize experimentation within limited resources. Beyond cost savings, `gpt-4o-mini` was specifically designed as the successor to `gpt-3.5-turbo`, offering comparable or better performance across reasoning, instruction-following, and code-generation tasks while being more efficient. By using this 2024 model, you're leveraging the latest technology available, which demonstrates good practice in educational technology where staying current with tools directly benefits student learning experiences.
+I've chosen `gpt-4o-mini` as the default model for several important reasons. It's cost-effective, which is crucial for educational projects where budget constraints are a concern. You want to maximize experimentation within limited resources. `gpt-4o-mini` offers excellent performance across reasoning, instruction-following, and code-generation tasks while being efficient. By using this modern model, you're leveraging current technology, which demonstrates good practice in educational technology.
 
 ## Troubleshooting Common Issues
 
