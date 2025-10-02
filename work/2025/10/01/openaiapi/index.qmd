@@ -3,18 +3,23 @@ title: "Calling the OpenAI API from an IDE"
 description: "A Student's Guide to Secure Development"
 date: 10-01-2025
 draft: true
+execute:
+  eval: false
 comments:
   giscus:
     repo: baker-jr-john/baker-jr-john.github.io
 ---
 
-As Dr. Li explained during our Week 2 class, you can use Python scripting to call the OpenAI API from Google Colab and get a short, focused response from a chat model. Instead of using Google Colab, which is a cloud-based [Jupyter Notebook](https://jupyter.org/) environment, I prefer to use a traditional software application installed directly on my computer called an integrated development environment (IDE). There are several reasons I like to work with an IDE, including having complete control over my environment, seamless integration of local files, and the ability to work offline. There are many IDEs to choose from, such as [Visual Studio Code](https://code.visualstudio.com/) (often referred to as VS Code) and [PyCharm](https://www.jetbrains.com/pycharm/), which offer built-in support for Jupyter Notebooks. I like to use [Positron](https://positron.posit.co/), which takes the modern, extensible foundation of VS Code and combines it with data-centric features. If you're interested in learning how I called the OpenAI API from Positron, please read on.
+## Introduction
+
+As Dr. Li explained during our Week 2 class, you can use Python scripting to call the OpenAI API from [Google Colab](https://colab.google/) and get a short, focused response from a chat model. Instead of using Google Colab, which is a cloud-based [Jupyter Notebook](https://jupyter.org/) environment, I prefer to use a traditional software application installed directly on my computer called an integrated development environment (IDE). There are several reasons I like to work with an IDE, including having complete control over my environment, seamless integration of local files, and the ability to work offline. There are many IDEs to choose from, such as [Visual Studio Code](https://code.visualstudio.com/) (often referred to as VS Code) and [PyCharm](https://www.jetbrains.com/pycharm/), which offer built-in support for Jupyter Notebooks. I like to use [Positron](https://positron.posit.co/), which takes the modern, extensible foundation of VS Code and combines it with data-centric features. If you're interested in learning how I called the OpenAI API from Positron, please read on.
 
 ## What You'll Learn
 
 By following this guide, you'll master several crucial skills for working with APIs in educational contexts. You'll learn how to securely store and access API keys using environment variables, which is a fundamental practice in professional software development. You'll learn to structure your code using functions, making your programs more reusable and maintainable. Most importantly, you'll discover how to implement proper error handling so your programs respond gracefully when things go wrong, rather than crashing unexpectedly.
 
-Understanding API Security: Why Secrets Matter
+## Understanding API Security: Why Secrets Matter
+
 Before we start, it's crucial to understand the process of storing your secret API key in a separate file, having your code securely load it without exposing the key in the script itself, and why this process is necessary. Think of your API key like a credit card number that allows you to make purchases from OpenAI's services. Hard-coding your API key directly into your script is akin to writing your credit card number on a sticky note and leaving it on your desk, where anyone can see it.
 
 If you accidentally share your code or upload it to a public repository like GitHub, your secret key will be exposed, allowing anyone to use your account and incur charges on your behalf. Unlike Dr. Li's Google Colab approach, where the key can be stored in Colab's secure environment, we need a different strategy when working locally.
@@ -45,7 +50,7 @@ Create a new project folder. Inside that folder, create two files:
 
 Your folder should look like this:
 
-```
+```{python}
 my_project/
 ├── main.py
 └── .env
@@ -57,7 +62,7 @@ You'll need two Python libraries: `openai` to interact with the API and `python-
 
 Open your terminal in the IDE and run:
 
-```
+```{python}
 pip install openai python-dotenv
 ```
 
@@ -67,7 +72,7 @@ If you're new to using pip, this command tells Python's package manager to downl
 
 Open the `.env` file you created and add your API key in the following format. Notice there are no quotes around the value, just the variable name, an equals sign, and the key itself:
 
-```
+```{python}
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
@@ -79,7 +84,7 @@ The `.env` file acts like a secure configuration file that stays on your compute
 
 Open your `main.py` file and write the Python code. It will first load the variables from the `.env` file and then use the key to make an API call. Here's the code I wrote with detailed explanations:
 
-```
+```{python}
 # Import necessary libraries
 import os  # For accessing environment variables
 from dotenv import load_dotenv  # For loading .env file

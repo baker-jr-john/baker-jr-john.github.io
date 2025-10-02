@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -283,7 +318,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-youll-learn" id="toc-what-youll-learn" class="nav-link active" data-scroll-target="#what-youll-learn">What You’ll Learn</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#what-youll-learn" id="toc-what-youll-learn" class="nav-link" data-scroll-target="#what-youll-learn">What You’ll Learn</a></li>
+  <li><a href="#understanding-api-security-why-secrets-matter" id="toc-understanding-api-security-why-secrets-matter" class="nav-link" data-scroll-target="#understanding-api-security-why-secrets-matter">Understanding API Security: Why Secrets Matter</a></li>
   <li><a href="#calling-the-openai-api-from-an-ide" id="toc-calling-the-openai-api-from-an-ide" class="nav-link" data-scroll-target="#calling-the-openai-api-from-an-ide">Calling the OpenAI API from an IDE</a>
   <ul class="collapse">
   <li><a href="#step-1-get-your-api-key" id="toc-step-1-get-your-api-key" class="nav-link" data-scroll-target="#step-1-get-your-api-key">Step 1: Get Your API Key 🔑</a></li>
@@ -332,11 +369,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>As Dr.&nbsp;Li explained during our Week 2 class, you can use Python scripting to call the OpenAI API from Google Colab and get a short, focused response from a chat model. Instead of using Google Colab, which is a cloud-based <a href="https://jupyter.org/">Jupyter Notebook</a> environment, I prefer to use a traditional software application installed directly on my computer called an integrated development environment (IDE). There are several reasons I like to work with an IDE, including having complete control over my environment, seamless integration of local files, and the ability to work offline. There are many IDEs to choose from, such as <a href="https://code.visualstudio.com/">Visual Studio Code</a> (often referred to as VS Code) and <a href="https://www.jetbrains.com/pycharm/">PyCharm</a>, which offer built-in support for Jupyter Notebooks. I like to use <a href="https://positron.posit.co/">Positron</a>, which takes the modern, extensible foundation of VS Code and combines it with data-centric features. If you’re interested in learning how I called the OpenAI API from Positron, please read on.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>As Dr.&nbsp;Li explained during our Week 2 class, you can use Python scripting to call the OpenAI API from <a href="https://colab.google/">Google Colab</a> and get a short, focused response from a chat model. Instead of using Google Colab, which is a cloud-based <a href="https://jupyter.org/">Jupyter Notebook</a> environment, I prefer to use a traditional software application installed directly on my computer called an integrated development environment (IDE). There are several reasons I like to work with an IDE, including having complete control over my environment, seamless integration of local files, and the ability to work offline. There are many IDEs to choose from, such as <a href="https://code.visualstudio.com/">Visual Studio Code</a> (often referred to as VS Code) and <a href="https://www.jetbrains.com/pycharm/">PyCharm</a>, which offer built-in support for Jupyter Notebooks. I like to use <a href="https://positron.posit.co/">Positron</a>, which takes the modern, extensible foundation of VS Code and combines it with data-centric features. If you’re interested in learning how I called the OpenAI API from Positron, please read on.</p>
+</section>
 <section id="what-youll-learn" class="level2">
 <h2 class="anchored" data-anchor-id="what-youll-learn">What You’ll Learn</h2>
 <p>By following this guide, you’ll master several crucial skills for working with APIs in educational contexts. You’ll learn how to securely store and access API keys using environment variables, which is a fundamental practice in professional software development. You’ll learn to structure your code using functions, making your programs more reusable and maintainable. Most importantly, you’ll discover how to implement proper error handling so your programs respond gracefully when things go wrong, rather than crashing unexpectedly.</p>
-<p>Understanding API Security: Why Secrets Matter Before we start, it’s crucial to understand the process of storing your secret API key in a separate file, having your code securely load it without exposing the key in the script itself, and why this process is necessary. Think of your API key like a credit card number that allows you to make purchases from OpenAI’s services. Hard-coding your API key directly into your script is akin to writing your credit card number on a sticky note and leaving it on your desk, where anyone can see it.</p>
+</section>
+<section id="understanding-api-security-why-secrets-matter" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-api-security-why-secrets-matter">Understanding API Security: Why Secrets Matter</h2>
+<p>Before we start, it’s crucial to understand the process of storing your secret API key in a separate file, having your code securely load it without exposing the key in the script itself, and why this process is necessary. Think of your API key like a credit card number that allows you to make purchases from OpenAI’s services. Hard-coding your API key directly into your script is akin to writing your credit card number on a sticky note and leaving it on your desk, where anyone can see it.</p>
 <p>If you accidentally share your code or upload it to a public repository like GitHub, your secret key will be exposed, allowing anyone to use your account and incur charges on your behalf. Unlike Dr.&nbsp;Li’s Google Colab approach, where the key can be stored in Colab’s secure environment, we need a different strategy when working locally.</p>
 <p>Here is where environment variables come into play. Environment variables are like labeled containers that store information your program can access without that information being visible in your code itself. Think of them as a secure filing cabinet that only your program can open. The information lives separately from your code, so you can safely share your scripts without exposing your secrets.</p>
 <p>Fortunately, there are several ways we can manage this securely. Dr.&nbsp;Li discussed one approach using Google Colab’s built-in secrets management. For local development, we’ll use a tool called <code>dotenv</code>, which helps you manage application secrets and configuration by loading them from a special file into your program’s environment variables.</p>
@@ -367,116 +410,124 @@ ul.task-list li input[type="checkbox"] {
 <li><code>.env</code>: This is where you’ll store your secret key. The <code>.</code> at the beginning makes it a hidden file on many systems, which provides an additional layer of protection.</li>
 </ol>
 <p>Your folder should look like this:</p>
-<pre><code>my_project/
-├── main.py
-└── .env</code></pre>
+<div id="87264166" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>my_project<span class="op">/</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>├── main.py</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>└── .env</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
 <section id="step-3-install-the-necessary-libraries" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-install-the-necessary-libraries">Step 3: Install the Necessary Libraries</h3>
 <p>You’ll need two Python libraries: <code>openai</code> to interact with the API and <code>python-dotenv</code> to load your <code>.env</code> file. Think of these as specialized tools that handle the complex work of communicating with OpenAI’s servers and managing your environment variables, respectively.</p>
 <p>Open your terminal in the IDE and run:</p>
-<pre><code>pip install openai python-dotenv</code></pre>
+<div id="e82ba568" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pip install openai python<span class="op">-</span>dotenv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>If you’re new to using pip, this command tells Python’s package manager to download and install these libraries so your code can use them. The <code>openai</code> library contains pre-written functions that handle all the technical details of making API requests, while <code>python-dotenv</code> provides a simple way to load configuration from files.</p>
 </section>
 <section id="step-4-add-your-api-key-to-the-.env-file" class="level3">
 <h3 class="anchored" data-anchor-id="step-4-add-your-api-key-to-the-.env-file">Step 4: Add Your API Key to the <code>.env</code> File</h3>
 <p>Open the <code>.env</code> file you created and add your API key in the following format. Notice there are no quotes around the value, just the variable name, an equals sign, and the key itself:</p>
-<pre><code>OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code></pre>
+<div id="4890824b" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>OPENAI_API_KEY<span class="op">=</span>sk<span class="op">-</span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>Replace <code>sk-xxxx…</code> with the actual secret key you copied from OpenAI. You can name the <code>OPENAI_API_KEY</code> variable anything you want, but using a descriptive name helps you remember what it contains. Some developers may prefer a name like <code>EDUC6192_OPENAI_API_KEY</code> to indicate which project or course the key belongs to.</p>
 <p>The <code>.env</code> file acts like a secure configuration file that stays on your computer but never gets shared with your code. When you run your program, the <code>dotenv</code> library will read this file and make these variables available to your Python script.</p>
 </section>
 <section id="step-5-write-the-python-code" class="level3">
 <h3 class="anchored" data-anchor-id="step-5-write-the-python-code">Step 5: Write the Python Code 💻</h3>
 <p>Open your <code>main.py</code> file and write the Python code. It will first load the variables from the <code>.env</code> file and then use the key to make an API call. Here’s the code I wrote with detailed explanations:</p>
-<pre><code># Import necessary libraries
-import os  # For accessing environment variables
-from dotenv import load_dotenv  # For loading .env file
-from openai import OpenAI  # For making API calls
-
-# Load environment variables from .env file
-# This must be called before trying to access any variables
-load_dotenv()
-
-def get_chatbot_response(user_prompt, model="gpt-4o-mini"):
-    """
-    Function to get a response from OpenAI's chat models.
-    
-    This approach differs from Dr. Li's linear script by encapsulating
-    the API logic in a reusable function that can be called multiple times
-    with different prompts.
-    
-    Args:
-        user_prompt (str): The question or prompt to send to the AI
-        model (str): The specific AI model to use (defaults to gpt-4o-mini)
-    
-    Returns:
-        str: The AI's response or an error message
-    """
-    
-    # Load your API key from an environment variable
-    api_key = os.getenv("OPENAI_API_KEY")
-    
-    # Error handling: Check if the API key was successfully loaded
-    # This prevents crashes and gives helpful feedback to the user
-    if not api_key:
-        return "Error: OPENAI_API_KEY environment variable not set. Check your .env file."
-
-    try:
-        # Initialize the OpenAI client with our API key
-        # This creates a connection object that handles all the technical details
-        client = OpenAI(api_key=api_key)
-
-        # Create a chat completion request
-        # This is where we actually send our prompt to OpenAI's servers
-        response = client.chat.completions.create(
-            model=model,  # Specify which AI model to use
-            messages=[
-                {
-                    # System message: Sets the AI's role and behavior
-                    # This is like giving the AI a job description
-                    "role": "system",
-                    "content": (
-                        "You are a teaching assistant for an LLM Applications in Education course. "
-                        "You provide insightful answers about implementing large language models in "
-                        "educational contexts and explain technical concepts clearly with practical, "
-                        "real-world examples."
-                    ),
-                },
-                {
-                    # User message: The actual question or prompt
-                    "role": "user",
-                    "content": user_prompt,
-                },
-            ],
-            max_tokens=50,  # Limit response length (1 token ≈ 0.75 words)
-            temperature=0.2  # Low temperature = more focused, consistent responses
-                           # Higher values (up to 1.0) = more creative, varied responses
-        )
-        
-        # Extract and return the AI's response
-        # The response object contains metadata, but we just want the text
-        return response.choices[0].message.content
-
-    except Exception as e:
-        # Comprehensive error handling: Catch any other problems
-        # This could be network issues, API errors, or authentication problems
-        return f"An error occurred: {e}"
-
-# Main execution block
-# This Python convention allows the script to run directly or be imported as a module
-if __name__ == "__main__":
-    # Define your prompt
-    # Unlike Dr. Li's hardcoded approach, you can easily change this
-    # or even make it interactive by using input() to ask the user for questions
-    prompt = (
-        "What are the most effective prompt engineering techniques for creating "
-        "educational chatbots that can adapt to different student learning levels "
-        "in the same classroom?"
-    )
-    
-    # Get and print the assistant's reply
-    assistant_reply = get_chatbot_response(prompt)
-    print(f"AI Response: {assistant_reply}")</code></pre>
+<div id="6ad73734" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import necessary libraries</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  <span class="co"># For accessing environment variables</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv  <span class="co"># For loading .env file</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI  <span class="co"># For making API calls</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load environment variables from .env file</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># This must be called before trying to access any variables</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_chatbot_response(user_prompt, model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>):</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Function to get a response from OpenAI's chat models.</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">    This approach differs from Dr. Li's linear script by encapsulating</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">    the API logic in a reusable function that can be called multiple times</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">    with different prompts.</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">        user_prompt (str): The question or prompt to send to the AI</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">        model (str): The specific AI model to use (defaults to gpt-4o-mini)</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">        str: The AI's response or an error message</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load your API key from an environment variable</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    api_key <span class="op">=</span> os.getenv(<span class="st">"OPENAI_API_KEY"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Error handling: Check if the API key was successfully loaded</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This prevents crashes and gives helpful feedback to the user</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> api_key:</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Error: OPENAI_API_KEY environment variable not set. Check your .env file."</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initialize the OpenAI client with our API key</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This creates a connection object that handles all the technical details</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>api_key)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create a chat completion request</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This is where we actually send our prompt to OpenAI's servers</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>            model<span class="op">=</span>model,  <span class="co"># Specify which AI model to use</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>            messages<span class="op">=</span>[</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>                {</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># System message: Sets the AI's role and behavior</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># This is like giving the AI a job description</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"role"</span>: <span class="st">"system"</span>,</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"content"</span>: (</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"You are a teaching assistant for an LLM Applications in Education course. "</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"You provide insightful answers about implementing large language models in "</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"educational contexts and explain technical concepts clearly with practical, "</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"real-world examples."</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>                    ),</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>                },</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>                {</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># User message: The actual question or prompt</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"content"</span>: user_prompt,</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>                },</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>            ],</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>            max_tokens<span class="op">=</span><span class="dv">50</span>,  <span class="co"># Limit response length (1 token ≈ 0.75 words)</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>            temperature<span class="op">=</span><span class="fl">0.2</span>  <span class="co"># Low temperature = more focused, consistent responses</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>                           <span class="co"># Higher values (up to 1.0) = more creative, varied responses</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extract and return the AI's response</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The response object contains metadata, but we just want the text</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> response.choices[<span class="dv">0</span>].message.content</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Comprehensive error handling: Catch any other problems</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This could be network issues, API errors, or authentication problems</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"An error occurred: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Main execution block</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="co"># This Python convention allows the script to run directly or be imported as a module</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define your prompt</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Unlike Dr. Li's hardcoded approach, you can easily change this</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># or even make it interactive by using input() to ask the user for questions</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> (</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>        <span class="st">"What are the most effective prompt engineering techniques for creating "</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>        <span class="st">"educational chatbots that can adapt to different student learning levels "</span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>        <span class="st">"in the same classroom?"</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get and print the assistant's reply</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>    assistant_reply <span class="op">=</span> get_chatbot_response(prompt)</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"AI Response: </span><span class="sc">{</span>assistant_reply<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
 </section>
 <section id="key-differences-from-dr.-lis-approach" class="level2">
