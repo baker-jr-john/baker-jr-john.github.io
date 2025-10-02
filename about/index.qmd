@@ -9,6 +9,7 @@ about:
       text: LinkedIn
       href: https://www.linkedin.com/in/baker-jr-john/
 ---
+
 I'm a [Hudson Valley](https://travelhudsonvalley.com/) resident, but I was born and raised in [Philadelphia](https://www.visitphilly.com/). I live with my wife, son, two dogs, and two cats. I enjoy spending time with my friends and family, experiencing music and food, and playing board and video games (❤️ Nintendo). 
 
 I'm a data scientist specializing in K–12 education. I love working in this field because I get to use data and technology to help students succeed while making life easier for the teachers and administrators who support them every day. My biggest passion is building systems that improve student outcomes fairly—without the algorithmic bias that can creep into educational technology.
