@@ -43,7 +43,7 @@ First, you need to get your API key from the OpenAI platform.
     a. I used [1Password](https://1password.com/) for this, but any secure password manager will work.
 
 ::: {.callout-important}
-You won't be able to see it again after you close the window.
+You won't be able to see your secret key again after you close the window.
 :::
 
 ### Step 2: Set Up Your Project Folder 📂
@@ -90,7 +90,7 @@ The `.env` file acts like a secure configuration file that stays on your compute
 
 Open your `main.py` file and write the Python code. It will first load the variables from the `.env` file and then use the key to make an API call.
 
-::: {.callout-note title="Click the code I wrote with detailed explanations." collapse="true"}
+::: {.callout-note title="Click here to view the code I wrote with detailed explanations." collapse="true"}
 ```{python}
 # Import necessary libraries
 import os  # For accessing environment variables
@@ -207,8 +207,8 @@ When working with APIs, you'll likely encounter some common problems. Here's how
 
 ## Next Steps
 
-This foundation prepares you for more advanced API work in educational technology.
+This foundation prepares you for more advanced API work.
 
-Understanding environment variables and error handling will serve you well beyond this course, as these are fundamental practices in professional software development. The modular approach you've learned here scales to much larger applications and team projects.
+Understanding environment variables and error handling will serve you well, as these are fundamental practices in professional software development. The modular approach you've learned here scales to much larger applications and team projects.
 
 The principles of secure key management and robust error handling apply to virtually any API you'll work with in your career.
