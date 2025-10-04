@@ -2,7 +2,7 @@
 title: "Projecting Elementary and Secondary School Enrollment"
 description: "A comprehensive methodology for projecting elementary and secondary school enrollment using statistical techniques"
 date: 06-26-2024
-date-modified: 07-09-2024
+date-modified: 10-04-2025
 categories: [Education Statistics, Enrollment Projections, Forecasting Methods, Data Analysis, Data Visualization, Educational Planning, Time Series Analysis]
 image: images/enrollment_plot.png
 format:
@@ -360,7 +360,10 @@ I also utilized Table B-1 and Table B-2 from the [NCES's *Projections of Educati
 
 ### Data Loading and Preparation
 
-To use the data, I initially had to modify the spreadsheet in Excel. First, I un-merged cells A3:A4, B3:B4, and D4:E4. Then, I moved "Year" and "All" from cells A3 and B3 to cells A4 and B4. I also had to modify the remaining cells in row 4:
+To use the data, I initially had to modify the spreadsheet in Excel. 
+
+::: {.callout-note title="Click here for details." collapse="true"}
+First, I un-merged cells A3:A4, B3:B4, and D4:E4. Then, I moved "Year" and "All" from cells A3 and B3 to cells A4 and B4. I also had to modify the remaining cells in row 4:
 
 - Cell C4 from "Total" to "Total PK-8" 
 - Cell D4 from "Prekinder- garten" to "Prekindergarten" 
@@ -382,6 +385,7 @@ To use the data, I initially had to modify the spreadsheet in Excel. First, I un
 - Cell U4 from "Un- graded\\1,2" to "Ungraded 9-12" 
 
 Additionally, I had to delete "\\4" from cell A37. Finally, I deleted row 5 and I converted the spreadsheet from the *`.xls`* file format to *`.xlsx`* by saving it as *`.xlsx`*. After the data was in a usable state, I moved the project to RStudio.
+:::
 
 Once in RStudio, the script begins by loading the `readxl` library for reading Excel files. The `dplyr` library is also loaded to facilitate data manipulation. The enrollment data is then read from an Excel file, specifically from a range of cells (`A4:U37`), with certain columns skipped, and the remaining columns are renamed for convenience. Similarly, population data, which includes projected school-age population by selected age groups from 2010 through 2030, is read from another Excel file. To calculate enrollment rates, the enrollment data is joined with the population data on the `Year` column. This allows the script to compute the enrollment rates for Prekindergarten, Kindergarten, 1st grade, and ungraded enrollments based on the respective age groups in the population data. The mean enrollment rates are then computed, which will be used for forecasting future enrollments.
 

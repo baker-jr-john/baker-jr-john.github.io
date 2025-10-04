@@ -421,7 +421,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 9, 2024</p>
+      <p class="date-modified">October 4, 2025</p>
     </div>
   </div>
     
@@ -562,7 +562,20 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
 </section>
 <section id="data-loading-and-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="data-loading-and-preparation">Data Loading and Preparation</h3>
-<p>To use the data, I initially had to modify the spreadsheet in Excel. First, I un-merged cells A3:A4, B3:B4, and D4:E4. Then, I moved “Year” and “All” from cells A3 and B3 to cells A4 and B4. I also had to modify the remaining cells in row 4:</p>
+<p>To use the data, I initially had to modify the spreadsheet in Excel.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Click here for details.">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Click here for details.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>First, I un-merged cells A3:A4, B3:B4, and D4:E4. Then, I moved “Year” and “All” from cells A3 and B3 to cells A4 and B4. I also had to modify the remaining cells in row 4:</p>
 <ul>
 <li>Cell C4 from “Total” to “Total PK-8”</li>
 <li>Cell D4 from “Prekinder- garten” to “Prekindergarten”</li>
@@ -584,9 +597,12 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
 <li>Cell U4 from “Un- graded\1,2” to “Ungraded 9-12”</li>
 </ul>
 <p>Additionally, I had to delete “\4” from cell A37. Finally, I deleted row 5 and I converted the spreadsheet from the <em><code>.xls</code></em> file format to <em><code>.xlsx</code></em> by saving it as <em><code>.xlsx</code></em>. After the data was in a usable state, I moved the project to RStudio.</p>
+</div>
+</div>
+</div>
 <p>Once in RStudio, the script begins by loading the <code>readxl</code> library for reading Excel files. The <code>dplyr</code> library is also loaded to facilitate data manipulation. The enrollment data is then read from an Excel file, specifically from a range of cells (<code>A4:U37</code>), with certain columns skipped, and the remaining columns are renamed for convenience. Similarly, population data, which includes projected school-age population by selected age groups from 2010 through 2030, is read from another Excel file. To calculate enrollment rates, the enrollment data is joined with the population data on the <code>Year</code> column. This allows the script to compute the enrollment rates for Prekindergarten, Kindergarten, 1st grade, and ungraded enrollments based on the respective age groups in the population data. The mean enrollment rates are then computed, which will be used for forecasting future enrollments.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Click here to view the code I used.">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -595,7 +611,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
@@ -695,7 +711,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
 <h3 class="anchored" data-anchor-id="forecasting-functions">Forecasting Functions</h3>
 <p>In this section, the script defines an exponential smoothing function to create smoothed trends from historical enrollment data. This function, <code>exponential_smoothing</code>, takes a time series and a smoothing parameter, <code>alpha</code>, as inputs. It initializes the result with the first value of the series and then iteratively applies the exponential smoothing formula: each subsequent value is a weighted average of the current actual value and the previous smoothed value. This technique helps reduce variability in the data, making trends more apparent and stable for forecasting purposes. The smoothed values produced by this function are crucial for generating accurate and reliable projections of future enrollments based on historical trends.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Click here to view the code I used.">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -704,7 +720,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define exponential smoothing function to return full series</span></span>
@@ -725,7 +741,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
 <h3 class="anchored" data-anchor-id="forecasting-enrollment">Forecasting Enrollment</h3>
 <p>Here, the script utilizes the previously defined exponential smoothing function and calculated enrollment rates to project future enrollments from 2021 to 2030. Initially, the historical enrollment data is smoothed to reduce variability and create stable trends. A new dataframe is then created to hold projected enrollment values for each grade level. The script calculates progression rates, which represent the average proportion of students progressing from one grade to the next based on historical data. Using these rates, the script populates the projections dataframe, starting with the last smoothed value from the historical data and applying the progression rates for subsequent years. Specific projections for Prekindergarten, Kindergarten, 1st grade, and ungraded enrollments are computed using the enrollment rates and projected population data. This detailed approach ensures that the projections are grounded in historical trends and population forecasts, providing a comprehensive view of future enrollment patterns.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Click here to view the code I used.">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -734,7 +750,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply exponential smoothing to historical data</span></span>
@@ -785,7 +801,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
 <h3 class="anchored" data-anchor-id="forecast-table">Forecast Table</h3>
 <p>In this section, the <code>gt</code> library is loaded to facilitate the creation of well-formatted tables. The code takes the processed enrollment data and organizes it into a clear, easy-to-read format. It shows enrollment numbers for total students, prekindergarten through grade 8, and grades 9 through 12, with all numbers formatted as whole integers. The data is implicitly divided into “Actual” and “Projected” sections. The code applies various styling elements to enhance readability, such as right-aligning numeric columns, setting specific column widths, and using light gray backgrounds for row groups and column labels. The resulting table presents the enrollment data in a professional, organized manner that’s easy for viewers to understand and analyze.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Click here to view the code I used.">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -794,7 +810,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load `gt` library</span></span>
@@ -836,23 +852,23 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="klurnmtpbg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#klurnmtpbg table {
+<div id="skjaxcohiz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#skjaxcohiz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#klurnmtpbg thead, #klurnmtpbg tbody, #klurnmtpbg tfoot, #klurnmtpbg tr, #klurnmtpbg td, #klurnmtpbg th {
+#skjaxcohiz thead, #skjaxcohiz tbody, #skjaxcohiz tfoot, #skjaxcohiz tr, #skjaxcohiz td, #skjaxcohiz th {
   border-style: none;
 }
 
-#klurnmtpbg p {
+#skjaxcohiz p {
   margin: 0;
   padding: 0;
 }
 
-#klurnmtpbg .gt_table {
+#skjaxcohiz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -878,12 +894,12 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   border-left-color: #D3D3D3;
 }
 
-#klurnmtpbg .gt_caption {
+#skjaxcohiz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#klurnmtpbg .gt_title {
+#skjaxcohiz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -895,7 +911,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   border-bottom-width: 0;
 }
 
-#klurnmtpbg .gt_subtitle {
+#skjaxcohiz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -907,7 +923,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   border-top-width: 0;
 }
 
-#klurnmtpbg .gt_heading {
+#skjaxcohiz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -919,13 +935,13 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   border-right-color: #D3D3D3;
 }
 
-#klurnmtpbg .gt_bottom_border {
+#skjaxcohiz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#klurnmtpbg .gt_col_headings {
+#skjaxcohiz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -940,7 +956,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   border-right-color: #D3D3D3;
 }
 
-#klurnmtpbg .gt_col_heading {
+#skjaxcohiz .gt_col_heading {
   color: #333333;
   background-color: #E0E0E0;
   font-size: 100%;
@@ -960,7 +976,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   overflow-x: hidden;
 }
 
-#klurnmtpbg .gt_column_spanner_outer {
+#skjaxcohiz .gt_column_spanner_outer {
   color: #333333;
   background-color: #E0E0E0;
   font-size: 100%;
@@ -972,15 +988,15 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   padding-right: 4px;
 }
 
-#klurnmtpbg .gt_column_spanner_outer:first-child {
+#skjaxcohiz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#klurnmtpbg .gt_column_spanner_outer:last-child {
+#skjaxcohiz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#klurnmtpbg .gt_column_spanner {
+#skjaxcohiz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -992,11 +1008,11 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   width: 100%;
 }
 
-#klurnmtpbg .gt_spanner_row {
+#skjaxcohiz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#klurnmtpbg .gt_group_heading {
+#skjaxcohiz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1022,7 +1038,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   text-align: left;
 }
 
-#klurnmtpbg .gt_empty_group_heading {
+#skjaxcohiz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #F0F0F0;
@@ -1037,15 +1053,15 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   vertical-align: middle;
 }
 
-#klurnmtpbg .gt_from_md > :first-child {
+#skjaxcohiz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#klurnmtpbg .gt_from_md > :last-child {
+#skjaxcohiz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#klurnmtpbg .gt_row {
+#skjaxcohiz .gt_row {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
@@ -1064,7 +1080,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   overflow-x: hidden;
 }
 
-#klurnmtpbg .gt_stub {
+#skjaxcohiz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1077,7 +1093,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   padding-right: 5px;
 }
 
-#klurnmtpbg .gt_stub_row_group {
+#skjaxcohiz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1091,15 +1107,15 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   vertical-align: top;
 }
 
-#klurnmtpbg .gt_row_group_first td {
+#skjaxcohiz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#klurnmtpbg .gt_row_group_first th {
+#skjaxcohiz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#klurnmtpbg .gt_summary_row {
+#skjaxcohiz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1109,16 +1125,16 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   padding-right: 5px;
 }
 
-#klurnmtpbg .gt_first_summary_row {
+#skjaxcohiz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#klurnmtpbg .gt_first_summary_row.thick {
+#skjaxcohiz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#klurnmtpbg .gt_last_summary_row {
+#skjaxcohiz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1128,7 +1144,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   border-bottom-color: #D3D3D3;
 }
 
-#klurnmtpbg .gt_grand_summary_row {
+#skjaxcohiz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1138,7 +1154,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   padding-right: 5px;
 }
 
-#klurnmtpbg .gt_first_grand_summary_row {
+#skjaxcohiz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1148,7 +1164,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   border-top-color: #D3D3D3;
 }
 
-#klurnmtpbg .gt_last_grand_summary_row_top {
+#skjaxcohiz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1158,11 +1174,11 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   border-bottom-color: #D3D3D3;
 }
 
-#klurnmtpbg .gt_striped {
+#skjaxcohiz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#klurnmtpbg .gt_table_body {
+#skjaxcohiz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1171,7 +1187,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   border-bottom-color: #D3D3D3;
 }
 
-#klurnmtpbg .gt_footnotes {
+#skjaxcohiz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1185,7 +1201,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   border-right-color: #D3D3D3;
 }
 
-#klurnmtpbg .gt_footnote {
+#skjaxcohiz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1194,7 +1210,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   padding-right: 5px;
 }
 
-#klurnmtpbg .gt_sourcenotes {
+#skjaxcohiz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1208,7 +1224,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   border-right-color: #D3D3D3;
 }
 
-#klurnmtpbg .gt_sourcenote {
+#skjaxcohiz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1216,64 +1232,73 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
   padding-right: 5px;
 }
 
-#klurnmtpbg .gt_left {
+#skjaxcohiz .gt_left {
   text-align: left;
 }
 
-#klurnmtpbg .gt_center {
+#skjaxcohiz .gt_center {
   text-align: center;
 }
 
-#klurnmtpbg .gt_right {
+#skjaxcohiz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#klurnmtpbg .gt_font_normal {
+#skjaxcohiz .gt_font_normal {
   font-weight: normal;
 }
 
-#klurnmtpbg .gt_font_bold {
+#skjaxcohiz .gt_font_bold {
   font-weight: bold;
 }
 
-#klurnmtpbg .gt_font_italic {
+#skjaxcohiz .gt_font_italic {
   font-style: italic;
 }
 
-#klurnmtpbg .gt_super {
+#skjaxcohiz .gt_super {
   font-size: 65%;
 }
 
-#klurnmtpbg .gt_footnote_marks {
+#skjaxcohiz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#klurnmtpbg .gt_asterisk {
+#skjaxcohiz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#klurnmtpbg .gt_indent_1 {
+#skjaxcohiz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#klurnmtpbg .gt_indent_2 {
+#skjaxcohiz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#klurnmtpbg .gt_indent_3 {
+#skjaxcohiz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#klurnmtpbg .gt_indent_4 {
+#skjaxcohiz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#klurnmtpbg .gt_indent_5 {
+#skjaxcohiz .gt_indent_5 {
   text-indent: 25px;
+}
+
+#skjaxcohiz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#skjaxcohiz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
 }
 </style>
 
@@ -1288,8 +1313,8 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
 <tr class="gt_col_headings header">
 <th id="Year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Year</th>
 <th id="Total" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Total</th>
-<th id="Pre-K through grade 8" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Pre-K through grade 8</th>
-<th id="Grades 9 through 12" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Grades 9 through 12</th>
+<th id="PK_Grade_8" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Pre-K through grade 8</th>
+<th id="Grades_9_12" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Grades 9 through 12</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -1436,7 +1461,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
 <h3 class="anchored" data-anchor-id="data-combination-and-visualization">Data Combination and Visualization</h3>
 <p>This R code performs a series of data manipulation and visualization tasks to create a line plot that displays the projected enrollment. It starts by combining actual enrollment data with projected figures, focusing on the years 2010 to 2030. The data is then organized into three main categories: PK-Grade 8, Grades 9-12, and Total enrollment. Using the <code>ggplot2</code> library, the code generates a line plot that displays these enrollment numbers over time, measured in millions of students. The visualization distinguishes between historical data and future projections by using solid lines for actual data up to 2021 and dashed lines for projected data beyond that point. A vertical line at 2021 further emphasizes this distinction, with annotations clarifying which sections represent actual versus projected data. The plot uses different colors for each enrollment category, making it easy to differentiate between total enrollment and the two grade range subgroups. The x-axis spans from 2010 to 2030, while the y-axis shows enrollment figures. Various styling elements are applied to enhance the plot’s readability and visual appeal, including a centered title, a legend at the bottom, and angled x-axis labels to prevent overlapping. This comprehensive visualization allows viewers to easily compare enrollment trends across different grade ranges and see how these trends are expected to evolve in the coming years, providing a valuable tool for educational planning and analysis.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Click here to view the code I used.">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1445,7 +1470,7 @@ P_t = \alpha \sum_{s=0}^{t-1} (1 - \alpha)^s P_{t-s}\]</span>where time, <span c
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load `tidyr` and `ggplot2` libraries</span></span>
