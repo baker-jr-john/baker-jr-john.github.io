@@ -14,7 +14,7 @@ comments:
 
 ## Introduction
 
-You can use Python scripting to call the OpenAI API and get a short, focused response from a chat model. While there are cloud-based environments like [Google Colab](https://colab.google/), which is a cloud-based [Jupyter Notebook](https://jupyter.org/) environment, I prefer to use a traditional software application installed directly on my computer called an integrated development environment (IDE). There are several reasons I like to work with an IDE, including having complete control over my environment, seamless integration of local files, and the ability to work offline. There are many IDEs to choose from, such as [Visual Studio Code](https://code.visualstudio.com/) (often referred to as VS Code) and [PyCharm](https://www.jetbrains.com/pycharm/), which offer built-in support for Jupyter Notebooks. I like to use [Positron](https://positron.posit.co/), which takes the modern, extensible foundation of VS Code and combines it with data-centric features. If you're interested in learning how I called the OpenAI API from Positron, please read on.
+You can use Python scripting to call the OpenAI API and get a short, focused response from a chat model. While there are cloud-based environments like [Google Colab](https://colab.google/), which is a [Jupyter Notebook](https://jupyter.org/) environment, I prefer to use a traditional software application installed directly on my computer called an integrated development environment (IDE). There are several reasons I like to work with an IDE, including having complete control over my environment, seamless integration of local files, and the ability to work offline. There are many IDEs to choose from, such as [Visual Studio Code](https://code.visualstudio.com/) (often referred to as VS Code) and [PyCharm](https://www.jetbrains.com/pycharm/), which offer built-in support for Jupyter Notebooks. I like to use [Positron](https://positron.posit.co/), which takes the modern, extensible foundation of VS Code and combines it with data-centric features. If you're interested in learning how I called the OpenAI API from Positron, please read on.
 
 ## What You'll Learn
 
@@ -36,13 +36,13 @@ Fortunately, there are several ways we can manage this securely. We'll use a too
 
 First, you need to get your API key from the OpenAI platform.
 
-1. Go to [platform.openai.com](https://platform.openai.com/) and log in.
-2. Navigate to Dashboard > API keys.
-3. Click **"Create new secret key"** and create one if you haven't already.
-4. Copy the key immediately and save it somewhere safe.
-    a. I used [1Password](https://1password.com/) for this, but any secure password manager will work.
+1.  Go to [platform.openai.com](https://platform.openai.com/) and log in.
+2.  Navigate to Dashboard \> API keys.
+3.  Click **"Create new secret key"** and create one if you haven't already.
+4.  Copy the key immediately and save it somewhere safe.
+    a.  I used [1Password](https://1password.com/) for this, but any secure password manager will work.
 
-::: {.callout-important}
+::: callout-important
 You won't be able to see your secret key again after you close the window.
 :::
 
@@ -50,9 +50,9 @@ You won't be able to see your secret key again after you close the window.
 
 Create a new project folder. Inside that folder, create two files:
 
-1. `main.py`: This will be your Python script.
-    a. You can name this file anything you want, such as `chatbot.py` or `api_test.py`.
-2. `.env`: This is where you'll store your secret key. The `.` at the beginning makes it a hidden file on many systems, which provides an additional layer of protection.
+1.  `main.py`: This will be your Python script.
+    a.  You can name this file anything you want, such as `chatbot.py` or `api_test.py`.
+2.  `.env`: This is where you'll store your secret key. The `.` at the beginning makes it a hidden file on many systems, which provides an additional layer of protection.
 
 Your folder should look like this:
 
@@ -183,15 +183,17 @@ if __name__ == "__main__":
 ```
 :::
 
-## Understanding the Code Structure
+#### Understanding the Code Structure
 
-This implementation uses a modular approach with a reusable function, `get_chatbot_response(user_prompt, model)`. This function encapsulates all the logic for making the API call, which means you can easily call it multiple times with different prompts without rewriting code.
+::: {.callout-note title="Click here to learn about the design principles and rationale behind my code." collapse="true"}
+My implementation uses a modular approach with a reusable function, `get_chatbot_response(user_prompt, model)`. This function encapsulates all the logic for making the API call, which means you can easily call it multiple times with different prompts without rewriting code.
 
 The code includes robust error handling that first checks if the API key was found and returns a helpful message if not. It also wraps the API call in a `try...except` block to gracefully catch any potential issues, like network problems or API errors, and report them without crashing.
 
 The use of `if __name__ == "__main__":` is a standard Python convention that allows the script to be run directly or imported as a module into a larger application.
 
 I've chosen `gpt-4o-mini` as the default model for several important reasons. It's cost-effective, which is crucial for educational projects where budget constraints are a concern. You want to maximize experimentation within limited resources. `gpt-4o-mini` offers excellent performance across reasoning, instruction-following, and code-generation tasks while being efficient. By using this modern model, you're leveraging current technology, which demonstrates good practice in educational technology.
+:::
 
 ## Troubleshooting Common Issues
 
