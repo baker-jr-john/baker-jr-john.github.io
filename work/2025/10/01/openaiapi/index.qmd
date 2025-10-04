@@ -2,6 +2,7 @@
 title: "Calling the OpenAI API from an IDE"
 description: "A Student's Guide to Secure Development"
 date: 10-01-2025
+date-modified: 10-04-2025
 categories: [Educational Technology, Python Programming,API Development, Tutorial/How-To]
 image: images/Gemini_Generated_Image_nz61mxnz61mxnz61.png
 draft: false
@@ -62,19 +63,7 @@ my_project/
 └── .env
 ```
 
-### Step 3: Install the Necessary Libraries
-
-You'll need two Python libraries: `openai` to interact with the API and `python-dotenv` to load your `.env` file. Think of these as specialized tools that handle the complex work of communicating with OpenAI's servers and managing your environment variables, respectively.
-
-Open your terminal in the IDE and run:
-
-```{python}
-pip install openai python-dotenv
-```
-
-If you're new to using [pip](https://pypi.org/project/pip/), this command tells Python's package manager to download and install these libraries so your code can use them. The `openai` library contains pre-written functions that handle all the technical details of making API requests, while `python-dotenv` provides a simple way to load configuration from files.
-
-### Step 4: Add Your API Key to the `.env` File
+### Step 3: Add Your API Key to the `.env` File
 
 Open the `.env` file you created and add your API key in the following format. Notice there are no quotes around the value, just the variable name, an equals sign, and the key itself:
 
@@ -85,6 +74,18 @@ OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 Replace `sk-xxxx…` with the actual secret key you copied from OpenAI. You can name the `OPENAI_API_KEY` variable anything you want, but using a descriptive name helps you remember what it contains. Some developers may prefer a name like `EDUC6192_OPENAI_API_KEY` to indicate which project or course the key belongs to.
 
 The `.env` file acts like a secure configuration file that stays on your computer but never gets shared with your code. When you run your program, the `dotenv` library will read this file and make these variables available to your Python script.
+
+### Step 4: Install the Necessary Libraries
+
+You'll need two Python libraries: `openai` to interact with the API and `python-dotenv` to load your `.env` file. Think of these as specialized tools that handle the complex work of communicating with OpenAI's servers and managing your environment variables, respectively.
+
+Open your terminal in the IDE and run:
+
+```{python}
+pip install openai python-dotenv
+```
+
+If you're new to using [pip](https://pypi.org/project/pip/), this command tells Python's package manager to download and install these libraries so your code can use them. The `openai` library contains pre-written functions that handle all the technical details of making API requests, while `python-dotenv` provides a simple way to load configuration from files.
 
 ### Step 5: Write the Python Code 💻
 
