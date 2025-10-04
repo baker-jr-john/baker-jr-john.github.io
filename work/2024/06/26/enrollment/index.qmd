@@ -4,12 +4,12 @@ description: "A comprehensive methodology for projecting elementary and secondar
 date: 06-26-2024
 date-modified: 10-04-2025
 categories: [Education Statistics, Enrollment Projections, Forecasting Methods, Data Analysis, Data Visualization, Educational Planning, Time Series Analysis]
+bibliography: bibliography/my-bib.bib
 image: images/enrollment_plot.png
 format:
   html:
     code-link: false
 draft: false
-bibliography: bibliography/my-bib.bib
 comments:
   giscus:
     repo: baker-jr-john/baker-jr-john.github.io
@@ -747,8 +747,3 @@ The process outlined here, from data preparation to visualization, allows for a 
 While these projections offer valuable insights for resource allocation, budgeting, and long-term planning in education, it's crucial to interpret them with caution. The inherent limitations of forecasting, particularly in the face of unforeseen circumstances, underscore the need for regular updates and adaptations to these projections.
 
 By combining rigorous statistical methods with clear data visualization, this approach not only aids in decision-making processes but also facilitates effective communication of enrollment trends to stakeholders. As the education landscape continues to evolve, such data-driven projections will play an increasingly vital role in shaping responsive and resilient educational systems.
-
-###### References
-
-::: {#refs}
-:::
