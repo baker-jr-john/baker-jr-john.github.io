@@ -192,7 +192,7 @@ The code includes robust error handling that first checks if the API key was fou
 
 The use of `if __name__ == "__main__":` is a standard Python convention that allows the script to be run directly or imported as a module into a larger application.
 
-I've chosen `gpt-4o-mini` as the default model for several important reasons. It's cost-effective, which is crucial for educational projects where budget constraints are a concern. You want to maximize experimentation within limited resources. `gpt-4o-mini` offers excellent performance across reasoning, instruction-following, and code-generation tasks while being efficient. By using this modern model, you're leveraging current technology, which demonstrates good practice in educational technology.
+I've chosen `gpt-4o-mini` as the default model for several important reasons. It's cost-effective, which is crucial for educational projects where budget constraints are a concern; you want to maximize experimentation within limited resources. `gpt-4o-mini` offers excellent performance across reasoning, instruction-following, and code-generation tasks while being efficient. By using this modern model, you're leveraging current technology, which demonstrates good practice in educational technology.
 :::
 
 ## Troubleshooting Common Issues
