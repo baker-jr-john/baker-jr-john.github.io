@@ -43,3 +43,4 @@ format:
     link-external-icon: false
     link-external-newwindow: true
     link-external-filter: '^(?:http:|https:)\/\/(?:www\.)?johnbaker\.io(?:\/|$)'
+    axe: true
