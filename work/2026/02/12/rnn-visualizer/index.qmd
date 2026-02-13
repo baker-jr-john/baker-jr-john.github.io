@@ -1,0 +1,65 @@
+---
+title: "From Confusion to Clarity: Building an RNN Visualizer"
+description: "How building an interactive web tool taught me more about Recurrent Neural Networks"
+date: 02-12-2026
+categories: [Deep Learning, Data Visualization, Projects, Learning and Education]
+image: images/Gemini_Generated_Image_xkvop8xkvop8xkvo
+draft: false
+execute:
+  eval: false
+comments:
+  giscus:
+    repo: baker-jr-john/baker-jr-john.github.io
+---
+
+# Building an Interactive RNN Visualizer: When Confusion Becomes Clarity
+
+I've been taking a deep learning course at Penn's Graduate School of Education this semester, and last week we covered Recurrent Neural Networks (RNNs). If you've ever tried to learn about neural networks, you know the feeling: the slides make sense in the moment, the professor's explanation sounds logical, but when you try to work through an example yourself, everything falls apart.
+
+That was me after class. I understood *conceptually* that RNNs process sequences by maintaining hidden states that get updated at each time step. But what was actually happening inside those calculations? How did the numbers flow through the network?
+
+## Finding a Way In
+
+I found [this brilliant article](https://www.byhand.ai/p/2-can-you-calculate-an-rnn-by-hand) by Professor Tom Yeh that walks through RNN calculations by hand—no code, no libraries, just the raw math. It was exactly what I needed. But I'm a hands-on learner, so I did what I always do when trying to understand something: I opened a spreadsheet.
+
+I translated his example into [Google Sheets](https://docs.google.com/spreadsheets/d/1Osy5jliDIYKxAtdqJajdxJZheJBcH4y3AHah7U5S-gs/edit?usp=sharing), cell by cell. Input values here, weights there, formulas connecting them. When I changed an input and watched the hidden states ripple through four time steps, something clicked. The RNN wasn't just an abstract concept anymore—it was a machine I could see working.
+
+## From Spreadsheet to Interactive Tool
+
+But spreadsheets have their limitations. You can't easily see *why* a particular value is what it is. You can't trace the dependencies visually.
+
+So I built something better: an [interactive web-based visualizer](https://johnbaker.io/rnn-visualizer).
+
+The tool mimics a spreadsheet interface (Google Sheets colors and all), but adds interactivity that makes the learning experience fundamentally different:
+
+- **Click any input or weight** to change it, and watch the entire network recalculate in real-time
+- **Click any hidden state or output** to see exactly which values contribute to it, with colored arrows showing the data flow
+- **View step-by-step arithmetic** for any calculation, with color-coding that shows which numbers come from inputs (orange), weights (yellow), or previous states (green)
+
+It's a single HTML file—no build process, no dependencies, just open it in a browser and start exploring.
+
+## Why Interactive Visualization Matters
+
+Here's what I learned building this: **understanding doesn't come from reading formulas or watching animations. It comes from playing.**
+
+When you can change an input value and immediately see how it propagates through the network, you develop intuition. When you can click on an output and trace backward to see exactly which three terms combined to produce it, the abstraction dissolves. You're not learning *about* RNNs anymore—you're learning *by doing* them.
+
+Interactive visualization is especially valuable for RNNs because their key property—maintaining state across time steps—is inherently sequential. You need to see how h₁ and h₂ at time step 1 feed into the calculation at time step 2, which feeds into time step 3, and so on. Static diagrams can show this, but they can't let you explore it.
+
+## The Building Process
+
+The technical implementation was surprisingly straightforward:
+1. Plain JavaScript (no framework needed)
+2. CSS Grid for the spreadsheet layout
+3. SVG for drawing the curved dependency arrows
+4. Contenteditable divs for inline editing
+
+The hardest part wasn't the code—it was the design. How do you show complex dependencies without overwhelming someone? How do you make the interaction obvious without adding clutter? I went through several iterations before landing on the current approach: subtle color hints, hidden-by-default calculation panels, and arrows that only appear when you need them.
+
+## What This Taught Me
+
+Building this tool taught me more about RNNs than any lecture could have. Not because lectures are bad, but because the act of *building* forced me to understand every detail. I couldn't fake it. Every formula had to work. Every edge case had to be handled.
+
+And now that it's built, I hope it helps others the same way Professor Yeh's article helped me. Learning is weird—sometimes you need to build the tool that would have helped you learn the thing you just learned by building the tool.
+
+If you're learning about RNNs, [try it out](https://johnbaker.io/rnn-visualizer), click around. Break things. Change the weights to ridiculous values and see what happens. That's how understanding happens.
