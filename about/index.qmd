@@ -12,6 +12,7 @@ about:
     - icon: github
       text: GitHub
       href: https://github.com/baker-jr-john
+      target: _blank
 ---
 
 I'm a data scientist who bridges the gap between K–12 schools and cutting-edge AI research. For the past three years, I've worked directly with educators across multiple districts, turning enrollment projections, student outcomes, and state reporting requirements into insights that actually help teachers focus on their students. Now, I'm bringing that practical grounding into research that matters. One of my aims is to build fairer, smarter early warning systems that can identify struggling students before they fall behind.
