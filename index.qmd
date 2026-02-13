@@ -2,6 +2,6 @@
 pagetitle: "Welcome!"
 ---
 <h1>Hi, I'm <span class="gradient_text">John Baker</span>. 👋 </h1>
-<p>I work with teachers and school administrators to make sense of their data—from enrollment projections to student outcomes. My job is turning numbers into insights that help educators focus on what matters most: their students.</p>
+<p>I'm a data scientist who bridges the gap between K–12 schools and cutting-edge AI research. I've spent three years turning school data into insights that help educators focus on their students—and now I'm building the next generation of fair, effective early warning systems.</p>
 <p><a href="about" title="Learn More"><button type="button" class="btn btn-primary btn-lg">Learn More</button></a></p>
 

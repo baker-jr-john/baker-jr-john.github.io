@@ -2,7 +2,9 @@
 title: "Contact"
 ---
 
-Feel free to reach out! I'd love to hear from you.
+I'd love to hear from you! Use this form to reach out about speaking engagements, workshops, collaborations, or just to say hello.
+
+I also welcome feedback. If my work has been helpful or if you have ideas for how I can improve it, I'd genuinely appreciate hearing from you.
 
 <!-- source: https://github.com/mccarthy-m-g/tidytales/blob/main/about/index.qmd#L24-L46 -->
 

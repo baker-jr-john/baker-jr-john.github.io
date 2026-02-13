@@ -11,7 +11,7 @@
     "href": "license.html",
     "title": "John Baker",
     "section": "",
-    "text": "MIT License\nCopyright © 2025 John Richard Baker Jr.\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”) to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright and permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n Back to top"
+    "text": "MIT License\nCopyright © 2026 John Richard Baker Jr.\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”) to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright and permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n Back to top"
   },
   {
     "objectID": "work/2021/07/02/biodiversity/index.html",
@@ -144,7 +144,7 @@
     "href": "about/index.html",
     "title": "About",
     "section": "",
-    "text": "I’m a Hudson Valley resident, but I was born and raised in Philadelphia. I live with my wife, son, two dogs, and two cats. I enjoy spending time with my friends and family, experiencing music and food, and playing board and video games (❤️ Nintendo).\nI’m a data scientist specializing in K–12 education. I love working in this field because I get to use data and technology to help students succeed while making life easier for the teachers and administrators who support them every day. My biggest passion is building systems that improve student outcomes fairly—without the algorithmic bias that can creep into educational technology.\nI graduated from the State University of New York at New Paltz in 2024 with a Bachelor of Science in Business Analytics. I’m currently pursuing a Master of Science in Education in Learning Analytics and Artificial Intelligence at the University of Pennsylvania Graduate School of Education. The program focuses on utilizing machine learning and AI to develop smarter, more adaptive learning technologies that can identify struggling students early and provide them with support before they fall behind. For my capstone project, I’m developing an early warning system that does precisely that, with a strong emphasis on fairness metrics to ensure it works equitably for all students.\nIf any of this sounds cool or interesting to you, I’d love to hear from you!\n\n\n Back to top"
+    "text": "I’m a data scientist who bridges the gap between K–12 schools and cutting-edge AI research. For the past three years, I’ve worked directly with educators across multiple districts, turning enrollment projections, student outcomes, and state reporting requirements into insights that actually help teachers focus on their students. Now, I’m bringing that practical grounding into research that matters. One of my aims is to build fairer, smarter early warning systems that can identify struggling students before they fall behind.\nI’m currently finishing my Master of Science in Learning Analytics and Artificial Intelligence at the University of Pennsylvania Graduate School of Education (expected May 2026), where my capstone develops a bias-aware early warning system using LSTM networks. The technical work excites me—deep learning, transformer models, statistical modeling—but what drives me is ensuring these tools work equitably for all students. Too often, educational technology—across K–12 and higher education—reinforces the same inequities it claims to solve.\nOriginally from Philadelphia, I now live in the Hudson Valley with my wife, son, two dogs, three cats, an ever-growing collection of video games (❤️ Nintendo), and board games. If any of this sounds cool or interesting to you, I’d love to hear from you!\n\n\n Back to top"
   },
   {
     "objectID": "privacy/index.html",
@@ -158,14 +158,14 @@
     "href": "contact/index.html",
     "title": "Contact",
     "section": "",
-    "text": "Feel free to reach out! I’d love to hear from you.\n\n\n\n\nFull Name \n\n\nEmail Address \n\n\nMessage\n\n\n\nSend Message\n\n\n\n\n\n\n\n Back to top"
+    "text": "I’d love to hear from you! Use this form to reach out about speaking engagements, workshops, collaborations, or just to say hello.\nI also welcome feedback. If my work has been helpful or if you have ideas for how I can improve it, I’d genuinely appreciate hearing from you.\n\n\n\n\nFull Name \n\n\nEmail Address \n\n\nMessage\n\n\n\nSend Message\n\n\n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "\nHi, I’m John Baker. 👋\n",
     "section": "",
-    "text": "Hi, I’m John Baker. 👋\n\n\nI work with teachers and school administrators to make sense of their data—from enrollment projections to student outcomes. My job is turning numbers into insights that help educators focus on what matters most: their students.\n\n\nLearn More\n\n\n\n\n Back to top"
+    "text": "Hi, I’m John Baker. 👋\n\n\nI’m a data scientist who bridges the gap between K–12 schools and cutting-edge AI research. I’ve spent three years turning school data into insights that help educators focus on their students—and now I’m building the next generation of fair, effective early warning systems.\n\n\nLearn More\n\n\n\n\n Back to top"
   },
   {
     "objectID": "work/2024/04/26/garden/index.html",
