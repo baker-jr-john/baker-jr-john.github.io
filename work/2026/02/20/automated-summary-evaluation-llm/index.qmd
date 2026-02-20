@@ -1,7 +1,7 @@
 ---
 title: "From Red Pens to Real-Time Feedback: Building an AI-Powered Summary Evaluator for Middle Schoolers"
 description: "How a graduate research project became a working prototype, and what comes next"
-date: 02-19-2026
+date: 02-20-2026
 categories: [automated essay scoring, AI feedback for students, LLMs in education, formative feedback, EdTech]
 bibliography: bibliography/bib.bib
 csl: styles/apa.csl
@@ -70,7 +70,7 @@ There was a second humbling finding: **my own ground truth scores had calibratio
 
 ## What's Coming Next
 
-The working prototype is a proof of concept. I wasn't able to implement several features I originally intended in time for a scheduled December 2025 demo, and the calibration finding shapes how I'm thinking about what to tackle first.
+The working prototype is a proof of concept. I wasn't able to implement several features I originally intended in time for a scheduled December 2025 demo, and the calibration finding shapes how I'm thinking about what to tackle next.
 
 ### The Methodological Fix: Working with an Expert Rater
 
