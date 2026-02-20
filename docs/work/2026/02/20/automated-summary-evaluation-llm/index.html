@@ -1,2 +1,955 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"></html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-02-19">
+<meta name="description" content="The Digital Garden of John Baker">
+
+<title>From Red Pens to Real-Time Feedback: Building an AI-Powered Summary Evaluator for Middle Schoolers – John Baker</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../../site_libs/bootstrap/bootstrap-649ba15ef36a53236a9e00c13821bd70.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../site_libs/bootstrap/bootstrap-dark-42f38b1f6451ed18848f5ad0ed4b3878.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../../../site_libs/bootstrap/bootstrap-649ba15ef36a53236a9e00c13821bd70.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../../../index.html">
+    <span class="navbar-title">John Baker</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../about/index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../work/index.html"> 
+<span class="menu-text">Work</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../contact/index.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-problem-51-seconds-to-give-feedback-that-actually-matters" id="toc-the-problem-51-seconds-to-give-feedback-that-actually-matters" class="nav-link active" data-scroll-target="#the-problem-51-seconds-to-give-feedback-that-actually-matters">The Problem: 51 Seconds to Give Feedback That Actually Matters</a></li>
+  <li><a href="#the-idea-immediate-rubric-aligned-formative-feedback" id="toc-the-idea-immediate-rubric-aligned-formative-feedback" class="nav-link" data-scroll-target="#the-idea-immediate-rubric-aligned-formative-feedback">The Idea: Immediate, Rubric-Aligned Formative Feedback</a></li>
+  <li><a href="#what-i-built" id="toc-what-i-built" class="nav-link" data-scroll-target="#what-i-built">What I Built</a></li>
+  <li><a href="#validation-results-what-worked-and-what-didnt" id="toc-validation-results-what-worked-and-what-didnt" class="nav-link" data-scroll-target="#validation-results-what-worked-and-what-didnt">Validation Results: What Worked and What Didn’t</a></li>
+  <li><a href="#the-most-honest-finding-the-model-hallucinated-and-so-did-i" id="toc-the-most-honest-finding-the-model-hallucinated-and-so-did-i" class="nav-link" data-scroll-target="#the-most-honest-finding-the-model-hallucinated-and-so-did-i">The Most Honest Finding: The Model Hallucinated, and So Did I</a></li>
+  <li><a href="#whats-coming-next" id="toc-whats-coming-next" class="nav-link" data-scroll-target="#whats-coming-next">What’s Coming Next</a>
+  <ul class="collapse">
+  <li><a href="#the-methodological-fix-working-with-an-expert-rater" id="toc-the-methodological-fix-working-with-an-expert-rater" class="nav-link" data-scroll-target="#the-methodological-fix-working-with-an-expert-rater">The Methodological Fix: Working with an Expert Rater</a></li>
+  <li><a href="#rag-based-exemplar-retrieval" id="toc-rag-based-exemplar-retrieval" class="nav-link" data-scroll-target="#rag-based-exemplar-retrieval">RAG-based exemplar retrieval</a></li>
+  <li><a href="#instructor-facing-dashboard" id="toc-instructor-facing-dashboard" class="nav-link" data-scroll-target="#instructor-facing-dashboard">Instructor-facing dashboard</a></li>
+  </ul></li>
+  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">Why This Matters</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">From Red Pens to Real-Time Feedback: Building an AI-Powered Summary Evaluator for Middle Schoolers</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">automated essay scoring</div>
+    <div class="quarto-category">AI feedback for students</div>
+    <div class="quarto-category">LLMs in education</div>
+    <div class="quarto-category">formative feedback</div>
+    <div class="quarto-category">EdTech</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    How a graduate research project became a working prototype, and what comes next
+  </div>
+</div>
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 19, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="the-problem-51-seconds-to-give-feedback-that-actually-matters" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-51-seconds-to-give-feedback-that-actually-matters">The Problem: 51 Seconds to Give Feedback That Actually Matters</h2>
+<p>Here are a couple of numbers that should give every educator pause: 51 and 82. According to data from the <a href="https://fs24.formsite.com/edweek/images/WP-Merrimack_College-Todays_Teachers_Are_Deeply_Disillusioned_Survey_Data_Confirms.pdf">EdWeek Research Center</a> and the <a href="https://nces.ed.gov/surveys/ntps/estable/table/ntps/ntps2021_sflt07_t1s">National Center for Education Statistics</a>, that’s the average time a middle school teacher has to evaluate a single student assignment when you account for class sizes, planning periods, and the sheer volume of written work collected each week—<strong>51 to 82 seconds</strong>.</p>
+<p>The consequences of that constraint compound quickly. Feedback arrives days after students submitted their work. By then, they’ve mentally moved on. The assignment is returned, glanced at, and forgotten, which means the entire pedagogical purpose of feedback—helping students understand and correct their thinking in real time—is largely lost.</p>
+<p>In one of my graduate classes focusing on large language model applications in education, I decided to take that problem seriously and see whether a locally run large language model could help close the gap.</p>
+</section>
+<section id="the-idea-immediate-rubric-aligned-formative-feedback" class="level2">
+<h2 class="anchored" data-anchor-id="the-idea-immediate-rubric-aligned-formative-feedback">The Idea: Immediate, Rubric-Aligned Formative Feedback</h2>
+<p>The core concept is straightforward: build a system that evaluates middle school students’ informational text summaries across four dimensions—<strong>Completeness, Accuracy, Coherence, and Conciseness</strong>—and delivers actionable feedback within roughly 30 seconds of submission.</p>
+<p>These four dimensions aren’t arbitrary. They’re drawn directly from Common Core Standards for grades 6–8 and represent the key skills teachers are already expected to assess when students summarize informational texts <span class="citation" data-cites="hashemi2024llm wei2025concept">(<a href="#ref-hashemi2024llm" role="doc-biblioref">Hashemi et al., 2024</a>; <a href="#ref-wei2025concept" role="doc-biblioref">Wei et al., 2025</a>)</span>. The idea was to build something that speaks the language teachers already use.</p>
+<p>Critically, the system is designed for <strong>formative feedback only.</strong> The AI doesn’t assign final grades. Teachers remain in authority. The goal is to support the kind of low-stakes, iterative revision cycle that students rarely get—“Here’s where your summary falls short, here’s why, now try again”—before the teacher ever picks up a red pen.</p>
+</section>
+<section id="what-i-built" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-built">What I Built</h2>
+<p>The working prototype runs <a href="https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct">Meta’s Llama 3.2 3B Instruct</a> with a <a href="https://www.gradio.app/">Gradio web interface</a> that students can use directly. The app is live on <a href="https://huggingface.co/spaces/jbaker1/auto-rubric-evaluator">Hugging Face Spaces</a>.</p>
+<p>The technical pipeline works like this:</p>
+<ol type="1">
+<li>A student reads <em>The Challenge of Exploring Venus</em>, a grade-appropriate informational article about space exploration drawn from the <a href="https://www.kaggle.com/datasets/lburleigh/asap-2-0">ASAP 2.0 dataset</a> and already loaded into the app, then pastes their summary into the interface.</li>
+<li>A <strong>Chain-of-Thought prompt</strong> instructs the model to reason through each rubric dimension explicitly before assigning a score.</li>
+<li>The model returns a score (1–4) and a detailed written explanation for each dimension.</li>
+<li>The student receives both scores and feedback within seconds.</li>
+</ol>
+<p>Chain-of-Thought prompting was a deliberate choice. Rather than just outputting a number, forcing the model to “think out loud” makes the reasoning auditable. Teachers can review why the model scored the way it did, which is essential for building trust and catching errors before they reach students.</p>
+</section>
+<section id="validation-results-what-worked-and-what-didnt" class="level2">
+<h2 class="anchored" data-anchor-id="validation-results-what-worked-and-what-didnt">Validation Results: What Worked and What Didn’t</h2>
+<p>I built my original prototype using <a href="https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct">Llama 3.1 8B Instruct</a>. However, I had to change the model to get the app working on Hugging Face Spaces. I validated the system that used Llama 3.1 8B Instruct against 37 authentic student summaries drawn from the <a href="https://www.kaggle.com/datasets/lburleigh/asap-2-0">ASAP 2.0 dataset</a>, along with 23 synthetically generated summaries created using a separate <a href="https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/">OpenAI GPT-4o mini</a> instance with controlled prompting.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Result</th>
+<th>Target</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exact Agreement</td>
+<td>42%</td>
+<td>≥ 60%</td>
+<td>Did not meet</td>
+</tr>
+<tr class="even">
+<td>Adjacent Agreement</td>
+<td>88%</td>
+<td>≥ 85%</td>
+<td>Met</td>
+</tr>
+<tr class="odd">
+<td>Cohen’s Kappa</td>
+<td>0.141</td>
+<td>≥ 0.65</td>
+<td>Did not meet</td>
+</tr>
+<tr class="even">
+<td>Quadratic Weighted Kappa</td>
+<td>0.402</td>
+<td>≥ 0.60</td>
+<td>Did not meet</td>
+</tr>
+</tbody>
+</table>
+<p>The 88% adjacent agreement figure is the one I lean on most. For a formative feedback tool, a score that lands within one point of an expert rater’s judgment, 88% of the time is meaningful; the system is getting the direction right (this summary needs more detail; this one is too wordy) even when it doesn’t nail the exact score. Exact Agreement and Cohen’s Kappa tell a harder story, and they point toward the most important limitation I uncovered.</p>
+</section>
+<section id="the-most-honest-finding-the-model-hallucinated-and-so-did-i" class="level2">
+<h2 class="anchored" data-anchor-id="the-most-honest-finding-the-model-hallucinated-and-so-did-i">The Most Honest Finding: The Model Hallucinated, and So Did I</h2>
+<p>One of the most valuable moments of this project wasn’t a success. It was watching the model confidently state that <strong>Venus is the third planet from the Sun.</strong> For the record, it isn’t; Venus is the second.</p>
+<p>That kind of hallucination isn’t a prompt engineering problem. It’s a fundamental characteristic of smaller models. An eight (or three) billion parameter model doesn’t have the factual knowledge density of the modern foundational models from OpenAI, Google, Anthropic, etc., and no amount of carefully-crafted instructions will reliably compensate for that. For an <strong>Accuracy</strong> dimension that requires the model to compare a student’s claims against a source text, this is a material limitation. A student could write something factually incorrect, the model could “agree” because it shares the same misconception, and the student would receive misleading feedback.</p>
+<p>Discovering this wasn’t discouraging; it was clarifying. Knowing the failure mode precisely is how you design around it.</p>
+<p>There was a second humbling finding: <strong>my own ground truth scores had calibration issues.</strong> Partway through validation, I realized my initial human-rater scores were inconsistent across sessions. Before you can trust an AI to agree with a human, the human has to agree with themselves. Rater drift is a known challenge in educational assessment, and finding it in my own data reinforced something the field has known for decades: rubric-based assessment is harder than it looks <span class="citation" data-cites="casabianca2015trends sgammato2018performance">(<a href="#ref-casabianca2015trends" role="doc-biblioref">Casabianca et al., 2015</a>; <a href="#ref-sgammato2018performance" role="doc-biblioref">Sgammato &amp; Donoghue, 2018</a>)</span>.</p>
+</section>
+<section id="whats-coming-next" class="level2">
+<h2 class="anchored" data-anchor-id="whats-coming-next">What’s Coming Next</h2>
+<p>The working prototype is a proof of concept. I wasn’t able to implement several features I originally intended in time for a scheduled December 2025 demo, and the calibration finding shapes how I’m thinking about what to tackle first.</p>
+<section id="the-methodological-fix-working-with-an-expert-rater" class="level3">
+<h3 class="anchored" data-anchor-id="the-methodological-fix-working-with-an-expert-rater">The Methodological Fix: Working with an Expert Rater</h3>
+<p>Before the system can be meaningfully evaluated against human judgment, the human judgment itself needs to be more reliable. I originally had a collaborative approach in mind, which would address this directly: a dual-researcher design pairing my technical work with a practicing middle school ELA teacher who has direct classroom experience teaching summary writing. A structured calibration session using the rubric’s behavioral anchors, followed by independent scoring, would replace my single-rater approach and produce the inter-rater reliability data that makes the validation metrics interpretable. The Cohen’s Kappa target of ≥0.65 only means something once both sides of the comparison are on solid ground. Working with an expert rater is the methodological fix the calibration finding calls for, and it’s also what the original design intended.</p>
+<p>With that foundation in place, two components become the primary near-term development focus. They’re closely related, and building them together makes more sense than treating them as separate items.</p>
+</section>
+<section id="rag-based-exemplar-retrieval" class="level3">
+<h3 class="anchored" data-anchor-id="rag-based-exemplar-retrieval">RAG-based exemplar retrieval</h3>
+<p>Retrieval-Augmented Generation (RAG) is a technique for giving an AI system access to a curated reference library at the moment of evaluation, rather than having it rely solely on what it absorbed during training <span class="citation" data-cites="henkel2024retrieval">(<a href="#ref-henkel2024retrieval" role="doc-biblioref">Henkel et al., 2024</a>)</span>. The current system skips this entirely, using the same small set of fixed examples in the prompt regardless of what a student wrote. The plan is to replace that with dynamic retrieval. For each rubric dimension, the system searches a library of scored exemplar summaries and pulls in the two or three that most closely resemble the student’s submission. Once those exemplars are scored by both researchers through the collaborative validation process, rather than a single rater, this kind of targeted retrieval should improve consistency across dimensions and directly reduce the Accuracy hallucination risk. The model would compare student claims against source-text pairs that expert raters have already evaluated, not reasoning from general knowledge. RAG-based exemplar retrieval is the component with the clearest path from the current prototype to more reliable formative feedback.</p>
+</section>
+<section id="instructor-facing-dashboard" class="level3">
+<h3 class="anchored" data-anchor-id="instructor-facing-dashboard">Instructor-facing dashboard</h3>
+<p>My plan specified a <a href="https://streamlit.io/">Streamlit-based</a> dashboard that displays class-wide analytics, tracks individual student progress, flags AI evaluations below a 0.7 confidence threshold for priority human review, and enables instructors to modify scores before release, with corrections logged for future refinement. Right now, there’s the student-facing interface and nothing else—no visibility into submissions, no override mechanism, no way for teachers to exercise the human oversight the system is designed around. The teacher-facing dashboard would transform a technical proof of concept into something educators can actually use. Critically, it can be built and tested against the validation dataset without requiring classroom access. The instructor correction log could also feed directly back into the exemplar library, which would allow the RAG component to improve over time.</p>
+<p>These two components reinforce each other in a cycle: expert-calibrated exemplars improve retrieval quality; the dashboard gives instructors a workflow for logging corrections; those corrections grow the exemplar library. Getting both working together is the phase of development that will most directly increase the system’s practical value for educators.</p>
+<p>As the project matures, more features will follow in sequence: integrating confidence scoring into the evaluation output, adding a database persistence layer to replace in-session storage, building a FERPA-compliant de-identification pipeline for real student data, and running an equity audit against the ASAP 2.0 demographic metadata. A classroom pilot—the only way to find out whether iterative AI feedback actually improves student writing—would be the final phase of development and requires all of the above to be in place first.</p>
+</section>
+</section>
+<section id="why-this-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h2>
+<p>A system like this wouldn’t replace teachers; it can’t, and it shouldn’t. What it can do is compress the feedback loop from days to seconds for the routine, lower-stakes formative assessment that most students never get enough of. Teachers already spend enormous cognitive energy doing initial evaluations that could support revision cycles, but rarely do because returning papers takes too long, and students have moved on by then.</p>
+<p>An AI that handles the first pass—even imperfectly—changes the dynamics. Students get direction while the work is still fresh. Teachers receive a pre-populated starting point that reflects genuine rubric reasoning, not a black-box score. The model’s errors are visible and auditable, which means the human oversight layer isn’t ceremonial; it’s functional.</p>
+<p>The hallucination problem is real. The calibration challenges are real. The gap between 88% adjacent agreement and production-ready reliability is real. Nevertheless, this prototype demonstrates that the core idea is technically viable, and it points toward exactly what needs to happen next to make it educationally valuable at scale.</p>
+<hr>
+<p><em>The app is live through <a href="https://huggingface.co/spaces/jbaker1/auto-rubric-evaluator">Hugging Face Spaces</a>, and the code repository is at <a href="https://github.com/baker-jr-john/automated-summary-evaluation-llm">GitHub</a>.</em></p>
+
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-casabianca2015trends" class="csl-entry" role="listitem">
+Casabianca, J. M., Lockwood, J., &amp; McCaffrey, D. F. (2015). Trends in classroom observation scores. <em>Educational and Psychological Measurement</em>, <em>75</em>(2), 311–337.
+</div>
+<div id="ref-EdWeek2022Merrimack" class="csl-entry" role="listitem">
+EdWeek Research Center. (2022). <em>1st annual merrimack college teacher survey: 2022 results</em> [Research Report]. Merrimack College, Winston School of Education; Social Policy.
+</div>
+<div id="ref-hashemi2024llm" class="csl-entry" role="listitem">
+Hashemi, H., Eisner, J., Rosset, C., Van Durme, B., &amp; Kedzie, C. (2024). Llm-rubric: A multidimensional, calibrated approach to automated evaluation of natural language texts. <em>Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</em>, 13806–13834.
+</div>
+<div id="ref-henkel2024retrieval" class="csl-entry" role="listitem">
+Henkel, O., Levoninan, Z., Postle, M.-E., &amp; Li, C. (2024). Retrieval-augmented generation to improve math question-answering: Trade-offs between groundedness and human preference. <em>International Educational Data Mining Society</em>.
+</div>
+<div id="ref-NCES2021ClassSize" class="csl-entry" role="listitem">
+National Center for Education Statistics. (2022). <em>Average class size in public k–12 schools, by school level, class type, and state: 2020–21</em>. U.S. Department of Education, National Teacher and Principal Survey (NTPS). <a href="https://nces.ed.gov/surveys/ntps/estable/table/ntps/ntps2021_sflt07_t1s">https://nces.ed.gov/surveys/ntps/estable/table/ntps/ntps2021_sflt07_t1s</a>
+</div>
+<div id="ref-sgammato2018performance" class="csl-entry" role="listitem">
+Sgammato, A., &amp; Donoghue, J. R. (2018). On the performance of the marginal homogeneity test to detect rater drift. <em>Applied Psychological Measurement</em>, <em>42</em>(4), 307–320.
+</div>
+<div id="ref-wei2025concept" class="csl-entry" role="listitem">
+Wei, Y., Pearl, D., Beckman, M., &amp; Passonneau, R. J. (2025). Concept-based rubrics improve LLM formative assessment and data synthesis. <em>arXiv Preprint arXiv:2504.03877</em>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("^(?:http:|https:)\/\/(?:www\.)?johnbaker\.io(?:\/|$)");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "baker-jr-john/baker-jr-john.github.io";
+    script.dataset.repoId = "R_kgDOLWJ6nQ";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDOLWJ6nc4CfybW";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Made with <i class="fa-solid fa-heart" aria-label="heart"></i> and <a href="https://quarto.org/" target="_blank"><img src="https://quarto.org/quarto.png" class="img-fluid" width="65" alt="Quarto"></a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/baker-jr-john/mywebsite.git" target="_blank"><i class="fa-brands fa-github" aria-label="github"></i></a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

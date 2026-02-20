@@ -8,7 +8,7 @@ csl: styles/apa.csl
 nocite: |
   @*
 image: images/Gemini_Generated_Image_9vl9mn9vl9mn9vl9.png
-draft: true
+draft: false
 execute:
   eval: false
 comments:
