@@ -1,0 +1,103 @@
+---
+title: "From Red Pens to Real-Time Feedback: Building an AI-Powered Summary Evaluator for Middle Schoolers"
+description: "How a graduate research project became a working prototype, and what comes next"
+date: 02-19-2026
+categories: [automated essay scoring, AI feedback for students, LLMs in education, formative feedback, EdTech]
+bibliography: bibliography/bib.bib
+csl: styles/apa.csl
+nocite: |
+  @*
+image: images/Gemini_Generated_Image_xkvop8xkvop8xkvo.png
+draft: true
+execute:
+  eval: false
+comments:
+  giscus:
+    repo: baker-jr-john/baker-jr-john.github.io
+---
+
+## The Problem: 51 Seconds to Give Feedback That Actually Matters
+
+Here are a couple of numbers that should give every educator pause: 51 and 82. According to data from the [EdWeek Research Center](https://fs24.formsite.com/edweek/images/WP-Merrimack_College-Todays_Teachers_Are_Deeply_Disillusioned_Survey_Data_Confirms.pdf) and the [National Center for Education Statistics](https://nces.ed.gov/surveys/ntps/estable/table/ntps/ntps2021_sflt07_t1s), that's the average time a middle school teacher has to evaluate a single student assignment when you account for class sizes, planning periods, and the sheer volume of written work collected each week—**51 to 82 seconds**.
+
+The consequences of that constraint compound quickly. Feedback arrives days after students submitted their work. By then, they've mentally moved on. The assignment is returned, glanced at, and forgotten, which means the entire pedagogical purpose of feedback—helping students understand and correct their thinking in real time—is largely lost.
+
+In one of my graduate classes focusing on large language model applications in education, I decided to take that problem seriously and see whether a locally run large language model could help close the gap.
+
+## The Idea: Immediate, Rubric-Aligned Formative Feedback
+
+The core concept is straightforward: build a system that evaluates middle school students' informational text summaries across four dimensions—**Completeness, Accuracy, Coherence, and Conciseness**—and delivers actionable feedback within roughly 30 seconds of submission.
+
+These four dimensions aren't arbitrary. They're drawn directly from Common Core Standards for grades 6–8 and represent the key skills teachers are already expected to assess when students summarize informational texts [@hashemi2024llm; @wei2025concept]. The idea was to build something that speaks the language teachers already use.
+
+Critically, the system is designed for **formative feedback only.** The AI doesn't assign final grades. Teachers remain in authority. The goal is to support the kind of low-stakes, iterative revision cycle that students rarely get—"Here's where your summary falls short, here's why, now try again"—before the teacher ever picks up a red pen.
+
+## What I Built
+
+The working prototype runs [Meta's Llama 3.2 3B Instruct](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct) with a [Gradio web interface](https://www.gradio.app/) that students can use directly. The app is live on [Hugging Face Spaces](https://huggingface.co/spaces/jbaker1/auto-rubric-evaluator).
+
+The technical pipeline works like this:
+
+1. A student reads *The Challenge of Exploring Venus*, a grade-appropriate informational article about space exploration drawn from the [ASAP 2.0 dataset](https://www.kaggle.com/datasets/lburleigh/asap-2-0) and already loaded into the app, then pastes their summary into the interface.
+2. A **Chain-of-Thought prompt** instructs the model to reason through each rubric dimension explicitly before assigning a score.
+3. The model returns a score (1–4) and a detailed written explanation for each dimension.
+4. The student receives both scores and feedback within seconds.
+
+Chain-of-Thought prompting was a deliberate choice. Rather than just outputting a number, forcing the model to "think out loud" makes the reasoning auditable. Teachers can review why the model scored the way it did, which is essential for building trust and catching errors before they reach students.
+
+## Validation Results: What Worked and What Didn't
+
+I built my original prototype using [Llama 3.1 8B Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct). However, I had to change the model to get the app working on Hugging Face Spaces. I validated the system that used Llama 3.1 8B Instruct against 37 authentic student summaries drawn from the [ASAP 2.0 dataset](https://www.kaggle.com/datasets/lburleigh/asap-2-0), along with 23 synthetically generated summaries created using a separate [OpenAI GPT-4o mini](https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/) instance with controlled prompting.
+
+| Metric | Result | Target | Status |
+|---|---|---|---|
+| Exact Agreement | 42% | ≥ 60% | Did not meet |
+| Adjacent Agreement | 88% | ≥ 85% | Met |
+| Cohen's Kappa | 0.141 | ≥ 0.65 | Did not meet |
+| Quadratic Weighted Kappa | 0.402 | ≥ 0.60 | Did not meet |
+
+The 88% adjacent agreement figure is the one I lean on most. For a formative feedback tool, a score that lands within one point of an expert rater's judgment, 88% of the time is meaningful; the system is getting the direction right (this summary needs more detail; this one is too wordy) even when it doesn't nail the exact score. Exact Agreement and Cohen's Kappa tell a harder story, and they point toward the most important limitation I uncovered.
+
+## The Most Honest Finding: The Model Hallucinated, and So Did I
+
+One of the most valuable moments of this project wasn't a success. It was watching the model confidently state that **Venus is the third planet from the Sun.** For the record, it isn't; Venus is the second.
+
+That kind of hallucination isn't a prompt engineering problem. It's a fundamental characteristic of smaller models. An eight (or three) billion parameter model doesn't have the factual knowledge density of the modern foundational models from OpenAI, Google, Anthropic, etc., and no amount of carefully-crafted instructions will reliably compensate for that. For an **Accuracy** dimension that requires the model to compare a student's claims against a source text, this is a material limitation. A student could write something factually incorrect, the model could "agree" because it shares the same misconception, and the student would receive misleading feedback.
+
+Discovering this wasn't discouraging; it was clarifying. Knowing the failure mode precisely is how you design around it.
+
+There was a second humbling finding: **my own ground truth scores had calibration issues.** Partway through validation, I realized my initial human-rater scores were inconsistent across sessions. Before you can trust an AI to agree with a human, the human has to agree with themselves. Rater drift is a known challenge in educational assessment, and finding it in my own data reinforced something the field has known for decades: rubric-based assessment is harder than it looks [@casabianca2015trends; @sgammato2018performance].
+
+## What's Coming Next
+
+The working prototype is a proof of concept. I wasn't able to implement several features I originally intended in time for a scheduled December 2025 demo, and the calibration finding shapes how I'm thinking about what to tackle first.
+
+### The Methodological Fix: Working with an Expert Rater
+
+Before the system can be meaningfully evaluated against human judgment, the human judgment itself needs to be more reliable. I originally had a collaborative approach in mind, which would address this directly: a dual-researcher design pairing my technical work with a practicing middle school ELA teacher who has direct classroom experience teaching summary writing. A structured calibration session using the rubric's behavioral anchors, followed by independent scoring, would replace my single-rater approach and produce the inter-rater reliability data that makes the validation metrics interpretable. The Cohen's Kappa target of ≥0.65 only means something once both sides of the comparison are on solid ground. Working with an expert rater is the methodological fix the calibration finding calls for, and it's also what the original design intended.
+
+With that foundation in place, two components become the primary near-term development focus. They're closely related, and building them together makes more sense than treating them as separate items.
+
+### RAG-based exemplar retrieval
+
+Retrieval-Augmented Generation (RAG) is a technique for giving an AI system access to a curated reference library at the moment of evaluation, rather than having it rely solely on what it absorbed during training [@henkel2024retrieval]. The current system skips this entirely, using the same small set of fixed examples in the prompt regardless of what a student wrote. The plan is to replace that with dynamic retrieval. For each rubric dimension, the system searches a library of scored exemplar summaries and pulls in the two or three that most closely resemble the student's submission. Once those exemplars are scored by both researchers through the collaborative validation process, rather than a single rater, this kind of targeted retrieval should improve consistency across dimensions and directly reduce the Accuracy hallucination risk. The model would compare student claims against source-text pairs that expert raters have already evaluated, not reasoning from general knowledge. RAG-based exemplar retrieval is the component with the clearest path from the current prototype to more reliable formative feedback.
+
+### Instructor-facing dashboard
+
+My plan specified a [Streamlit-based](https://streamlit.io/) dashboard that displays class-wide analytics, tracks individual student progress, flags AI evaluations below a 0.7 confidence threshold for priority human review, and enables instructors to modify scores before release, with corrections logged for future refinement. Right now, there's the student-facing interface and nothing else—no visibility into submissions, no override mechanism, no way for teachers to exercise the human oversight the system is designed around. The teacher-facing dashboard would transform a technical proof of concept into something educators can actually use. Critically, it can be built and tested against the validation dataset without requiring classroom access. The instructor correction log could also feed directly back into the exemplar library, which would allow the RAG component to improve over time.
+
+These two components reinforce each other in a cycle: expert-calibrated exemplars improve retrieval quality; the dashboard gives instructors a workflow for logging corrections; those corrections grow the exemplar library. Getting both working together is the phase of development that will most directly increase the system's practical value for educators.
+
+As the project matures, more features will follow in sequence: integrating confidence scoring into the evaluation output, adding a database persistence layer to replace in-session storage, building a FERPA-compliant de-identification pipeline for real student data, and running an equity audit against the ASAP 2.0 demographic metadata. A classroom pilot—the only way to find out whether iterative AI feedback actually improves student writing—would be the final phase of development and requires all of the above to be in place first.
+
+## Why This Matters
+
+A system like this wouldn't replace teachers; it can't, and it shouldn't. What it can do is compress the feedback loop from days to seconds for the routine, lower-stakes formative assessment that most students never get enough of. Teachers already spend enormous cognitive energy doing initial evaluations that could support revision cycles, but rarely do because returning papers takes too long, and students have moved on by then.
+
+An AI that handles the first pass—even imperfectly—changes the dynamics. Students get direction while the work is still fresh. Teachers receive a pre-populated starting point that reflects genuine rubric reasoning, not a black-box score. The model's errors are visible and auditable, which means the human oversight layer isn't ceremonial; it's functional.
+
+The hallucination problem is real. The calibration challenges are real. The gap between 88% adjacent agreement and production-ready reliability is real. Nevertheless, this prototype demonstrates that the core idea is technically viable, and it points toward exactly what needs to happen next to make it educationally valuable at scale.
+
+---
+
+*The app is live through [Hugging Face Spaces](https://huggingface.co/spaces/jbaker1/auto-rubric-evaluator), and the code repository is at [GitHub](https://github.com/baker-jr-john/automated-summary-evaluation-llm).*
