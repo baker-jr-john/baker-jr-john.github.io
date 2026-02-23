@@ -2,6 +2,7 @@
 title: "From Red Pens to Real-Time Feedback: Building an AI-Powered Summary Evaluator for Middle Schoolers"
 description: "How a graduate research project became a working prototype, and what comes next"
 date: 02-22-2026
+date-modified: 02-23-2026
 categories: [automated essay scoring, AI feedback for students, LLMs in education, formative feedback, EdTech]
 bibliography: bibliography/bib.bib
 csl: styles/apa.csl
@@ -62,7 +63,7 @@ The 88% adjacent agreement figure is the one I lean on most. For a formative fee
 
 One of the most valuable moments of this project wasn't a success. It was watching the model confidently state that **Venus is the third planet from the Sun.** For the record, it isn't; Venus is the second.
 
-That kind of hallucination isn't a prompt engineering problem. It's a fundamental characteristic of smaller models. An eight (or three) billion parameter model doesn't have the factual knowledge density of the modern foundational models from OpenAI, Google, Anthropic, etc., and no amount of carefully-crafted instructions will reliably compensate for that. For an **Accuracy** dimension that requires the model to compare a student's claims against a source text, this is a material limitation. A student could write something factually incorrect, the model could "agree" because it shares the same misconception, and the student would receive misleading feedback.
+That kind of hallucination isn't a prompt engineering problem. It's a fundamental characteristic of smaller models. An eight (or three) billion parameter model doesn't have the factual knowledge density of the modern foundational models from OpenAI, Google, Anthropic, etc., and no amount of carefully-crafted instructions will reliably compensate for that [@allen2024physics; @grattafiori2024llama]. For an **Accuracy** dimension that requires the model to compare a student's claims against a source text, this is a material limitation. A student could write something factually incorrect, the model could "agree" because it shares the same misconception, and the student would receive misleading feedback.
 
 Discovering this wasn't discouraging; it was clarifying. Knowing the failure mode precisely is how you design around it.
 

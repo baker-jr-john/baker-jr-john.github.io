@@ -349,6 +349,12 @@ div.csl-indent {
     </div>
   </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">February 23, 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -425,7 +431,7 @@ div.csl-indent {
 <section id="the-most-honest-finding-the-model-hallucinated-and-so-did-i" class="level2">
 <h2 class="anchored" data-anchor-id="the-most-honest-finding-the-model-hallucinated-and-so-did-i">The Most Honest Finding: The Model Hallucinated, and So Did I</h2>
 <p>One of the most valuable moments of this project wasn’t a success. It was watching the model confidently state that <strong>Venus is the third planet from the Sun.</strong> For the record, it isn’t; Venus is the second.</p>
-<p>That kind of hallucination isn’t a prompt engineering problem. It’s a fundamental characteristic of smaller models. An eight (or three) billion parameter model doesn’t have the factual knowledge density of the modern foundational models from OpenAI, Google, Anthropic, etc., and no amount of carefully-crafted instructions will reliably compensate for that. For an <strong>Accuracy</strong> dimension that requires the model to compare a student’s claims against a source text, this is a material limitation. A student could write something factually incorrect, the model could “agree” because it shares the same misconception, and the student would receive misleading feedback.</p>
+<p>That kind of hallucination isn’t a prompt engineering problem. It’s a fundamental characteristic of smaller models. An eight (or three) billion parameter model doesn’t have the factual knowledge density of the modern foundational models from OpenAI, Google, Anthropic, etc., and no amount of carefully-crafted instructions will reliably compensate for that <span class="citation" data-cites="allen2024physics grattafiori2024llama">(<a href="#ref-allen2024physics" role="doc-biblioref">Allen-Zhu &amp; Li, 2024</a>; <a href="#ref-grattafiori2024llama" role="doc-biblioref">Grattafiori et al., 2024</a>)</span>. For an <strong>Accuracy</strong> dimension that requires the model to compare a student’s claims against a source text, this is a material limitation. A student could write something factually incorrect, the model could “agree” because it shares the same misconception, and the student would receive misleading feedback.</p>
 <p>Discovering this wasn’t discouraging; it was clarifying. Knowing the failure mode precisely is how you design around it.</p>
 <p>There was a second humbling finding: <strong>my own ground truth scores had calibration issues.</strong> Partway through validation, I realized my initial human-rater scores were inconsistent across sessions. Before you can trust an AI to agree with a human, the human has to agree with themselves. Rater drift is a known challenge in educational assessment, and finding it in my own data reinforced something the field has known for decades: rubric-based assessment is harder than it looks <span class="citation" data-cites="casabianca2015trends sgammato2018performance">(<a href="#ref-casabianca2015trends" role="doc-biblioref">Casabianca et al., 2015</a>; <a href="#ref-sgammato2018performance" role="doc-biblioref">Sgammato &amp; Donoghue, 2018</a>)</span>.</p>
 </section>
@@ -461,11 +467,17 @@ div.csl-indent {
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-allen2024physics" class="csl-entry" role="listitem">
+Allen-Zhu, Z., &amp; Li, Y. (2024). Physics of language models: Part 3.3, knowledge capacity scaling laws. <em>arXiv Preprint arXiv:2404.05405</em>.
+</div>
 <div id="ref-casabianca2015trends" class="csl-entry" role="listitem">
 Casabianca, J. M., Lockwood, J., &amp; McCaffrey, D. F. (2015). Trends in classroom observation scores. <em>Educational and Psychological Measurement</em>, <em>75</em>(2), 311–337.
 </div>
 <div id="ref-EdWeek2022Merrimack" class="csl-entry" role="listitem">
 EdWeek Research Center. (2022). <em>1st annual merrimack college teacher survey: 2022 results</em> [Research Report]. Merrimack College, Winston School of Education; Social Policy.
+</div>
+<div id="ref-grattafiori2024llama" class="csl-entry" role="listitem">
+Grattafiori, A., Dubey, A., Jauhri, A., Pandey, A., Kadian, A., Al-Dahle, A., Letman, A., Mathur, A., Schelten, A., Vaughan, A., et al. (2024). The llama 3 herd of models. <em>arXiv Preprint arXiv:2407.21783</em>.
 </div>
 <div id="ref-hashemi2024llm" class="csl-entry" role="listitem">
 Hashemi, H., Eisner, J., Rosset, C., Van Durme, B., &amp; Kedzie, C. (2024). Llm-rubric: A multidimensional, calibrated approach to automated evaluation of natural language texts. <em>Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</em>, 13806–13834.
