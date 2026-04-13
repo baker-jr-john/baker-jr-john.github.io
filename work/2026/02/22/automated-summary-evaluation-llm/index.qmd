@@ -2,7 +2,7 @@
 title: "From Red Pens to Real-Time Feedback: Building an AI-Powered Summary Evaluator for Middle Schoolers"
 description: "How a graduate research project became a working prototype, and what comes next"
 date: 02-22-2026
-date-modified: 02-23-2026
+date-modified: 04-12-2026
 categories: [automated essay scoring, AI feedback for students, LLMs in education, formative feedback, EdTech]
 bibliography: bibliography/bib.bib
 csl: styles/apa.csl
@@ -35,7 +35,7 @@ Critically, the system is designed for **formative feedback only.** The AI doesn
 
 ## What I Built
 
-The working prototype runs [Meta's Llama 3.2 3B Instruct](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct) with a [Gradio web interface](https://www.gradio.app/) that students can use directly. The app is live on [Hugging Face Spaces](https://huggingface.co/spaces/jbaker1/auto-rubric-evaluator).
+The working prototype runs [Meta's Llama 3.1 8B Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) with a [Gradio web interface](https://www.gradio.app/) that students can use directly. The app is live on [Hugging Face Spaces](https://huggingface.co/spaces/jbaker1/auto-rubric-evaluator).
 
 The technical pipeline works like this:
 
@@ -48,7 +48,7 @@ Chain-of-Thought prompting was a deliberate choice. Rather than just outputting 
 
 ## Validation Results: What Worked and What Didn't
 
-I built my original prototype using [Llama 3.1 8B Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct). However, I had to change the model to get the app working on Hugging Face Spaces. I validated the system that used Llama 3.1 8B Instruct against 37 authentic student summaries drawn from the [ASAP 2.0 dataset](https://www.kaggle.com/datasets/lburleigh/asap-2-0), along with 23 synthetically generated summaries created using a separate [OpenAI GPT-4o mini](https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/) instance with controlled prompting.
+I validated the system against 37 authentic student summaries drawn from the [ASAP 2.0 dataset](https://www.kaggle.com/datasets/lburleigh/asap-2-0), along with 23 synthetically generated summaries created using a separate [OpenAI GPT-4o mini](https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/) instance with controlled prompting.
 
 | Metric | Result | Target | Status |
 |---|---|---|---|
@@ -63,7 +63,7 @@ The 88% adjacent agreement figure is the one I lean on most. For a formative fee
 
 One of the most valuable moments of this project wasn't a success. It was watching the model confidently state that **Venus is the third planet from the Sun.** For the record, it isn't; Venus is the second.
 
-That kind of hallucination isn't a prompt engineering problem. It's a fundamental characteristic of smaller models. An eight (or three) billion parameter model doesn't have the factual knowledge density of the modern foundational models from OpenAI, Google, Anthropic, etc., and no amount of carefully-crafted instructions will reliably compensate for that [@allen2024physics; @grattafiori2024llama]. For an **Accuracy** dimension that requires the model to compare a student's claims against a source text, this is a material limitation. A student could write something factually incorrect, the model could "agree" because it shares the same misconception, and the student would receive misleading feedback.
+That kind of hallucination isn't a prompt engineering problem. It's a fundamental characteristic of smaller models. An eight billion parameter model doesn't have the factual knowledge density of the modern foundational models from OpenAI, Google, Anthropic, etc., and no amount of carefully-crafted instructions will reliably compensate for that [@allen2024physics; @grattafiori2024llama]. For an **Accuracy** dimension that requires the model to compare a student's claims against a source text, this is a material limitation. A student could write something factually incorrect, the model could "agree" because it shares the same misconception, and the student would receive misleading feedback.
 
 Discovering this wasn't discouraging; it was clarifying. Knowing the failure mode precisely is how you design around it.
 

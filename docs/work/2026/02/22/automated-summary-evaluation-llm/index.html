@@ -352,7 +352,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 23, 2026</p>
+      <p class="date-modified">April 12, 2026</p>
     </div>
   </div>
     
@@ -377,7 +377,7 @@ div.csl-indent {
 </section>
 <section id="what-i-built" class="level2">
 <h2 class="anchored" data-anchor-id="what-i-built">What I Built</h2>
-<p>The working prototype runs <a href="https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct">Meta’s Llama 3.2 3B Instruct</a> with a <a href="https://www.gradio.app/">Gradio web interface</a> that students can use directly. The app is live on <a href="https://huggingface.co/spaces/jbaker1/auto-rubric-evaluator">Hugging Face Spaces</a>.</p>
+<p>The working prototype runs <a href="https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct">Meta’s Llama 3.1 8B Instruct</a> with a <a href="https://www.gradio.app/">Gradio web interface</a> that students can use directly. The app is live on <a href="https://huggingface.co/spaces/jbaker1/auto-rubric-evaluator">Hugging Face Spaces</a>.</p>
 <p>The technical pipeline works like this:</p>
 <ol type="1">
 <li>A student reads <em>The Challenge of Exploring Venus</em>, a grade-appropriate informational article about space exploration drawn from the <a href="https://www.kaggle.com/datasets/lburleigh/asap-2-0">ASAP 2.0 dataset</a> and already loaded into the app, then pastes their summary into the interface.</li>
@@ -389,7 +389,7 @@ div.csl-indent {
 </section>
 <section id="validation-results-what-worked-and-what-didnt" class="level2">
 <h2 class="anchored" data-anchor-id="validation-results-what-worked-and-what-didnt">Validation Results: What Worked and What Didn’t</h2>
-<p>I built my original prototype using <a href="https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct">Llama 3.1 8B Instruct</a>. However, I had to change the model to get the app working on Hugging Face Spaces. I validated the system that used Llama 3.1 8B Instruct against 37 authentic student summaries drawn from the <a href="https://www.kaggle.com/datasets/lburleigh/asap-2-0">ASAP 2.0 dataset</a>, along with 23 synthetically generated summaries created using a separate <a href="https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/">OpenAI GPT-4o mini</a> instance with controlled prompting.</p>
+<p>I validated the system against 37 authentic student summaries drawn from the <a href="https://www.kaggle.com/datasets/lburleigh/asap-2-0">ASAP 2.0 dataset</a>, along with 23 synthetically generated summaries created using a separate <a href="https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/">OpenAI GPT-4o mini</a> instance with controlled prompting.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -431,7 +431,7 @@ div.csl-indent {
 <section id="the-most-honest-finding-the-model-hallucinated-and-so-did-i" class="level2">
 <h2 class="anchored" data-anchor-id="the-most-honest-finding-the-model-hallucinated-and-so-did-i">The Most Honest Finding: The Model Hallucinated, and So Did I</h2>
 <p>One of the most valuable moments of this project wasn’t a success. It was watching the model confidently state that <strong>Venus is the third planet from the Sun.</strong> For the record, it isn’t; Venus is the second.</p>
-<p>That kind of hallucination isn’t a prompt engineering problem. It’s a fundamental characteristic of smaller models. An eight (or three) billion parameter model doesn’t have the factual knowledge density of the modern foundational models from OpenAI, Google, Anthropic, etc., and no amount of carefully-crafted instructions will reliably compensate for that <span class="citation" data-cites="allen2024physics grattafiori2024llama">(<a href="#ref-allen2024physics" role="doc-biblioref">Allen-Zhu &amp; Li, 2024</a>; <a href="#ref-grattafiori2024llama" role="doc-biblioref">Grattafiori et al., 2024</a>)</span>. For an <strong>Accuracy</strong> dimension that requires the model to compare a student’s claims against a source text, this is a material limitation. A student could write something factually incorrect, the model could “agree” because it shares the same misconception, and the student would receive misleading feedback.</p>
+<p>That kind of hallucination isn’t a prompt engineering problem. It’s a fundamental characteristic of smaller models. An eight billion parameter model doesn’t have the factual knowledge density of the modern foundational models from OpenAI, Google, Anthropic, etc., and no amount of carefully-crafted instructions will reliably compensate for that <span class="citation" data-cites="allen2024physics grattafiori2024llama">(<a href="#ref-allen2024physics" role="doc-biblioref">Allen-Zhu &amp; Li, 2024</a>; <a href="#ref-grattafiori2024llama" role="doc-biblioref">Grattafiori et al., 2024</a>)</span>. For an <strong>Accuracy</strong> dimension that requires the model to compare a student’s claims against a source text, this is a material limitation. A student could write something factually incorrect, the model could “agree” because it shares the same misconception, and the student would receive misleading feedback.</p>
 <p>Discovering this wasn’t discouraging; it was clarifying. Knowing the failure mode precisely is how you design around it.</p>
 <p>There was a second humbling finding: <strong>my own ground truth scores had calibration issues.</strong> Partway through validation, I realized my initial human-rater scores were inconsistent across sessions. Before you can trust an AI to agree with a human, the human has to agree with themselves. Rater drift is a known challenge in educational assessment, and finding it in my own data reinforced something the field has known for decades: rubric-based assessment is harder than it looks <span class="citation" data-cites="casabianca2015trends sgammato2018performance">(<a href="#ref-casabianca2015trends" role="doc-biblioref">Casabianca et al., 2015</a>; <a href="#ref-sgammato2018performance" role="doc-biblioref">Sgammato &amp; Donoghue, 2018</a>)</span>.</p>
 </section>

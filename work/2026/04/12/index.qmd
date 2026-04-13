@@ -1,0 +1,66 @@
+---
+title: "When Students Miss School, Reading Scores Follow: A New York State Dashboard"
+description: "An interactive look at chronic absenteeism and ELA proficiency across ~700 New York school districts, built responsibly with NYSED's peer-grouping framework."
+date: 04-10-2026
+categories: [chronic absenteeism, K-12 analytics, educational equity, NYSED, Quarto dashboards, Python]
+image: images/dashboard-preview.png
+draft: true
+execute:
+  eval: false
+comments:
+  giscus:
+    repo: baker-jr-john/baker-jr-john.github.io
+---
+
+## Why This Matters Right Now
+
+Two numbers tell most of the post-pandemic story in American K–12 education. The first is chronic absenteeism, which roughly doubled between the 2018–19 and 2021–22 school years and has remained stubbornly elevated since. The second is fourth-grade reading proficiency, which dropped to its lowest level in more than two decades on the 2024 Nation's Report Card. These two trends are not coincidences, and they are not unrelated.
+
+I built this dashboard to look at how they move together across New York State's roughly 700 public school districts, using the New York State Education Department's publicly available Report Card data. The goal is not to rank districts or name a villain. It is to give an honest, district-contextualized view of a correlation that should shape how every EdTech product designed for K–12 thinks about its user base in 2026.
+
+## What You Can Do With It
+
+**[→ Open the interactive dashboard](dashboard.qmd)**
+
+The dashboard has four pages:
+
+1. **Overview** — statewide value boxes and a short framing of how to read the data
+2. **The Correlation** — a scatter plot of chronic absenteeism versus ELA proficiency, colored by NYSED's Need-to-Resource Capacity category so you are always comparing districts to their peers
+3. **Trends Over Time** — statewide and by peer group, with COVID years annotated
+4. **District Explorer** — a sortable, filterable table for anyone who wants to look up their own district
+
+## The Bias Mitigation Approach, in Plain English
+
+When you plot district outcomes against each other, it is tempting to rank them on whichever axis looks bad. Districts with the highest absenteeism rates become "the worst," and the conversation ends there. That framing is wrong, and the data itself tells you why.
+
+NYSED already publishes a peer-grouping index called Need-to-Resource Capacity, or N/RC, which sorts districts into six categories based on estimated poverty and combined wealth: New York City, the four large cities (Buffalo, Rochester, Syracuse, Yonkers), high-need urban-suburban, high-need rural, average need, and low need. The index is not a political statement. It is a measure, built by the state, of how much a district can meet its students' needs with the resources it has. When you color the scatter plot by N/RC category, the so-called "worst" districts almost always turn out to be the ones working with the least. Comparing a high-need rural district to a low-need suburban district on raw chronic absenteeism is a category error.
+
+So the dashboard is built around three commitments:
+
+- **Compare districts within their peer group.** The scatter plot is colored by N/RC category and the trend lines are drawn per category, not statewide only.
+- **Use student-first language.** "Students experiencing chronic absenteeism," not "chronically absent students." The distinction is small and the reason for it is not.
+- **Name what the data cannot do.** There is a visible methodology note on every page that walks through suppression rules, the difference between correlation and causation, and what the data leaves out.
+
+## Why New York State
+
+Two reasons. First, I have worked directly with NYSED data before — two years as a data analyst in a Hudson Valley school district and another two in a Beacon district — so I know the quirks of the BEDS codes, the suppression conventions, and the quiet gaps in 2019–20 and 2020–21. Second, New York is large and diverse enough that the N/RC peer-grouping story actually shows up in the data. A dashboard built on a smaller or more homogeneous state would flatten the contrast.
+
+## The Connection to Newsela
+
+Newsela acquired [Schoolytics](https://www.schoolytics.com/) in January 2026 and [EveryDay Labs](https://www.everydaylabs.com/) on March 4, 2026. Schoolytics gives districts the analytics layer; EveryDay Labs is built specifically around reducing chronic absenteeism through family engagement and nudges. The bet Newsela is making is that instruction, engagement, and attendance live on the same continuum and that a district's ELA outcomes cannot be improved without also moving the attendance number. This dashboard is, in a sense, a visual argument for that bet.
+
+## How It Was Built
+
+- **Data:** NYSED SRC (School Report Card) database, public download at [data.nysed.gov/downloads.php](https://data.nysed.gov/downloads.php)
+- **Extraction:** Python + mdbtools to pull three tables (`Annual EM ELA`, `ACC EM Chronic Absenteeism`, `BOCES and N/RC`) out of the Access database
+- **Cleaning:** pandas, with explicit handling of NYSED's `"s"` suppression values and the all-text-column quirk of the source database
+- **Dashboard:** Quarto dashboard format, Plotly for interactive charts, itables for the District Explorer
+- **Publishing:** GitHub Pages, rendered alongside the rest of this site
+
+The full data pipeline and source code lives in [this directory](https://github.com/baker-jr-john/baker-jr-john.github.io/tree/main/work/2026/04/10/chronic-absenteeism-dashboard) of the site's repo.
+
+## A Note on What This Isn't
+
+This is a descriptive dashboard, not a predictive model. I am not making claims about causation. I am not building a fairness audit of a classifier — there is no classifier here, so tools like FairLearn and AI Fairness 360 are out of scope. I am not proposing policy. What I am doing is showing, carefully, what the public data says and setting up the conversation so that someone looking at it has the context they need to think about it responsibly.
+
+That is the job I would want to do at Newsela, and this dashboard is the closest thing I can build to a one-page demonstration of how I would do it.
