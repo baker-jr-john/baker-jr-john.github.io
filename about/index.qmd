@@ -15,7 +15,7 @@ about:
       target: _blank
 ---
 
-I'm a data scientist who bridges the gap between K–12 schools and cutting-edge AI research. For the past three years, I've worked directly with educators across multiple districts, turning enrollment projections, student outcomes, and state reporting requirements into insights that actually help teachers focus on their students. Now, I'm bringing that practical grounding into research that matters. One of my aims is to build fairer, smarter early warning systems that can identify struggling students before they fall behind.
+I'm a data analyst who bridges the gap between K–12 schools and cutting-edge AI research. For the past three years, I've worked directly with educators across multiple districts, turning enrollment projections, student outcomes, and state reporting requirements into insights that actually help teachers focus on their students. Now, I'm bringing that practical grounding into research that matters. One of my aims is to build fairer, smarter early warning systems that can identify struggling students before they fall behind.
 
 I'm currently finishing my [Master of Science in Learning Analytics and Artificial Intelligence](https://www.gse.upenn.edu/academics/learning-analytics-AI-online-msed) at the [University of Pennsylvania Graduate School of Education](https://www.gse.upenn.edu/) (expected May 2026), where my capstone develops a bias-aware early warning system using LSTM networks. The technical work excites me—deep learning, transformer models, statistical modeling—but what drives me is ensuring these tools work equitably for all students. Too often, educational technology—across K–12 and higher education—reinforces the same inequities it claims to solve.
 
