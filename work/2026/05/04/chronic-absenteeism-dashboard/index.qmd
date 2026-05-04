@@ -18,7 +18,7 @@ I built this dashboard to look at how they move together across New York State's
 
 ## What You Can Do With It
 
-**[→ Open the interactive dashboard](https://johnbaker.io/chronic-absenteeism-dashboard/)**
+**[→ Open the interactive dashboard](https://johnbaker.io/chronic-absenteeism-dashboard/){target="_blank"}**
 
 The dashboard has five pages:
 
@@ -46,7 +46,7 @@ Two reasons. First, I have worked directly with NYSED data before — three year
 
 ## The EdTech Context
 
-A growing segment of EdTech is organized around a shared premise: instruction, attendance, and engagement are closely linked. Research supports the connection — [chronic absenteeism is associated with significantly lower reading proficiency](https://ies.ed.gov/use-work/supporting-recovery-with-evidence-based-practices/chronic-absenteeism), and [school-level absenteeism predicts drops in ELA and Math scores even for students who do show up](https://www.attendanceworks.org/new-research-schoolwide-chronic-absence-affects-all-students/). Attendance intervention platforms act on that link directly, using family outreach and [behavioral nudges](https://edtechhub.org/2022/10/02/participation-messaging-how-can-nudge-technologies-and-messaging-apps-be-used-to-re-engage-students-reduce-the-number-of-out-of-school-children-and-improve-learning-outcomes/) to reduce absences. District analytics tools can surface that data in forms that school leaders can act on. Literacy platforms deliver the content. The underlying premise, visible across product categories if not always stated explicitly, is that improving reading outcomes requires also addressing who shows up. This dashboard is, in a sense, a visual argument for that premise.
+A growing segment of EdTech is organized around a shared premise: instruction, attendance, and engagement are closely linked. Research supports the connection — [chronic absenteeism is associated with significantly lower reading proficiency](https://ies.ed.gov/use-work/supporting-recovery-with-evidence-based-practices/chronic-absenteeism), and [school-level absenteeism predicts drops in ELA and Math scores even for students who do show up](https://www.attendanceworks.org/new-research-schoolwide-chronic-absence-affects-all-students/). Attendance intervention platforms act on that link directly, using family outreach and behavioral nudges to reduce absences. District analytics tools can surface that data in forms that school leaders can act on. Literacy platforms deliver the content. The underlying premise, visible across product categories if not always stated explicitly, is that improving reading outcomes requires also addressing who shows up. This dashboard is, in a sense, a visual argument for that premise.
 
 ## How It Was Built
 
