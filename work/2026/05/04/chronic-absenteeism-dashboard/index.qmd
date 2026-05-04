@@ -4,7 +4,7 @@ description: "An interactive look at chronic absenteeism and ELA proficiency acr
 date: 05-04-2026
 categories: [chronic absenteeism, K-12 analytics, educational equity, NYSED, Quarto dashboards, Python]
 image: images/Gemini_Generated_Image_yb7761yb7761yb77.png
-draft: true
+draft: false
 comments:
   giscus:
     repo: baker-jr-john/baker-jr-john.github.io
